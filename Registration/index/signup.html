@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/signup.css">
+    <link rel="icon" href="images/green-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"/>
+
+    <title>Sign up</title>
+</head>
+
+<body>
+   <main>
+<div class="container" id="container">
+    <div class="sign-up">
+        <div class="leftSide" id="leftSide">
+            <div class="logo">
+                <img src="../images/white-logo.png" alt="logo">
+            </div>
+            <div class="photoAndDesc">
+                <span class="leftDesc">Welcome to Ticketaya! Book tickets for parties and matches in just a few clicks.</span>
+                <span class="leftDesc" id="leftDesc">Sign up now and get started!</span>
+                <img src="../images/signup.png" alt="photo" class="leftSidePhoto">
+            </div>
+        </div>
+        <div class="rightSide" id="rightSide">
+            <h2>Create an account</h2>
+            <form class="inputs" method="post">
+                <input type="text" placeholder="First Name" class="firstname" required>
+                <input type="text" placeholder="Last Name" class="lastname" required>
+                <input type="text" placeholder="Username" class="username" required>
+                <p class="errorMsg">this username is taken</p>
+                <input type="email" placeholder="Email" class="email" required>
+                <p class="errorMsg">this email is used</p>
+                <input type="password" placeholder="Password" class="password" id="password" required>
+                <input type="password" placeholder="Confirm Password" class="confirmPassword" id="confirmPassword" required>
+                <p class="errorMsg" id="passwordError">passwords don't match</p>
+                <button type="submit" class="submitBtn">Submit</button>
+            </form>
+            <div class="login">
+                Already have an account? 
+                <a href="../index/login.html" id="loginBtn">LOGIN</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   </main>
+   <script src="../script/script.js"></script>
+</body>
+</html>

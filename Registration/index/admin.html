@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/admin.css">
+    <link rel="icon" href="images/green-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"/>
+
+    <title>Admin Log-in</title>
+</head>
+
+<body>
+   <main>
+<div class="container" id="container">  
+    <div class="sign-up">
+        <div class="leftSide" id="leftSide">
+            <div class="logo">
+                <img src="../images/white-logo.png" alt="logo">
+            </div>
+
+            <div class="photoAndDesc">
+                <span class="leftDesc">Welcome Admin!</span>
+                <img src="../images/admin.png" alt="photo" class="leftSidePhoto">
+                <p>User account?</p>
+                <a href="../index/login.html" class="adminLoginBtn">Sign in as User</a>
+            </div>
+        </div>
+        <div class="rightSide" id="rightSide">
+            <h2 style="text-align: center;">Sign In</h2>
+            <form class="inputs" method="post">
+                <input type="email" placeholder="Admin Email" class="email" required>
+                <input type="password" placeholder="Password" class="password" id="password" required>
+                <button type="submit" class="submitBtn">Login</button>
+            </form>
+            <div class="signUpLink"> Don't have an account?                
+                <a href="../index/signup.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   </main>
+   <script src="../script/script.js"></script>
+</body>
+</html>
