@@ -12,3 +12,5 @@ function checkPasswords(){
 
 confirmPassword.addEventListener('input', checkPasswords);
 password.addEventListener('input', checkPasswords);
+
+

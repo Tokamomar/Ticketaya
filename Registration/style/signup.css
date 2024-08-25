@@ -175,3 +175,46 @@ a {
 .container.active .rightSide {
     transform: translateX(-100%);
 }
+.popup-container{
+    z-index: 2;
+    height: 100Vh;
+    width: 100%;
+    background-color: rgba(0,0, 0, 0.3);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.popup{
+    height: 200px;
+    width: 300px;
+    background-color: white;
+    border-radius: 20px;
+    z-index: 3;
+    position: relative;
+}
+.popup>h4{
+    font-size: 17px;
+    color: #525252;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    padding: 0;
+    margin-left: 15px;
+}
+.popup>p{
+    font-size: 14px;
+    color: #525252;
+    padding-left: 15px;
+}
+.closeBtn{
+    color: #5389cb;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+}

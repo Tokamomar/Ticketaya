@@ -19,6 +19,14 @@
 
 <body>
    <main>
+    <div class="popup-container" id="popupContainer">
+        <div class="popup">
+            <h4>Welcome to Ticketaya!</h4>
+            <p>your new account is ready.</p>
+            <p>Login to browse and book tickets for your favorites events.</p>
+            <div class="closeBtn">close</div>
+        </div>
+    </div>
 <div class="container" id="container">
     <div class="sign-up">
         <div class="leftSide" id="leftSide">
@@ -43,7 +51,7 @@
                 <input type="password" placeholder="Password" class="password" id="password" required>
                 <input type="password" placeholder="Confirm Password" class="confirmPassword" id="confirmPassword" required>
                 <p class="errorMsg" id="passwordError">passwords don't match</p>
-                <button type="submit" class="submitBtn">Submit</button>
+                <button type="submit" class="submitBtn" id="submitBtn">Submit</button>
             </form>
             <div class="login">
                 Already have an account? 
