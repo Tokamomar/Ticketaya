@@ -35,11 +35,11 @@
         </div>
         <div class="rightSide" id="rightSide">
             <h2 style="text-align: center;">Sign In</h2>
-            <form class="inputs" method="post">
-                <input type="email" placeholder="Email" class="email" required>
-                <input type="password" placeholder="Password" class="password" id="password" required>
-                <button type="submit" class="submitBtn">Login</button>
-            </form>
+            <form id="loginForm" class="inputs" method="post">
+              <input type="text" placeholder="Username" class="username" id="username" required>
+              <input type="password" placeholder="Password" class="password" id="password" required>
+              <button type="submit" class="submitBtn">Login</button>
+          </form>          
             <div class="signUpLink">
                 Not a member yet?
                 <a href="../index/signup.html">Sign up for free</a>
@@ -51,5 +51,6 @@
 
    </main>
    <script src="../script/script.js"></script>
+   <script src="../script/login.js"></script>
 </body>
 </html>
