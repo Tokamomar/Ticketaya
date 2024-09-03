@@ -35,8 +35,8 @@
         </div>
         <div class="rightSide" id="rightSide">
             <h2 style="text-align: center;">Sign In</h2>
-            <form class="inputs" method="post">
-                <input type="email" placeholder="Email" class="email" required>
+            <form class="inputs" method="POST" id="form">
+                <input type="text" placeholder="username" class="username" required>
                 <input type="password" placeholder="Password" class="password" id="password" required>
                 <button type="submit" class="submitBtn">Login</button>
             </form>
@@ -44,12 +44,14 @@
                 Not a member yet?
                 <a href="../index/signup.html">Sign up for free</a>
             </div>
+            <p class="errorMsg" id="errorMsg">Username or Password are wrong, check again</p>
         </div>
     </div>
 </div>
 
 
    </main>
+   <script src="../script/login.js"></script>
    <script src="../script/script.js"></script>
 </body>
 </html>
