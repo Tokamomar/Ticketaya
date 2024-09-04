@@ -28,6 +28,16 @@ document.getElementById('form').addEventListener('submit', function (event) {
     })
     .then(data => {
         // Handle success - maybe redirect to a dashboard or show a success message
+        const accessToken = data.token.access
+        const refreshToken = data.token.refresh
+
+        console.log('accesstoken : ' , accessToken)
+        console.log('refreshtoken : ' , refreshToken)
+
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        
+        console.log(data.is_admin);
         alert("successful login")
     })
     .catch(error => {
