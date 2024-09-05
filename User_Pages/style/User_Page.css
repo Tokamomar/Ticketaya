@@ -1,0 +1,82 @@
+:root {
+    --primary-color: #4D774E;
+    --secondary-color: #81a17c;
+    --hover-color: #9dc1a4;
+    --tertiary-color: #325434;
+    --accent-color: #f1b24a;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F4F2EF;
+    background: linear-gradient(to right, #e2e2e2, #9dc1a4);
+    position: relative;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+body > .logo {
+    position: relative;
+    left: 20px;
+    height: 120px; 
+    width: auto; 
+}
+
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+#userInfo {
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+.delete {
+    background-color: var(--tertiary-color);
+}
+
+.delete:hover {
+    background-color: #d9534f;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+}

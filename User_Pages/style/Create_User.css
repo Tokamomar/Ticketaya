@@ -1,0 +1,86 @@
+:root {
+    --primary-color: #4D774E;
+    --secondary-color: #81a17c;
+    --hover-color: #9dc1a4;
+    --tertiary-color: #325434;
+    --accent-color: #f1b24a;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F4F2EF;
+    background: linear-gradient(to right, #e2e2e2, #9dc1a4);
+    position: relative;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; 
+}
+
+body > .logo {
+    position: relative;
+    left: 20px;
+    height: 120px; 
+    width: auto; 
+}
+
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    color: var(--tertiary-color);
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.create-button {
+    width: 50%;
+    margin-left: 25%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.create-button:hover {
+    background-color: var(--hover-color);
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
