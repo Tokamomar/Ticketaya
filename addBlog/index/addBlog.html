@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Blog</title>
+    <link rel="stylesheet" href="../style/addBlog.css" />
+    <link rel="stylesheet" href="../style/Playwrite_CU/PlaywriteCU-VariableFont_wght.ttf">
+   </head>
+  <body>
+    <div class="full-screen">
+      <div class="container">
+        <div class="intro">
+          <div class="logoHolder">
+            <img src="../../Registration/images/green-logo.png" class="logo"></img>
+          </div>
+          <div class="title">Create a New Blog Post</div>
+        </div>
+        <form method="post" class="right_left_holder">
+          <div class="leftSide">
+            <div class="iconHolder">
+              <img class="icon" src="../images/upload-icon.png"/>
+            </div>
+            <p class="dropFile">Drop file here</p>
+            <button type="button" class="add_photo_btn">Upload File</button>
+          </div>
+          <div class="rightSide">
+            <label for="eventName">Event Name</label>
+            <input
+              class="evenetName"
+              id="eventName"
+              placeholder="Enter event name"
+              required
+            />
+            <label for="description">Description</label>
+            <textarea  class="description"
+            id="description"
+            placeholder="Describe the event"
+            required></textarea>
+            <label for="type">Event type</label>
+            <div class="toggle-container">
+              <div class="toggle-option active">Match</div>
+              <div class="toggle-option">Party</div>
+            </div>
+          </div> <!-- right side -->
+          <button type="button" class="Back">Back</button>
+          <button type="submit" id="create_btn">Create</button>
+        </form><!--left right holder  -->
+      </div><!-- container  -->
+    </div> <!-- full screen  -->
+    <script src="../script/addBlog.js"></script>
+  </body>
+</html>
+<!--todo make the blog with time that it is added at  -->
