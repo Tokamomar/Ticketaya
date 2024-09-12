@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="../../addBlog/style/blogPosts.css">
+    <link rel="stylesheet" href="../style/account.css">
+    <link rel="stylesheet" href="../style/Lobster_Two/LobsterTwo-Regular.ttf" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+</head>
+<body>
+    <div class="container">
+        <div class="leftBar">
+          <!-- <img class="logo" src="../../Registration/images/green-logo.png" alt="logo"> -->
+          <p class="ticketaya lobster-two-bold logo">Ticketaya</p>
+          <ul class="list">
+            <li>
+              <a href="#">
+                <i class="fas fa-home"></i>
+                <span class="home">Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa-regular fa-futbol"></i>
+                <span class="home">Matches</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa-solid fa-music"></i>
+                <span class="home">Parties</span>
+              </a>
+            </li>
+            <li>
+              <a href="../index/addBlog.html">
+                <i class="fa-regular fa-square-plus"></i>
+                <span class="home">Create</span>
+              </a>
+            </li>
+            <li>
+                <a href="../../addBlog/index/blogPosts.html">
+                    <i class="fa-solid fa-signs-post"></i>
+                  <span class="settings">Blogs</span>
+                </a>
+              </li>
+          </ul>
+        </div>
+        <div class="rightBar">
+            <div class="blogsBar">
+                <!--! account part -->
+                        <div class="acc_info">
+                          <div class="acc_left">
+                            <img alt="pfp" src="../../addBlog/images/pfp.jpg" />
+                            <button class="choose_photo">Choose Photo</button>
+                        </div>
+                          <div class="acc_right">
+                           <div class="options">
+                            <span class="usernameAcc">mariem_omar</span>
+                            <i class="fa-solid fa-gear" id="settings"></i>
+                            <span></span>
+                            </div>
+                            <div class="rest_name">
+                                <span>Maryam</span>
+                                <span style="margin-left: 5px;">Omar</span>
+                            </div>
+                        </div>
+                        </div>
+                <!--! account part -->
+                <div class="blog">
+                    <div class="blog_creator">
+                        <img class="blog_creator_img" src="../../addBlog/images/pfp.jpg" alt="pfp">
+                        <span class="blog_creator_name">
+                            <span class="creator_first_name">first</span>
+                            <span class="creator_sec_name">second</span>
+                        </span>
+                        <span class="eventName">amr diab party</span>
+                        <span class="eventType">party</span>
+                    </div> <!--blog creator-->
+                    <div class="blog_body">
+                        <div class="post_img_holder">
+                            <img alt="post" src="../../addBlog/images/cat.jpg" class="post_img">
+                        </div>
+                        <div class="reacts">
+                          <i class="fa-regular fa-heart" style="cursor: pointer;" id="heart"></i>
+                            <p class="likes">200 likes</p>
+                           
+                        </div>
+                        
+                        <p class="desc">Join us for an epic night of music, dancing, and fun! With top DJs, vibrant lights, and an electric atmosphere, this party is the weekend's must-attend event. Get ready to dance, drink, and enjoy unforgettable moments with friends!</p>
+                    </div>
+                </div><!--end of blog-->
+            </div>
+          </div>
+    </div><!--container-->
+    <div class="settings_popup" id="settingsPopup">
+      <div class="settings_popup_container">
+        <div class="options_holder">
+          <p class="settings_options">Update Credentials</p>
+          <p class="settings_options">Change Password</p>
+          <p class="settings_options logout">Log Out</p>
+          <p class="settings_options" id="cancel">Cancel</p>
+        </div>
+      </div>
+    </div>
+    <script src="../script/account.js"></script>
+</body>
+</html>

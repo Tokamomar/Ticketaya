@@ -3,6 +3,12 @@
     --secondary-color: #81a17c;
     --hover-color: #9dc1a4;
     --tertiary-color: #325434;
+    --fourth : #0ad1c8;
+    --third : #14919b;
+    --second : #0b6477;
+    --fifth  : #45dfb1;
+    --sixth : #80ed99;
+    --first : #1a2e45;
 }
 .lobster-two-regular {
     font-family: "Lobster Two", sans-serif;
@@ -28,9 +34,10 @@
     font-style: italic;
   }
 body{
-    background-color: #000000;
-    color: var(--primary-color);
-    color: var(--secondary-color);
+    background-color:black;
+    background-color:rgb(33, 32, 32);
+    background-color:var(--first);
+    color: var(--fourth);
 }
 *{
     margin: 0;
@@ -43,6 +50,8 @@ body{
 }
 a{
     color:rgb(197, 197, 197);
+    color: var(--third);
+    color: white;
 }
 .container{
     overflow: hidden;
@@ -80,6 +89,7 @@ li{
     width: 80%;
     padding: 20px 20px ;
     font-size:20px;
+    cursor: pointer;
 }
 li:hover{
     background-color: rgba(183, 183, 183 , 0.1);
@@ -87,7 +97,7 @@ li:hover{
     width: 100%;
 }
 li:hover a{
-    font-size:21px ;
+    font-size:20px ;
 }
 .acc_container{
     width: 100%;
@@ -116,10 +126,13 @@ li:hover a{
 }
 .username , .firstName , .secName{
     color:rgb(197, 197, 197);
+    color: var(--fourth);
+    color: white;
 }
 .logout_btn{
     display: inline-block;
     color: #2d8df4;
+    color: var(--fourth);
     position: absolute;
     right: 30px;
     top: 50px;
@@ -133,6 +146,7 @@ li:hover a{
     position: absolute;
     bottom: 30px;
     color: #4e4e4e;
+    color: var(--third);
     color: rgb(197 , 197 , 197);
     border-top: 1px solid #b7b7b7;
     padding: 0 10px;
@@ -155,7 +169,7 @@ li:hover a{
     height: auto;
     /* background-color: #2d8df4; */
     color: white;
-    border-bottom: 1px solid #454545;
+    border-bottom: 1px solid white;
 }
 .blog_creator{
     margin-top: 20px;
@@ -194,7 +208,7 @@ li:hover a{
     justify-content: center;
     align-items: center;
     /* background-color: #202020; */
-    border: 1px solid #202020;
+    border: 0.5px solid rgb(43, 54, 88);
 }
 .post_img{
     width: 400px;
@@ -217,9 +231,10 @@ li:hover a{
 }
 .desc{
     font-size: 14px;
+    margin-bottom: 5px;
 }
 .comment_input{
-    background-color: #000000;
+    background-color: var(--first);
     outline: none;
     border: none;
     color: white;

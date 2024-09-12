@@ -39,6 +39,8 @@ document.getElementById('form').addEventListener('submit', function (event) {
         
         console.log(data.is_admin);
         alert("successful login")
+
+        window.location.href = '../../addBlog/index/blogPosts.html'
     })
     .catch(error => {
         // Handle errors
