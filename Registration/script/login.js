@@ -63,7 +63,6 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
           // Handle successful login
           console.log('Access:', data.access);
           console.log('Refresh:', data.refresh);
-          console.log('User:', data.user);
 
           // You can store tokens in localStorage or cookies
           localStorage.setItem('access', data.access);
