@@ -1,0 +1,129 @@
+:root{
+    --primary-color: #4D774E; 
+    --secondary-color: #81a17c;
+    --hover-color: #9dc1a4;
+    --tertiary-color: #325434;
+    --fourth : #0ad1c8;
+    --third : #14919b;
+    --second : #0b6477;
+    --fifth  : #45dfb1;
+    --sixth : #80ed99;
+    --first : #1a2e45;
+}
+body{
+    color: white;
+}
+.logo{
+    color: var(--fourth);
+}
+.acc_info{
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #454545;
+}
+.acc_left{
+    float: left;
+    width: 150px;
+    height:100%;
+}
+.acc_left>img{
+    width: 150px;
+    border-radius:50% ;
+}
+.choose_photo{
+    width: 110px;
+    height: 32px;
+    background-color: rgba(183, 183, 183, 0.6);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-left: 20px;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+.choose_photo:hover{
+    background-color: rgba(183, 183, 183, 0.8);
+}
+.acc_right{
+    width: clac(100%-150px);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-top: 15px;
+}
+.options{
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+}
+.options>i{
+    margin-left: 20px;
+    cursor: pointer;
+}
+.rest_name{
+    padding-top: 15px;
+    font-size: 17px;
+}
+.settings_popup{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(42, 42, 42, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.settings_popup_container{
+    width: 270px;
+    height: 200px;
+    background-color: rgb(21, 21, 21);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+.settings_popup_title{
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.options_holder{
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.settings_options{
+    border-bottom: 1px solid #454545;
+    padding-top: 14px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.settings_options:hover{
+    background-color: rgba(183, 183, 183, 0.1);
+}
+.settings_options:first-child:hover {
+    border-radius: 10px 10px 0 0;
+}
+.settings_options:last-child:hover {
+    border-radius: 0px 0px 10px 10px;
+}
+#cancel{
+    border: none;
+}

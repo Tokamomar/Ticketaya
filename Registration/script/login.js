@@ -1,82 +1,50 @@
-// document.getElementById("loginForm").addEventListener("submit", async function(event) {
-//   event.preventDefault(); // Prevent the default form submission
+document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault();  
 
-//   const username = document.getElementById("username").value;
-//   const password = document.getElementById("password").value;
+    // Get the input values
+    const username = document.querySelector('.username').value;
+    const password = document.querySelector('.password').value;
+    const errorMsg = document.getElementById('errorMsg');
 
-//   try {
-//       const response = await fetch('http://localhost:8000/login/', { // Replace with your actual API endpoint
-//           method: 'POST',
-//           headers: {
-//               'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify({
-//               username: username,
-//               password: password
-//           }),
-//         mode: 'no-cors' // Avoid using this unless absolutely necessary, as it limits the response data you can access
-//       });
+    // Create the data object to send to the backend
+    const data = {
+        username: username,
+        password: password
+    };
 
-//       if (response.ok) {
-//           const data = await response.json();
-//           // Handle successful login
-//           console.log('Access:', data.access);
-//           console.log('Refresh:', data.refresh);
-//           console.log('User:', data.user);
+    
+    fetch('http://127.0.0.1:8000/account/login/', { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),  
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+        return response.json();  
+    })
+    .then(data => {
+        // Handle success - maybe redirect to a dashboard or show a success message
+        const accessToken = data.token.access
+        const refreshToken = data.token.refresh
 
-//           // You can store tokens in localStorage or cookies
-//           localStorage.setItem('access', data.access);
-//           localStorage.setItem('refresh', data.refresh);
+        console.log('accesstoken : ' , accessToken)
+        console.log('refreshtoken : ' , refreshToken)
 
-//           // Redirect user to a different page or update UI as needed
-//           // window.location.href = 'signup.html'; // Example redirection after successful login
-//       } else {
-//           // Handle errors (e.g., wrong credentials)
-//           const errorData = await response.json();
-//           alert(errorData.message || "Login failed!");
-//       }
-//   } catch (error) {
-//       console.error('Error:', error);
-//       alert('An error occurred. Please try again later.');
-//   }
-// });
-document.getElementById("loginForm").addEventListener("submit", async function(event) {
-  event.preventDefault(); // Prevent the default form submission
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        
+        console.log(data.is_admin);
+        alert("successful login")
 
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  try {
-      const response = await fetch('http://localhost:8000/login/', { // Replace with your actual API endpoint
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-              username: username,
-              password: password
-          })
-      });
-
-      if (response.ok) {
-          const data = await response.json();
-          // Handle successful login
-          console.log('Access:', data.access);
-          console.log('Refresh:', data.refresh);
-
-          // You can store tokens in localStorage or cookies
-          localStorage.setItem('access', data.access);
-          localStorage.setItem('refresh', data.refresh);
-
-          // Redirect user to a different page or update UI as needed
-          // window.location.href = 'signup.html'; // Example redirection after successful login
-      } else {
-          // Handle errors (e.g., wrong credentials)
-          const errorData = await response.json();
-          alert(errorData.message || "Login failed!");
-      }
-  } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred. Please try again later.');
-  }
+        window.location.href = '../../addBlog/index/blogPosts.html'
+    })
+    .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+        errorMsg.style.display = "block"
+    });
 });

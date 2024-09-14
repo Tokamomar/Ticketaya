@@ -35,21 +35,23 @@
         </div>
         <div class="rightSide" id="rightSide">
             <h2 style="text-align: center;">Sign In</h2>
-            <form id="loginForm" class="inputs" method="post">
-              <input type="text" placeholder="Username" class="username" id="username" required>
-              <input type="password" placeholder="Password" class="password" id="password" required>
-              <button type="submit" class="submitBtn">Login</button>
-          </form>          
+            <form class="inputs" method="POST" id="form">
+                <input type="text" placeholder="username" class="username" required>
+                <input type="password" placeholder="Password" class="password" id="password" required>
+                <button type="submit" class="submitBtn">Login</button>
+            </form>
             <div class="signUpLink">
                 Not a member yet?
                 <a href="../index/signup.html">Sign up for free</a>
             </div>
+            <p class="errorMsg" id="errorMsg">Username or Password are wrong, check again</p>
         </div>
     </div>
 </div>
 
 
    </main>
+   <script src="../script/login.js"></script>
    <script src="../script/script.js"></script>
    <script src="../script/login.js"></script>
 </body>
