@@ -66,13 +66,13 @@
                         </div>
                           <div class="acc_right">
                            <div class="options">
-                            <span class="usernameAcc">mariem_omar</span>
+                            <span class="usernameAcc" id="usernameAcc"></span>
                             <i class="fa-solid fa-gear" id="settings"></i>
                             <span></span>
                             </div>
                             <div class="rest_name">
-                                <span>Maryam</span>
-                                <span style="margin-left: 5px;">Omar</span>
+                                <span id="firstName">Maryam</span>
+                                <span style="margin-left: 5px;" id="secondName">Omar</span>
                             </div>
                         </div>
                         </div>
@@ -104,12 +104,20 @@
           </div>
     </div><!--container-->
     <div class="settings_popup" id="settingsPopup">
-      <div class="settings_popup_container">
+      <div class="settings_popup_container" id="settingsContainer">
         <div class="options_holder">
           <p class="settings_options">Update Credentials</p>
           <p class="settings_options">Change Password</p>
-          <p class="settings_options logout">Log Out</p>
+          <p class="settings_options logout" id="logout">Log Out</p>
+          <p class="settings_options" id="deleteAccount">Delete Account</p>
           <p class="settings_options" id="cancel">Cancel</p>
+        </div>
+      </div>
+      <div  id="confirmDeleting">
+        <p>Are you sure you want to delete your account!</p>
+        <div style="display: flex; flex-direction: row; justify-content: center;">
+          <button type="button" class="back" id="back">Back</button>
+          <button type="button" class="delete" id="delete">Delete</button>
         </div>
       </div>
     </div>

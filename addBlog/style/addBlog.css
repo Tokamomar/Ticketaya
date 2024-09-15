@@ -82,6 +82,10 @@ body{
 .icon{
     max-width: 150px;
 }
+.selectImg{
+    color: rgb(255, 88, 88);
+    display: none;
+}
 .rightSide{
     float: right;
     width: 50%;
@@ -140,6 +144,7 @@ input::placeholder , #description::placeholder{
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    color: var(--fourth);
 }
   
 .toggle-option.active {

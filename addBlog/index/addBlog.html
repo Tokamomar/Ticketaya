@@ -16,13 +16,15 @@
           </div>
           <div class="title">Create a New Blog Post</div>
         </div>
-        <form method="post" class="right_left_holder">
+        <form method="post" class="right_left_holder" id="form">
           <div class="leftSide">
             <div class="iconHolder">
-              <img class="icon" src="../images/upload-icon.png"/>
+              <img class="icon" src="../images/upload-icon.png" aria-required="true"/>
             </div>
             <p class="dropFile">Drop file here</p>
-            <input type="file" class="add_photo_btn">
+            <input type="file" class="add_photo_btn" id="imgInput">
+            <p class="selectImg" id="selectImg">Please select an image before submitting</p>
+            <p class="selectImg" id="validImg">Please select a valid image</p>
           </div>
           <div class="rightSide">
             <label for="eventName">Event Name</label>
@@ -37,11 +39,11 @@
             id="description"
             placeholder="Describe the event"
             required></textarea>
-            <label for="type">Event type</label>
+            <!-- <label for="type">Event type</label>
             <div class="toggle-container">
               <div class="toggle-option active">Match</div>
               <div class="toggle-option">Party</div>
-            </div>
+            </div> -->
           </div> <!-- right side -->
           <button type="button" class="Back" id="back">Back</button>
           <button type="submit" id="create_btn">Create</button>

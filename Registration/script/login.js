@@ -40,7 +40,7 @@ document.getElementById('form').addEventListener('submit', function (event) {
         console.log(data.is_admin);
         alert("successful login")
 
-        window.location.href = '../../addBlog/index/blogPosts.html'
+        window.location.href = '../../account/index/account.html'
     })
     .catch(error => {
         // Handle errors
