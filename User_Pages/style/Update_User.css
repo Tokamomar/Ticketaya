@@ -15,8 +15,8 @@ body {
 }
 
 .container {
-    max-width: 400px;
-    margin: 50px auto;
+    max-width: 450px;
+    margin: 10px auto;
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -37,20 +37,44 @@ h1 {
     text-align: center;
 }
 
+.form-group-inline {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Space between the fields */
+    margin-bottom: 20px; /* Space below the row */
+}
+
+.form-group {
+    flex: 1; /* Ensures both fields take equal space */
+    min-width: 150px; /* Minimum width for each field */
+}
+
 label {
     display: block;
     margin: 15px 0 5px;
-    color: var(--tertiary-color);
+    margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"] {
+
+input {
     width: 100%;
     padding: 10px;
     border: 1px solid var(--secondary-color);
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+input:focus {
+    border-color: var(--primary-color);
+    outline: none; 
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
 
 .update-button {
     width: 50%;
