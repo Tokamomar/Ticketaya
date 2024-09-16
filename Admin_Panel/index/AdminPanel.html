@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Icons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon/css/flaticon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+
+	<link rel="stylesheet" href="../style/AdminPanel.css">
+    <link rel="icon" href="../images/green-logo.png">
+	<title>AdminPanel</title>
+</head>
+<body>
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="panel">
+            <div class="logo">
+                <img src="../images/green-logo.png" alt="Ticketaya Logo">
+            </div>
+			<span class="text">AdminPanel</span>
+		</a>
+		<ul class="side-menu top">
+
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard'></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li class="dropdown-item">
+				<a href="#" class="dropdown-btn">
+					<i class='bx bx-user'></i>
+					<span class="text">User Pages</span>
+                    <i class='bx bx-chevron-right arrow'></i>
+				</a>
+                <ul class="dropdown">
+                    <li><a href="../../User_Pages/index/Create_User.html">Create User</a></li>
+                    <li><a href="../../User_Pages/index/All_Users.html">Users Page</a></li>
+                </ul>
+			</li>
+			 <li class="dropdown-item">
+				<a href="#" class="dropdown-btn">
+					<i class="bi bi-balloon-fill"></i>
+					<span class="text">Concert Management</span>
+                    <i class='bx bx-chevron-right arrow'></i>
+				</a>
+                <ul class="dropdown">
+                    <li><a href="#">Add/Edit</a></li>
+                    <li><a href="#">Update</a></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+			</li>
+			<li class="dropdown-item">
+				<a href="#" class="dropdown-btn">
+					<i class='bx bx-football'></i>
+					<span class="text">Match Management</span>
+                    <i class='bx bx-chevron-right arrow'></i>
+				</a>
+                <ul class="dropdown">
+                    <li><a href="#">Add/Edit</a></li>
+                    <li><a href="#">Update</a></li>
+                    <li><a href="#">Delete</a></li>
+                </ul>
+			</li>
+			<li class="dropdown-item">
+				<a href="#" class="dropdown-btn">
+					<i class='bx bxl-blogger'></i>
+					<span class="text">Content Management</span>
+                    <i class='bx bx-chevron-right arrow'></i>
+				</a>
+                <ul class="dropdown">
+                    <li><a href="../../addBlog/index/blogPosts.html">Blogs</a></li>
+                    <li><a href="#">Media</a></li>
+                </ul>
+			</li>
+
+            <li>
+				<a href="../../Registration/index/newAdmin.html">
+					<i class='bx bx-user-plus'></i>
+					<span class="text">Add new admin</span>
+				</a>
+			</li> 
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog'></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="../../Registration/index/admin.html" class="logout">
+					<i class="fa-solid fa-sign-out"></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- CONTENT -->
+	<section id="content">
+		
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' id="menu-btn"></i> 
+			
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search">
+					<button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+				</div>
+			</form>
+		</nav>
+
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+				</div>
+			</div>
+	
+			<div class="main-content">
+				<h1>Hi Admin! Welcome back.</h1>
+			</div>
+		</main>
+	</section>
+
+	<script src="../script/AdminPanel.js"></script>
+</body>
+</html>
