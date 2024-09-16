@@ -183,3 +183,10 @@ input:focus {
 .container.active .rightSide {
     transform: translateX(-100%);
 }
+.forgerPassword{
+    text-align: center;
+}
+.forgerPassword a{
+    color :#4D774E;
+    text-decoration: none;
+}
