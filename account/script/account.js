@@ -176,6 +176,7 @@ changePasswordForm.addEventListener('submit' , function (e){
             changedMsg.style.display = "flex";
             okBtn.addEventListener('click' , ()=>{
                 settingsPopup.style.display = "none";
+                changedMsg.style.display = "none"
 
             })
         console.log(data.msg)
