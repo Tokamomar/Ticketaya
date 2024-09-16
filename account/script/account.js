@@ -2,11 +2,19 @@ const settings = document.getElementById('settings');
 const settingsPopup = document.getElementById('settingsPopup');
 const cancel = document.getElementById('cancel');
 const heart = document.getElementById('heart');
-const deleteAccount = document.getElementById("deleteAccount")
+const deleteAccount = document.getElementById("deleteAccount");
 const settingsContainer = document.getElementById('settingsContainer');
-const confirmDeleting = document.getElementById('confirmDeleting')
+const confirmDeleting = document.getElementById('confirmDeleting');
 const back = document.getElementById('back');
 const deleteBtn = document.getElementById('delete');
+const changePasswordBtn = document.getElementById('changePasswordBtn');
+const changePasswordForm = document.getElementById('changePasswordForm');
+const backPass = document.getElementById('backPass');
+const notMatchPass = document.getElementById('notMatchPass');
+const notCorrectPass = document.getElementById('notCorrectPass');
+const changedMsg = document.getElementById('changedMsg');
+const okBtn = document.getElementById('okBtn');
+
 
 settings.addEventListener('click' , ()=>{
     settingsPopup.style.display = "flex";
@@ -32,6 +40,18 @@ deleteAccount.addEventListener('click' , ()=>{
 back.addEventListener('click' , ()=>{
     settingsContainer.style.display = "flex";
     confirmDeleting.style.display = "none";  
+})
+backPass.addEventListener('click' , ()=>{
+    settingsContainer.style.display = "flex";
+    changePasswordForm.style.display = "none";  
+})
+changePasswordForm.addEventListener('click' , (e)=>{
+    e.stopPropagation();
+})
+changePasswordBtn.addEventListener('click' , ()=>{
+    changePasswordForm.style.display = "flex"
+    settingsContainer.style.display = "none";
+    
 })
 
 var clicked = false ;
@@ -119,4 +139,46 @@ fetch('http://127.0.0.1:8000/account/profile/', {
     
 }).catch(error=>{
     console.error('Error fetching profile data:', error)
+})
+
+changePasswordForm.addEventListener('submit' , function (e){
+    e.preventDefault();
+
+    const oldPass = document.getElementById('oldPass').value;
+    const newPass = document.getElementById('newPass').value;
+    const confirmNewPass = document.getElementById('confirmNewPass').value;
+
+    data = {
+        old_password : oldPass,
+        new_password : newPass,
+        confirm_password : confirmNewPass
+    }
+    fetch('http://127.0.0.1:8000/account/changepassword/',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response=>{
+        if(response.ok){
+            return response.json();
+        }
+        else if(newPass!==confirmNewPass){
+            notMatchPass.style.display = "block"
+        }
+        else{
+            notCorrectPass.style.display = "block"
+        }
+    }).then(data=>{
+        changePasswordForm.style.display = "none";
+            changedMsg.style.display = "flex";
+            okBtn.addEventListener('click' , ()=>{
+                settingsPopup.style.display = "none";
+
+            })
+        console.log(data.msg)
+    })
+
 })

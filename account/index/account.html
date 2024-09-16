@@ -107,7 +107,7 @@
       <div class="settings_popup_container" id="settingsContainer">
         <div class="options_holder">
           <p class="settings_options">Update Credentials</p>
-          <p class="settings_options">Change Password</p>
+          <p class="settings_options" id="changePasswordBtn">Change Password</p>
           <p class="settings_options logout" id="logout">Log Out</p>
           <p class="settings_options" id="deleteAccount">Delete Account</p>
           <p class="settings_options" id="cancel">Cancel</p>
@@ -120,6 +120,27 @@
           <button type="button" class="delete" id="delete">Delete</button>
         </div>
       </div>
+      <form method="PUT" id="changePasswordForm">
+          <div  id="changePassword">
+          <label for="oldPass">Enter your current password  </label>
+        <input required id="oldPass" type="password" class="pass" placeholder="current password">
+        <p class="notCorrectPass" id="notCorrectPass">The password is not correct</p>
+        <label for="newPass">Enter your new password  </label>
+        <input required id="newPass" type="password" class="pass" placeholder="new password">
+        <label for="confirmNewPass">Confirm your new password</label>
+        <input required id="confirmNewPass" type="password" class="pass" placeholder="confirm new password">
+        <p class="notMatchPass" id="notMatchPass">Confirm password does not match the new password</p>
+      </div>
+      <br>
+      <div style="display: flex; flex-direction: row; justify-content: center;">
+        <button type="button" class="back" id="backPass">Back</button>
+      <button class="delete" id="Change" type="submit">Change</button>
+      </div>
+        </form>
+        <div id="changedMsg">
+          <p class="changedMsg">Your password changed successfully!</p>
+          <button type="button" class="back" id="okBtn">OK</button>
+        </div>
     </div>
     <script src="../script/account.js"></script>
 </body>

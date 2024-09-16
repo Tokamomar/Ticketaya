@@ -38,7 +38,6 @@ document.getElementById('form').addEventListener('submit', function (event) {
         localStorage.setItem('refreshToken', refreshToken);
         
         console.log(data.is_admin);
-        alert("successful login")
 
         window.location.href = '../../account/index/account.html'
     })
