@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../style/mail.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <title>Welcome to Ticketaya!</title>
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -114,15 +113,25 @@ ul li {
 }
 .social-icons {
     margin-top: 30px;
+    text-align: center; 
 }
+
 .social-icons a {
-    color: #ffffff;
-    margin: 0 15px;
+    display: inline-block;
+    margin: 0 10px;
     text-decoration: none;
 }
-.social-icons i {
-    font-size: 24px;
+
+.social-icons img {
+    width: 33px; 
+    height: 33px;
+    transition: transform 0.3s; 
 }
+
+.social-icons img:hover {
+    transform: scale(1.1); 
+}
+
 
     </style>
 </head>
@@ -157,15 +166,16 @@ ul li {
         </div>
     
         <!-- Footer Section: Footer and Social Icons -->
-        <div class="footer container">
-            <p>Warm regards,</p>
-            <p>The Ticketaya Team</p>
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-            </div>
-        </div>
+    <div class="footer container">
+    <p>Warm regards,</p>
+    <p>The Ticketaya Team</p>
+      <div class="social-icons">
+        <a href="#"><img src="https://i.ibb.co/YcPhKHB/Twitter-X-icon.png" alt="Twitter-X-icon" border="0"></a>
+        <a href="#"><img src="https://i.ibb.co/JH0kKHL/Instagram-icon.png" alt="Instagram-icon" border="0"></a>
+        <a href="#"><img src="https://i.ibb.co/yQ89KKN/Facebook-icon.png" alt="Facebook-icon" border="0"></a>
+      </div>
+    </div>
+
     </div>
 </body>
 </html>
