@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fetchUsers() {
-        fetch('http://127.0.0.1:8000/api/users', {
+        fetch('http://127.0.0.1:8000/account/listusers/', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
