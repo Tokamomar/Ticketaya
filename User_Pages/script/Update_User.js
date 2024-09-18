@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const token = localStorage.getItem('jwtToken');
+    // const token = localStorage.getItem('jwtToken');
     const username = new URLSearchParams(window.location.search).get('username');
 
-    fetch(`http://127.0.0.1:8000/user/${username}/`, {
+    fetch(`http://127.0.0.1:8000/account/updateprofile/${username}/`, {
         method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+        // headers: {
+        //     'Authorization': `Bearer ${token}`
+        // }
     })
     .then(response => response.json())
     .then(user => {
@@ -42,12 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
             email: newEmail
         };
 
-        fetch('http://127.0.0.1:8000/user/check/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
+        fetch('http://127.0.0.1:8000/account/updateprofile/check/', {
+            method: 'PUT',
+            // headers: {
+            //     'Content-Type': 'application/json',
+            //     'Authorization': `Bearer ${token}`
+            // },
             body: JSON.stringify({ username: newUsername, email: newEmail })
         })
         .then(response => response.json())
@@ -61,12 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('emailError').style.display = 'block';
                 return;
             } else {
-                return fetch(`http://127.0.0.1:8000/user/${username}/`, {
+                return fetch(`http://127.0.0.1:8000/account/updateprofile/${username}/`, {
                     method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
+                    // headers: {
+                    //     'Content-Type': 'application/json',
+                    //     'Authorization': `Bearer ${token}`
+                    // },
                     body: JSON.stringify(updatedData)
                 });
             }
