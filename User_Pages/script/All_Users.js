@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const userList = document.getElementById('userList');
     const searchBar = document.getElementById('searchBar');
-    const token = localStorage.getItem('jwtToken'); // JWT token
+    // const token = localStorage.getItem('jwtToken'); 
 
 
     function renderUsers(users, filter = '') {
@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fetchUsers() {
-        fetch('http://127.0.0.1:8000/api/users', {
+        fetch('http://127.0.0.1:8000/account/listusers/', {
             method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+            // headers: {
+            //     'Authorization': `Bearer ${token}`
+            // }
         })
         .then(response => response.json())
         .then(data => {
