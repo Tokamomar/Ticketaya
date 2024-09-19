@@ -58,7 +58,8 @@ const form = document.getElementById('form');
        else{
         const postData = {
           title: title,
-          content: content
+          content: content,
+          image :null
         };
 
             console.log(postData)

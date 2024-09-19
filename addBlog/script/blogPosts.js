@@ -36,6 +36,8 @@ fetch('http://127.0.0.1:8000/account/profile/', {
     firstName.textContent = data.first_name
     const secondName = document.getElementById('secondName');
     secondName.textContent = data.last_name
+    const pfp = document.getElementById('pfp');
+    pfp.src = `http://127.0.0.1:8000${data.image}`
     
 }).catch(error=>{
     console.error('Error fetching profile data:', error)
@@ -190,6 +192,108 @@ function createBlog(postId, username, eventTime, eventName, description, postIma
     checkUserReaction(postId, heartIcon);
 }
 
+
+//? ------------------------------------------------------------------------------------------------
+//?-------------------------------------------------------------------------------------------------
+
+function createBlogWithoutImg(postId, username, eventTime, eventName, description, likes) {
+    let blogDiv = document.createElement('div');
+    blogDiv.classList.add('blog');
+
+    let blogCreatorDiv = document.createElement('div');
+    blogCreatorDiv.classList.add('blog_creator');
+
+    let profileImg = document.createElement('img');
+    profileImg.classList.add('blog_creator_img');
+    profileImg.src = "../images/pfp.jpg";
+    profileImg.alt = 'pfp';
+
+    let usernameSpan = document.createElement('span');
+    usernameSpan.classList.add('blog_creator_name');
+
+    let firstNameSpan = document.createElement('span');
+    firstNameSpan.classList.add('creator_first_name');
+    firstNameSpan.textContent = username;
+
+//todo ===================   time format     ======================================
+    let eventTypeSpan = document.createElement('span');
+    eventTypeSpan.classList.add('eventType');
+
+    function formatDate(eventTime) {
+        let date = new Date(eventTime);
+    
+        let day = String(date.getDate()).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0');
+        let year = date.getFullYear(); 
+    
+        let hours = String(date.getHours()).padStart(2, '0');
+        let minutes = String(date.getMinutes()).padStart(2, '0');
+    
+        return `${day}/${month}/${year} ${hours}:${minutes}`;
+    }
+    
+    let formattedDate = formatDate(eventTime);    
+    eventTypeSpan.textContent = formattedDate;
+//todo ===================   time format     ======================================
+
+    usernameSpan.appendChild(firstNameSpan);
+    blogCreatorDiv.appendChild(profileImg);
+    blogCreatorDiv.appendChild(usernameSpan);
+    blogCreatorDiv.appendChild(eventTypeSpan);
+
+    let blogBodyDiv = document.createElement('div');
+    blogBodyDiv.classList.add('blog_body');
+
+    let postName = document.createElement('h3');
+    postName.classList.add('postName');
+    postName.textContent = eventName;
+
+    let descPara = document.createElement('p');
+    descPara.classList.add('desc');
+    descPara.textContent = description;
+
+    blogBodyDiv.appendChild(postName);
+    blogBodyDiv.appendChild(descPara);
+
+    let reactsDiv = document.createElement('div');
+    reactsDiv.classList.add('reacts');
+
+    let heartIcon = document.createElement('i');
+    heartIcon.classList.add('fa-regular', 'fa-heart');
+    heartIcon.style.cursor = 'pointer';
+    heartIcon.id = `heart_${postId}`;
+    heartIcon.setAttribute('data-post-id' , postId);
+
+    heartIcon.addEventListener('click' , function(){
+        toggleLike(postId , heartIcon)
+    });
+
+    let likesPara = document.createElement('p');
+    likesPara.classList.add('likes');
+    if (Array.isArray(likes)) {
+        likesPara.textContent = `${likes.length} likes`;
+    } else {
+        likesPara.textContent = '0 likes';  // Default to 0 if likes is undefined or not an array
+    }
+
+    reactsDiv.appendChild(heartIcon);
+    reactsDiv.appendChild(likesPara);
+
+    blogBodyDiv.appendChild(reactsDiv);
+
+    blogDiv.appendChild(blogCreatorDiv);
+    blogDiv.appendChild(blogBodyDiv);
+
+    document.getElementById('blogsBar').appendChild(blogDiv);
+
+    checkUserReaction(postId, heartIcon);
+}
+
+
+
+//? ------------------------------------------------------------------------------------------------
+//?-------------------------------------------------------------------------------------------------
+
 function toggleLike(postId , heartIcon){
     fetch(`http://127.0.0.1:8000/Post/likes/${postId}`,{
         method : 'post' , 
@@ -237,9 +341,11 @@ function checkUserReaction(postId, heartIcon) {
 //! ===================================================================
 
 for(var i = 0 ; i<data.length ; i++){
-    createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)
-    console.log(data[i].image)
-
+    if(data[i].image){
+        createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)   
+    }else{
+        createBlogWithoutImg(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].likes)   
+    }
     
 }
 })
