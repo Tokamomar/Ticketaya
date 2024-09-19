@@ -197,8 +197,8 @@ li:hover a{
     position: absolute;
     right: 10px;
 }
-.eventType::before{
-    content: '#';
+.postName{
+    margin-bottom: 10px;
 }
 .blog_body{
     /* background-color: #454545; */

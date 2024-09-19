@@ -1,13 +1,3 @@
-
-
-const toggleOptions = document.querySelectorAll('.toggle-option');
-toggleOptions.forEach(option => {
-  option.addEventListener('click', function() {
-    toggleOptions.forEach(opt => opt.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
-
 const backBtn = document.getElementById('back');
 backBtn.addEventListener('click' , ()=>{
   window.location.href = '../../addBlog/index/blogPosts.html';
@@ -16,40 +6,88 @@ backBtn.addEventListener('click' , ()=>{
 const form = document.getElementById('form');
    form.addEventListener('submit', function(event) {
        event.preventDefault(); 
-       
+
+       const title = document.getElementById('eventName').value;
+       const content = document.getElementById('description').value;
        const imgInput = document.getElementById('imgInput');
        const file = imgInput.files[0];
-
+       console.log(file)
        const selectImg = document.getElementById('selectImg');
-       if(!file){
-        selectImg.style.display = 'block';
-        validImg.style.display = 'none';
-       }else if (!file.type.startsWith('image/')){
-        const validImg = document.getElementById('validImg');
-        validImg.style.display = 'block';
-        selectImg.style.display = 'none';
-        
-       }else{
-        //submit the form
-        const formData = new FormData();
-        formData.append('file', file);
+       const accessToken = localStorage.getItem('accessToken');
 
-        const accessToken = document.getElementById('accessToken');
-        fetch('', {
-          method : 'POST',
-          headers:{
-            'Content-Type' : 'application/json',
-            'Authorization': `Bearer ${accessToken}`
-        },
-          body : JSON.stringify(formData),
+       if(file){// if there is an img
+        console.log("there is a file")
+        if(!file.type.startsWith('image/')){
+          const validImg = document.getElementById('validImg');
+          validImg.style.display = 'block';
+          selectImg.style.display = 'none';
+         }else{
+          //submit the form
+          
+
+            const postData = new FormData();
+            postData.append('title' , title);
+            postData.append('content' , content);
+            postData.append('image' , file);
+
+            console.log(postData)
+            fetch('http://127.0.0.1:8000/Post/create/', {
+              method : 'POST',
+              headers:{
+                // 'Content-Type' : 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },
+              body :postData,
+            })
+            .then(response=>{
+              if(!response.ok){
+                console.log(accessToken)
+                  alert("can not post")
+              }  
+              return response.json();
+          })
+          .then(data=>{
+            alert(data.msg)
         })
-        then(response=>{
-          if(!response.ok){
-              alert("can not post")
-          }  
-          return response.json();
-      }).then(data=>{
-          alert(data.msg)
-      })
+        .catch(error=>{
+          console.error('Error:', error);
+        })
+                  
+         }
+       } //! if there is an img
+       else{
+        const postData = {
+          title: title,
+          content: content
+        };
+
+            console.log(postData)
+            fetch('http://127.0.0.1:8000/Post/create/', {
+              method : 'POST',
+              headers:{
+                'Content-Type' : 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },
+              body :   JSON.stringify(postData),
+            })
+            .then(response=>{
+              if(!response.ok){
+                console.log(accessToken)
+                  alert("can not post")
+              }  
+              return response.json();
+          })
+          .then(data=>{
+            alert(data.msg)
+        })
+        .catch(error=>{
+          console.error('Error:', error);
+        })
        }
-   });
+      
+       
+   }); // submit
+
+
+
+

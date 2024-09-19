@@ -42,7 +42,7 @@
             </a>
           </li>
           <li>
-            <a href="../../addBlog/index/addBlog.html">
+            <a href="./addBlog.html">
               <i class="fa-regular fa-square-plus"></i>
               <span class="home">Create</span>
             </a>
@@ -50,33 +50,31 @@
         </ul>
       </div>
       <div class="rightBar">
-        <div class="blogsBar">
+        <div class="blogsBar" id="blogsBar">
             <div class="space"></div>
+            <!-- ! start the post here -->
             <div class="blog">
                 <div class="blog_creator">
                     <img class="blog_creator_img" src="../images/pfp.jpg" alt="pfp">
                     <span class="blog_creator_name">
-                        <span class="creator_first_name">first</span>
-                        <span class="creator_sec_name">second</span>
-                    </span>
-                    <span class="eventName">amr diab party</span>
-                    <span class="eventType">party</span>
+                        <span class="creator_first_name">username</span>
+                      </span>
+                      <span class="eventType">3:10</span>
                 </div> <!--blog creator-->
                 <div class="blog_body">
-                    <div class="post_img_holder">
-                        <img alt="post" src="../images/cat.jpg" class="post_img">
-                    </div>
-                    <div class="reacts">
-                      <i class="fa-regular fa-heart" style="cursor: pointer;"></i>
-                        <p class="likes">200 likes</p>
-                        <!-- <i class="fa-regular fa-comment comment fa-xl"></i>
-                        <p class="comments">50 comment</p> -->
-                    </div>
-                    <!-- <a href="#" class="view_comments">view all comments</a> -->
-                    <p class="desc">Join us for an epic night of music, dancing, and fun! With top DJs, vibrant lights, and an electric atmosphere, this party is the weekend's must-attend event. Get ready to dance, drink, and enjoy unforgettable moments with friends!</p>
-                    <input type="text" class="comment_input" placeholder="add a comment">
+                  <h3 class="postName">event name</h3>
+                  <p class="desc">Join us for an epic night of music, dancing, and fun! With top DJs, vibrant lights, and an electric atmosphere, this party is the weekend's must-attend event. Get ready to dance, drink, and enjoy unforgettable moments with friends!</p>
+                  <div class="post_img_holder">
+                    <img alt="post" src="../images/cat.jpg" class="post_img">
+                </div>
+                <div class="reacts">
+                  <i class="fa-regular fa-heart" style="cursor: pointer;" id="heart"></i>
+                    <p class="likes">200 likes</p>
+                    
+                </div>
                 </div>
             </div><!--end of blog-->
+            <!-- ! end the post here -->
         </div>
         <div class="accountBar">
           <div class="acc_container">
