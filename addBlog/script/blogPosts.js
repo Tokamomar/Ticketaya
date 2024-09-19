@@ -238,6 +238,8 @@ function checkUserReaction(postId, heartIcon) {
 
 for(var i = 0 ; i<data.length ; i++){
     createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)
+    console.log(data[i].image)
+
     
 }
 })

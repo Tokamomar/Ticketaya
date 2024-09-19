@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../style/edit_profile.css">
+    <!-- <link rel="stylesheet" href="../style/Lobster_Two/LobsterTwo-Regular.ttf" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+</head>
+<body>
+    <div class="container">
+        <form method="post" id="editForm" action="submit">
+            <div class="img_holder">
+                <img class="profile_img" src="../../addBlog/images/pfp.jpg" id="profileImg">
+                <div class="acc_info">
+                    <span id="firstName" class="name"></span>
+                <span id="lastName" class="name"></span>
+                <p class="email" class="email" id="email"></p>
+                </div>
+            </div>
+            <div class="name_holder">
+                <span>Name</span>
+                <div class="nameInputs">
+                    <input id="firstNameInput" placeholder="first name" required>
+                    <input id="lastNameInput" placeholder="last name" required>
+                </div>
+            </div>
+            <div class="email_holder">
+                <span>Email address</span>
+                <div class="nameInputs">
+                    <input id="emailInput" placeholder="email address" type="email" required>
+                </div>
+                <p id="emailError"></p>
+            </div>
+            <div class="email_holder">
+                <span>username</span>
+                <div class="nameInputs">
+                    <input id="usernameInput" placeholder="username" required>
+                </div>
+                <p id="usernameError"></p>
+            </div>
+            <div class="email_holder">
+                <span>Profile Photo</span>
+                <div class="nameInputs">
+                    <input id="profilePhotoInput" type="file" accept=".jpg, .jpeg">
+                </div>
+            </div>
+            <div class="buttons_holder">
+                <button id="cancelBtn" type="button">Cancel</button>
+                <button id="saveBtn" type="submit">Save</button>
+            </div>
+            <div class="popup" id="popup">
+                <p class="message" id="message">
+                    created successfully
+                </p>
+                <button type="button" id="closeBtn">Close</button>
+            </div>
+            </div><!--! container-->
+        </form>
+    </div>
+
+    <script src="../script/edit_profile.js"></script>
+</body>
+</html>

@@ -14,8 +14,13 @@ const notMatchPass = document.getElementById('notMatchPass');
 const notCorrectPass = document.getElementById('notCorrectPass');
 const changedMsg = document.getElementById('changedMsg');
 const okBtn = document.getElementById('okBtn');
+const updateBtn = document.getElementById('updateBtn');
+const accountImage = document.getElementById('accountImage');
 
 
+updateBtn.addEventListener('click' , ()=>{
+    window.location.href = "../index/edit_profile.html"
+})
 settings.addEventListener('click' , ()=>{
     settingsPopup.style.display = "flex";
     settingsContainer.style.display = "flex";
@@ -131,6 +136,7 @@ fetch('http://127.0.0.1:8000/account/profile/', {
     console.log(data)
     localStorage.setItem("userId",data.id) ;
     //!  expand the data
+    accountImage.src = `http://127.0.0.1:8000${data.image}`;
     const usernameAcc = document.getElementById('usernameAcc');
     usernameAcc.textContent = data.username
     const firstName = document.getElementById('firstName');
@@ -194,7 +200,7 @@ fetch(`http://127.0.0.1:8000/Post/Update/${localStorage.getItem("userId")}` , {
     },
 }).then(response=>{
     if(!response.ok){
-        alert("there is a problem")
+        // alert("there is a problem")
     }
     return response.json();
 }).then(data=>{
@@ -261,6 +267,9 @@ function createBlog(postId, username, eventTime, eventName, description, postIma
     blogBodyDiv.appendChild(postName);
     blogBodyDiv.appendChild(descPara);
 
+    //! Only create the image part if the postImage does not contain "media/0"
+    //! Only create the image part if the postImage does not contain "media/0"
+    //! Only create the image part if the postImage does not contain "media/0"
     //! Only create the image part if the postImage does not contain "media/0"
     if (!postImage.includes("media/0")) {
         let postImgHolderDiv = document.createElement('div');
@@ -356,7 +365,6 @@ function checkUserReaction(postId, heartIcon) {
 //! ===================================================================
 
 for(var i = 0 ; i<data.length ; i++){
-    createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)
-    
+    createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)    
 }
 })
