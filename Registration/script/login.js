@@ -37,10 +37,15 @@ document.getElementById('form').addEventListener('submit', function (event) {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         
-        console.log(data.is_admin);
+        console.log('Is Admin:', data.is_admin);
 
-        window.location.href = '../../account/index/account.html'
+        if (data.is_admin) {
+            window.location.href = '../../Admin_Panel/index/AdminPanel.html' ;  
+        } else {
+            window.location.href = '../../account/index/account.html'; 
+        }
     })
+
     .catch(error => {
         // Handle errors
         console.error('Error:', error);

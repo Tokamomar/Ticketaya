@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // const token = localStorage.getItem('jwtToken');
-    const username = new URLSearchParams(window.location.search).get('username');
+    const token = localStorage.getItem('accessToken');
+    const userId = new URLSearchParams(window.location.search).get('id'); 
 
-    fetch(`http://127.0.0.1:8000/account/updateprofile/${username}/`, {
+    // Fetch current user data
+    fetch(`http://127.0.0.1:8000/account/retrieveuser/${userId}/`, {
         method: 'GET',
-        // headers: {
-        //     'Authorization': `Bearer ${token}`
-        // }
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     })
     .then(response => response.json())
     .then(user => {
@@ -42,39 +43,19 @@ document.addEventListener('DOMContentLoaded', function() {
             email: newEmail
         };
 
-        fetch('http://127.0.0.1:8000/account/updateprofile/check/', {
-            method: 'PUT',
-            // headers: {
-            //     'Content-Type': 'application/json',
-            //     'Authorization': `Bearer ${token}`
-            // },
-            body: JSON.stringify({ username: newUsername, email: newEmail })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.usernameTaken && newUsername !== username) {
-                document.getElementById('emailError').textContent = 'Username is already taken';
-                document.getElementById('emailError').style.display = 'block';
-                return;
-            } else if (data.emailTaken) {
-                document.getElementById('emailError').textContent = 'Email is already registered';
-                document.getElementById('emailError').style.display = 'block';
-                return;
-            } else {
-                return fetch(`http://127.0.0.1:8000/account/updateprofile/${username}/`, {
-                    method: 'PUT',
-                    // headers: {
-                    //     'Content-Type': 'application/json',
-                    //     'Authorization': `Bearer ${token}`
-                    // },
-                    body: JSON.stringify(updatedData)
-                });
-            }
+        // Update user data
+        fetch(`http://127.0.0.1:8000/account/updateuser/${userId}/`, {
+            method: 'PASH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedData)
         })
         .then(response => {
-            if (response && response.ok) {
-                window.location.href = `User_Page.html?username=${newUsername}`;
-            } else if (response) {
+            if (response.ok) {
+                window.location.href = `User_Page.html?id=${userId}`;
+            } else {
                 throw new Error('Failed to update user');
             }
         })
