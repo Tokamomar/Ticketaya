@@ -29,11 +29,12 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
         first_name: firstName,
         last_name: lastName,
         username: username,
-        email: email,  
+        email: email,
+        is_admin: 1,  
         password: password
     };
 
-    fetch('http://127.0.0.1:8000/account/adduser/', {
+    fetch('http://127.0.0.1:8000/account/addadmin/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,20 +42,24 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
         },
         body: JSON.stringify(userData)  
     })
-    .then(response => response.json())
+    .then(response => response.json()
+        .then(data => {
+            if (!response.ok) {
+              if (data.username) {
+                document.getElementById('usernameError').textContent = 'Username is already taken';
+                document.getElementById('usernameError').style.display = 'block';
+              } 
+              if (data.email) {
+                document.getElementById('emailError').textContent = 'Email is already registered';
+                document.getElementById('emailError').style.display = 'block';
+                return;
+              }
+            return data.json();
+  }})
+)
     .then(data => {
-        if (data.usernameTaken) {
-            document.getElementById('emailError').textContent = 'Username is already taken';
-            document.getElementById('emailError').style.display = 'block';
-            return;
-        } else if (data.emailTaken) {
-            document.getElementById('emailError').textContent = 'Email is already registered';
-            document.getElementById('emailError').style.display = 'block';
-            return;
-        } else {
-            // Successful user creation, redirect to All Users page
-            window.location.href = 'All_Users.html';
-        }
+        alert(`User created successfully ${data.username}`);
+        window.location.href = 'All_Users.html';
     })
     .catch(error => console.error('Error creating user:', error));
 });
