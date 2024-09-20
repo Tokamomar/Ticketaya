@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (confirm('Are you sure you want to remove this user account?')) {
             // Delete user request
             fetch(`http://127.0.0.1:8000/account/deleteuser/${userId}/`, {
-                method: 'DELETE',
+                method: 'Post',
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
