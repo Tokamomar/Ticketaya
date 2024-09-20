@@ -111,7 +111,6 @@ logout.addEventListener('click' , ()=>{
     }).then(data =>{
         localStorage.removeItem("refreshToken")
         localStorage.removeItem("accessToken")
-        alert(data.msg)
         window.location.href = "../../Registration/index/login.html";
     })
 

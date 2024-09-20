@@ -79,10 +79,17 @@ const form = document.getElementById('form');
               return response.json();
           })
           .then(data=>{
-            alert(data.msg)
+            const popup = document.getElementById("popup");
+          popup.style.display = "flex";
+
+          const closeBtn = document.getElementById("closeBtn");
+          closeBtn.addEventListener("click", () => {
+            popup.style.display = "none";
+            window.location.reload();
+          });
         })
         .catch(error=>{
-          console.error('Error:', error);
+           console.error('Error:', error);
         })
        }
       
