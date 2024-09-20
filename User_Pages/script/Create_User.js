@@ -39,7 +39,7 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(userData)  // Corrected data structure
+        body: JSON.stringify(userData)  
     })
     .then(response => response.json())
     .then(data => {
