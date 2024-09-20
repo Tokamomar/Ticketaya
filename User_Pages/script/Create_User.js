@@ -1,7 +1,7 @@
 document.getElementById('createUserForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('accessToken');
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const username = document.getElementById('username').value;
@@ -26,21 +26,20 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
     }
 
     const userData = {
-        firstName: firstName,
-        lastName: lastName,
+        first_name: firstName,
+        last_name: lastName,
         username: username,
-        email: email,
-        password: password,
-        password2 : confirmPassword
+        email: email,  
+        password: password
     };
 
-    fetch('http://127.0.0.1:8000/user/check/', {
+    fetch('http://127.0.0.1:8000/account/register/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ username, email }) 
+        body: JSON.stringify(userData)  // Corrected data structure
     })
     .then(response => response.json())
     .then(data => {
@@ -53,21 +52,8 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
             document.getElementById('emailError').style.display = 'block';
             return;
         } else {
-            return fetch('http://127.0.0.1:8000/user/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(userData)
-            });
-        }
-    })
-    .then(response => {
-        if (response && response.ok) {
+            // Successful user creation, redirect to All Users page
             window.location.href = 'All_Users.html';
-        } else if (response) {
-            throw new Error('Failed to create user');
         }
     })
     .catch(error => console.error('Error creating user:', error));
