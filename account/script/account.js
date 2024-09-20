@@ -25,6 +25,7 @@ settings.addEventListener('click' , ()=>{
     settingsPopup.style.display = "flex";
     settingsContainer.style.display = "flex";
     confirmDeleting.style.display = "none"
+    changedMsg.style.display = "none"
 })
 cancel.addEventListener('click' , ()=>{
     settingsPopup.style.display = "none";
@@ -154,6 +155,7 @@ changePasswordForm.addEventListener('submit' , function (e){
     const newPass = document.getElementById('newPass').value;
     const confirmNewPass = document.getElementById('confirmNewPass').value;
 
+
     data = {
         old_password : oldPass,
         new_password : newPass,
@@ -168,25 +170,27 @@ changePasswordForm.addEventListener('submit' , function (e){
         body: JSON.stringify(data)
     })
     .then(response=>{
-        if(response.ok){
-            return response.json();
+        if(!response.ok){
+            return response.json().then(errorData => {
+                // Handle specific error responses
+                if (errorData.old_password) {
+                    notCorrectPass.style.display = "block";
+                }
+                if(confirmNewPass !== newPass){
+                    notMatchPass.style.display = "block"
+                }
+            });
+        }else{
+            changePasswordForm.style.display = "none";
+        changedMsg.style.display = "flex";
+        okBtn.addEventListener('click', () => {
+            settingsPopup.style.display = "none";
+            changedMsg.style.display = "none";
+        });
+        return response.json();
         }
-        else if(newPass!==confirmNewPass){
-            notMatchPass.style.display = "block"
-        }
-        else{
-            notCorrectPass.style.display = "block"
-        }
-    }).then(data=>{
-        changePasswordForm.style.display = "none";
-            changedMsg.style.display = "flex";
-            okBtn.addEventListener('click' , ()=>{
-                settingsPopup.style.display = "none";
-                changedMsg.style.display = "none"
-
-            })
-        console.log(data.msg)
-    })
+            
+    }) //then
 
 })
 
