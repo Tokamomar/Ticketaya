@@ -37,15 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const updatedData = {
-            firstName: newFirstName,
-            lastName: newLastName,
+            first_name: newFirstName,
+            last_name: newLastName,
             username: newUsername,
             email: newEmail
         };
 
         // Update user data
         fetch(`http://127.0.0.1:8000/account/updateuser/${userId}/`, {
-            method: 'PASH',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

@@ -33,7 +33,7 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
         password: password
     };
 
-    fetch('http://127.0.0.1:8000/account/register/', {
+    fetch('http://127.0.0.1:8000/account/adduser/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
