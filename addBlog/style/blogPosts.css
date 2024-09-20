@@ -34,10 +34,7 @@
     font-style: italic;
   }
 body{
-    background-color:black;
-    background-color:rgb(33, 32, 32);
-    background-color:var(--first);
-    color: var(--fourth);
+    background: linear-gradient(to right, #e2e2e2, #9dc1a4);
 }
 *{
     margin: 0;
@@ -47,6 +44,8 @@ body{
     text-decoration: none;
     list-style: none;
     font-family: Roboto;
+    color:var(--tertiary-color);
+    color : #3D5945;
 }
 a{
     color:rgb(197, 197, 197);
@@ -62,12 +61,19 @@ a{
     width: 250px;
     height: 100vh;
     /* background-color: antiquewhite; */
-    border-right: 1px solid #454545;
+    border-right: 1px solid #c3c3c3;
 }
 .ticketaya{
-    letter-spacing: 1.5px;
-    font-size: 27px;
+    letter-spacing: 2px;
+    font-size: 29px;
     padding: 30px 20px ;
+}
+.gradient-text {
+    background: linear-gradient(100deg, var(--tertiary-color) ,var(--hover-color)); /* Gradient colors */
+    -webkit-background-clip: text; /* Clips the background to the text */
+    -webkit-text-fill-color: transparent; /* Makes the text itself transparent */
+    font-weight: bold; /* Optional, to make the gradient more visible */
+    font-size: 35px;
 }
 .rightBar{
     width: calc(100% - 250px);
@@ -121,22 +127,22 @@ li:hover a{
     padding-left: 5px;
 }
 .firstName, .secName{
-    color: #6e6e6e;
-    color: var(--secondary-color);
+    /* color: #6e6e6e;
+    color: var(--secondary-color); */
     margin-top: -3px;
 }
 .username , .firstName , .secName{
-    color:rgb(197, 197, 197);
+    /* color:rgb(197, 197, 197);
     color: var(--fourth);
-    color: white;
+    color: white; */
 }
 .logout_btn{
     display: inline-block;
-    color: #2d8df4;
-    color: var(--fourth);
     position: absolute;
     right: 30px;
     top: 50px;
+    color: black;
+    font-weight: bold;
  }
  .logout_btn:hover{
     color:rgb(201, 103, 103);
@@ -168,9 +174,9 @@ li:hover a{
 .blog{
     width: 90%;
     height: auto;
-    /* background-color: #2d8df4; */
+    /* background-color:#81a17c; */
     color: white;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid rgb(177, 177, 177);
 }
 .blog_creator{
     margin-top: 20px;
@@ -209,7 +215,7 @@ li:hover a{
     justify-content: center;
     align-items: center;
     /* background-color: #202020; */
-    border: 0.5px solid rgb(43, 54, 88);
+    border: 0.5px dashed rgb(152, 152, 152);
 }
 .post_img{
     width: 400px;
