@@ -2,17 +2,17 @@ const logout_btn = document.getElementById('logout_btn');
 logout_btn.addEventListener('click', ()=>{
     window.location.href = '../../Registration/index/login.html'
 });
-const heart = document.getElementById('heart');
-var clicked = false ;
-heart.addEventListener('click' , ()=>{
-    if(!clicked){
-        heart.style.color = "red";
-        clicked = true ;
-    }else{
-        heart.style.color = "white";
-        clicked = false
-    }
-})
+// const heart = document.getElementById('heart');
+// var clicked = false ;
+// heart.addEventListener('click' , ()=>{
+//     if(!clicked){
+//         heart.style.color = "red";
+//         clicked = true ;
+//     }else{
+//         heart.style.color = "white";
+//         clicked = false
+//     }
+// })
 
 const accessToken = localStorage.getItem('accessToken');
 fetch('http://127.0.0.1:8000/account/profile/', {
@@ -38,6 +38,8 @@ fetch('http://127.0.0.1:8000/account/profile/', {
     secondName.textContent = data.last_name
     const pfp = document.getElementById('pfp');
     pfp.src = `http://127.0.0.1:8000${data.image}`
+
+    localStorage.setItem("userId" , data.id);
     
 }).catch(error=>{
     console.error('Error fetching profile data:', error)
@@ -312,31 +314,37 @@ function toggleLike(postId , heartIcon){
     .then(data=>{
 
         let likesPara = heartIcon.nextElementSibling;
-
         let updatedLikes = data.likes.length;  
 
         if (heartIcon.classList.contains('fa-regular')) {
+            console.log("you liked this post");
             heartIcon.classList.remove('fa-regular', 'fa-heart');
             heartIcon.classList.add('fa-solid', 'fa-heart');  
             localStorage.setItem(`liked_post_${postId}`, true);
-        } else {
+        }else {
             heartIcon.classList.remove('fa-solid', 'fa-heart');
             heartIcon.classList.add('fa-regular', 'fa-heart');  
             localStorage.removeItem(`liked_post_${postId}`);
         }
+
 
         likesPara.textContent = `${updatedLikes} likes`;
     })
 }
 
 function checkUserReaction(postId, heartIcon) {
-    let isLiked = localStorage.getItem(`liked_post_${postId}`);
-
-    // If the user has liked this post, set the heart icon to the solid (liked) state
-    if (isLiked) {
+    if(data[i].likes.includes(Number(localStorage.getItem('userId')))){
         heartIcon.classList.remove('fa-regular', 'fa-heart');
-        heartIcon.classList.add('fa-solid', 'fa-heart');  // Liked heart style
+        heartIcon.classList.add('fa-solid', 'fa-heart');
+    }else{
+        heartIcon.classList.remove('fa-solid', 'fa-heart');
+        heartIcon.classList.add('fa-regular', 'fa-heart');
     }
+
+    // if (isLiked) {
+    //     heartIcon.classList.remove('fa-regular', 'fa-heart');
+    //     heartIcon.classList.add('fa-solid', 'fa-heart');  // Liked heart style
+    // }
 }
 //! ===================================================================
 

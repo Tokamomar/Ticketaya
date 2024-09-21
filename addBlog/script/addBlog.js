@@ -47,7 +47,7 @@ const form = document.getElementById('form');
               return response.json();
           })
           .then(data=>{
-            alert(data.msg)
+            // alert(data.msg)
         })
         .catch(error=>{
           console.error('Error:', error);

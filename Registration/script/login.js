@@ -27,6 +27,7 @@ document.getElementById('form').addEventListener('submit', function (event) {
         return response.json();  
     })
     .then(data => {
+        localStorage.clear();
         // Handle success - maybe redirect to a dashboard or show a success message
         const accessToken = data.token.access
         const refreshToken = data.token.refresh

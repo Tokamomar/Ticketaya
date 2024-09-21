@@ -92,8 +92,9 @@ a{
     position: relative;
 }
 li{
-    width: 80%;
-    padding: 20px 20px ;
+    width: 100%;
+    /* padding: 20px 0px ; */
+    height: 50px;
     font-size:20px;
     cursor: pointer;
 }
@@ -102,9 +103,21 @@ li:hover{
     border-radius: 10px;
     width: 100%;
 }
-li:hover a{
-    font-size:20px ;
+li a{
+    /* font-size:20px ; */
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding-left: 20px;
+    padding-top: 10px;
 }
+/* li:hover a{
+    font-size:20px ;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding-left:20px ;
+} */
 .acc_container{
     width: 100%;
     padding: 30px;
@@ -250,4 +263,8 @@ li:hover a{
 }
 .comment_input::placeholder{
     color: #a0a0a0;
+}
+
+#static_blog{
+    display: none;
 }
