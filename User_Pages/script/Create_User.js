@@ -42,24 +42,24 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
         },
         body: JSON.stringify(userData)  
     })
-    .then(response => response.json()
-        .then(data => {
-            if (!response.ok) {
-              if (data.username) {
-                document.getElementById('usernameError').textContent = 'Username is already taken';
-                document.getElementById('usernameError').style.display = 'block';
-              } 
-              if (data.email) {
-                document.getElementById('emailError').textContent = 'Email is already registered';
-                document.getElementById('emailError').style.display = 'block';
-                return;
-              }
-            return data.json();
-  }})
-)
-    .then(data => {
-        alert(`User created successfully ${data.username}`);
-        window.location.href = 'All_Users.html';
-    })
-    .catch(error => console.error('Error creating user:', error));
+    .then(response => response.json().then(data => {
+      if (response.ok) {
+          // Successful user creation
+          // alert(`User created successfully: ${data.username}`);
+          window.location.href = 'All_Users.html'; // Redirect to the users page
+      } else {
+          // Handle server-side validation errors
+          if (data.username) {
+              document.getElementById('usernameError').textContent = 'Username is already taken';
+              document.getElementById('usernameError').style.display = 'block';
+          }
+          if (data.email) {
+              document.getElementById('emailError').textContent = 'Email is already registered';
+              document.getElementById('emailError').style.display = 'block';
+          }
+      }
+  }))
+  .catch(error => {
+      console.error('Error creating user:', error);
+  });
 });
