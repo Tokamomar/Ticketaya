@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update User</title>
     <link rel="stylesheet" href="../style/Update_User.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <img src="../images/green-logo.png" alt="Ticketaya Logo" class="logo">
 
     <div class="container">
-        <a href="User_Page.html" class="back-link">Back to User</a>
+        <a href="#" id="backToUser" class="back-link">Back to User</a>
         <h1>Update User</h1>
         <form id="updateUserForm">
             <div class="form-group-inline">
@@ -31,17 +32,16 @@
             <input type="email" id="email" name="email" required>
             <span id="emailError" class="error-message"></span>
         
-            <label for="password">New Password:</label>
-            <input type="password" id="password" name="password" required>
-        
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
-            <span id="passwordError" class="error-message"></span>
-        
             <button type="submit" class="update-button">Update</button>
         </form>
-        
     </div>
+
+    <div id="overlay"></div>
+    <div id="successMessage">
+        <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
+        <p>User updated successfully!</p>
+    </div>
+
     <script src="../script/Update_User.js"></script>
 </body>
 </html>
