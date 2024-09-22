@@ -3,22 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Details</title>
+    <title>Account Details</title>
     <link rel="stylesheet" href="../style/User_Page.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <img src="../images/green-logo.png" alt="Ticketaya Logo" class="logo">
 
     <div class="container">
         <a href="All_Users.html" class="back-link">Back to Users</a>
-        <h1>User Details</h1>
+        <h1>Account Details</h1>
         <div id="userInfo">
+            <p id="fullName"></p>
             <p id="username"></p>
             <p id="email"></p>
+            <p id="accountStatus"></p> 
         </div>
         <button id="updateButton" class="action-button">Update</button>
         <button id="deleteButton" class="action-button delete">Delete</button>
     </div>
+    <div id="overlay"></div>
+    <div id="deleteSuccessMessage">
+    <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
+     <p>This account is deleted successfully!</p>
+    </div>
+
     <script src="../script/User_Page.js"></script>
 </body>
 </html>

@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('accessToken');
     const userId = new URLSearchParams(window.location.search).get('id'); 
 
+    document.getElementById('backToUser').href = `User_Page.html?id=${userId}`;
+
     // Fetch current user data
     fetch(`http://127.0.0.1:8000/account/retrieveuser/${userId}/`, {
         method: 'GET',
@@ -54,9 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (response.ok) {
-                window.location.href = `User_Page.html?id=${userId}`;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'block'; 
+
+                setTimeout(function() {
+                    window.location.href = `User_Page.html?id=${userId}`;
+                }, 2000);
             } else {
-                throw new Error('Failed to update user');
+                console.error('Error updating user:', response.statusText);
             }
         })
         .catch(error => console.error('Error updating user:', error));
