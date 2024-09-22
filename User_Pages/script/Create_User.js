@@ -10,9 +10,6 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
     const confirmPassword = document.getElementById('confirmPassword').value;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    document.getElementById('emailError').style.display = 'none';
-    document.getElementById('passwordError').style.display = 'none';
-
     if (!emailPattern.test(email)) {
         document.getElementById('emailError').textContent = 'Invalid email format';
         document.getElementById('emailError').style.display = 'block';
@@ -24,7 +21,6 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
         document.getElementById('passwordError').style.display = 'block';
         return;
     }
-
     const userData = {
         first_name: firstName,
         last_name: lastName,
@@ -43,12 +39,14 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
         body: JSON.stringify(userData)  
     })
     .then(response => response.json().then(data => {
-      if (response.ok) {
-          // Successful user creation
-          // alert(`User created successfully: ${data.username}`);
-          window.location.href = 'All_Users.html'; // Redirect to the users page
+        if (response.ok) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'block';
+
+            setTimeout(() => {
+                window.location.href = 'All_Users.html';
+            }, 2000);
       } else {
-          // Handle server-side validation errors
           if (data.username) {
               document.getElementById('usernameError').textContent = 'Username is already taken';
               document.getElementById('usernameError').style.display = 'block';
@@ -62,4 +60,17 @@ document.getElementById('createUserForm').addEventListener('submit', function(ev
   .catch(error => {
       console.error('Error creating user:', error);
   });
+
+
+document.getElementById('confirmPassword').addEventListener('input', function() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = this.value;
+
+    if (password !== confirmPassword) {
+        document.getElementById('passwordError').textContent = 'Passwords do not match';
+        document.getElementById('passwordError').style.display = 'block';
+    } else {
+        document.getElementById('passwordError').style.display = 'none';
+    }
+});
 });
