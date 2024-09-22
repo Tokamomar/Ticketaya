@@ -129,7 +129,7 @@ fetch('http://127.0.0.1:8000/account/profile/', {
     console.log(data)
     localStorage.setItem("userId",data.id) ;
     //!  expand the data
-    accountImage.src = `http://127.0.0.1:8000${data.image}`;
+    accountImage.src = `${data.image}`;
     const usernameAcc = document.getElementById('usernameAcc');
     usernameAcc.textContent = data.username
     const firstName = document.getElementById('firstName');
@@ -201,7 +201,7 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
     }
 }).then(data=>{
 
-    function createBlog(postId, username, eventTime, eventName, description, postImage, likes) {
+    function createBlog(postId, username, eventTime, author_image ,eventName, description, postImage, likes) {
         let blogDiv = document.createElement('div');
         blogDiv.classList.add('blog');
     
@@ -210,7 +210,7 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
     
         let profileImg = document.createElement('img');
         profileImg.classList.add('blog_creator_img');
-        profileImg.src = "../../addBlog/images/pfp.jpg";
+        profileImg.src = author_image;
         profileImg.alt = 'pfp';
     
         let usernameSpan = document.createElement('span');
@@ -337,7 +337,7 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
     }
 
     
-    function createBlogWithoutImg(postId, username, eventTime, eventName, description, likes) {
+    function createBlogWithoutImg(postId, username, eventTime, author_image,eventName, description, likes) {
         let blogDiv = document.createElement('div');
         blogDiv.classList.add('blog');
     
@@ -346,7 +346,7 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
     
         let profileImg = document.createElement('img');
         profileImg.classList.add('blog_creator_img');
-        profileImg.src = "../../addBlog/images/pfp.jpg";
+        profileImg.src = author_image;
         profileImg.alt = 'pfp';
     
         let usernameSpan = document.createElement('span');
@@ -484,9 +484,9 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
        if(creatorId ==  data[i].author_id){
 
         if(data[i].image){
-            createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)   
+            createBlog(data[i].id,data[i].author_name , data[i].created_at ,data[i].author_image, data[i].title , data[i].content, data[i].image , data[i].likes)   
         }else{
-            createBlogWithoutImg(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].likes)   
+            createBlogWithoutImg(data[i].id,data[i].author_name , data[i].created_at ,data[i].author_image, data[i].title , data[i].content, data[i].likes)   
         }
         
     }

@@ -27,7 +27,7 @@ fetch("http://127.0.0.1:8000/account/updateprofile/", {
   })
   .then((data) => {
 
-    profileImg.src = `http://127.0.0.1:8000${data.image}`
+    profileImg.src = `${data.image}`
     console.log(profileImg)
     // Update other fields if available in the response
     if (data.first_name) firstName.textContent = data.first_name;

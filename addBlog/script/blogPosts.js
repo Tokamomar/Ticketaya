@@ -37,7 +37,7 @@ fetch('http://127.0.0.1:8000/account/profile/', {
     const secondName = document.getElementById('secondName');
     secondName.textContent = data.last_name
     const pfp = document.getElementById('pfp');
-    pfp.src = `http://127.0.0.1:8000${data.image}`
+    pfp.src = `${data.image}`
 
     localStorage.setItem("userId" , data.id);
     
@@ -87,7 +87,7 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
 
 //! ===================================================================
 
-function createBlog(postId, username, eventTime, eventName, description, postImage, likes) {
+function createBlog(postId, username, eventTime, author_image,eventName, description, postImage, likes) {
     let blogDiv = document.createElement('div');
     blogDiv.classList.add('blog');
 
@@ -96,7 +96,7 @@ function createBlog(postId, username, eventTime, eventName, description, postIma
 
     let profileImg = document.createElement('img');
     profileImg.classList.add('blog_creator_img');
-    profileImg.src = "../images/pfp.jpg";
+    profileImg.src = author_image;
     profileImg.alt = 'pfp';
 
     let usernameSpan = document.createElement('span');
@@ -198,7 +198,7 @@ function createBlog(postId, username, eventTime, eventName, description, postIma
 //? ------------------------------------------------------------------------------------------------
 //?-------------------------------------------------------------------------------------------------
 
-function createBlogWithoutImg(postId, username, eventTime, eventName, description, likes) {
+function createBlogWithoutImg(postId, username, eventTime, author_image,eventName, description, likes) {
     let blogDiv = document.createElement('div');
     blogDiv.classList.add('blog');
 
@@ -207,7 +207,7 @@ function createBlogWithoutImg(postId, username, eventTime, eventName, descriptio
 
     let profileImg = document.createElement('img');
     profileImg.classList.add('blog_creator_img');
-    profileImg.src = "../images/pfp.jpg";
+    profileImg.src = author_image;
     profileImg.alt = 'pfp';
 
     let usernameSpan = document.createElement('span');
@@ -350,9 +350,9 @@ function checkUserReaction(postId, heartIcon) {
 
 for(var i = 0 ; i<data.length ; i++){
     if(data[i].image){
-        createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].image , data[i].likes)   
+        createBlog(data[i].id,data[i].author_name , data[i].created_at , data[i].author_image, data[i].title , data[i].content, data[i].image , data[i].likes)   
     }else{
-        createBlogWithoutImg(data[i].id,data[i].author_name , data[i].created_at , data[i].title , data[i].content, data[i].likes)   
+        createBlogWithoutImg(data[i].id,data[i].author_name , data[i].created_at , data[i].author_image, data[i].title , data[i].content, data[i].likes)   
     }
     
 }
