@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create User</title>
     <link rel="stylesheet" href="../style/Create_User.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <img src="../images/green-logo.png" alt="Ticketaya Logo" class="logo">
 
     <div class="container">
         <a href="All_Users.html" class="back-link">Back to All Users</a>
-        <h1>Create New User</h1>
+        <h1>Add New Admin</h1>
         <form id="createUserForm">
             <div class="form-group-inline">
                 <div class="form-group">
@@ -41,6 +42,12 @@
 
             <button type="submit" class="create-button">Create</button>
         </form>
+        <div id="overlay"></div>
+        <div id="successMessage">
+        <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
+         <p>New User is created successfully!</p>
+        </div>
+
     </div>
     <script src="../script/Create_User.js"></script>
 </body>
