@@ -8,7 +8,7 @@ const existingImage = document.getElementById("existingImage"); // Existing imag
 const editPostId = Number(localStorage.getItem('editPostId'));
 const accessToken = localStorage.getItem("accessToken");
 
-// Handle the back button click
+// Handle the back button click 
 const backBtn = document.getElementById("back");
 backBtn.addEventListener("click", () => {
   window.location.href = "../index/account.html";
@@ -55,16 +55,21 @@ document.getElementById('imgInput').addEventListener('change', function(event) {
     }
 });
 
+
 // Handle form submission
 const form = document.getElementById("form");
 form.addEventListener("submit", function (event) {
     event.preventDefault();
+
+    console.log("form is submitted")
 
     // Get the updated values from the inputs
     const updatedTitle = eventNameInput.value;
     const updatedContent = descriptionTextarea.value;
     const imgInput = document.getElementById("imgInput");
     const file = imgInput.files[0];
+
+    console.log(updatedContent , updatedTitle , file)
 
     if (file) {
         // If an image is selected, validate and send the data with image
@@ -78,7 +83,7 @@ form.addEventListener("submit", function (event) {
             postData.append("content", updatedContent);
             postData.append("image", file);
 
-            fetch(`http://127.0.0.1:8000/Post/Update/${editPostId}/`, {
+            fetch(`http://127.0.0.1:8000/Post/Update/${editPostId}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -87,6 +92,7 @@ form.addEventListener("submit", function (event) {
             })
             .then((response) => {
                 if (!response.ok) {
+                    console.log("Response Status:", response.status);
                     alert("Cannot update post with image");
                 } else {
                     showSuccessPopup();
@@ -98,13 +104,12 @@ form.addEventListener("submit", function (event) {
             });
         }
     } else {
-        // If no image is selected, send the data without image
         const postData = {
             title: updatedTitle,
             content: updatedContent,
         };
 
-        fetch(`http://127.0.0.1:8000/Post/Update/${editPostId}/`, {
+        fetch(`http://127.0.0.1:8000/Post/Update/${editPostId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
