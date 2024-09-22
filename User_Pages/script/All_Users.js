@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchBar = document.getElementById('searchBar');
     const token = localStorage.getItem('accessToken'); 
 
-    let usersData = []; // Store fetched users data
+    let usersData = []; 
 
     function renderUsers(filter = '') {
         userList.innerHTML = '';
@@ -31,6 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error fetching users:', error);
             userList.innerHTML = '<p>Error loading users. Please try again later.</p>';
+            alert('You are not logged in. We will redirect you to login page.');
+            setTimeout(() => {
+                window.location.href = '../../Registration/index/login.html'; 
+            }, 2000);
         });
     }
 
