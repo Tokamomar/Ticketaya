@@ -29,45 +29,53 @@ document.getElementById('form').addEventListener('submit', function(event) {
         },
         body: JSON.stringify(data),  
     })
-    .then(response => response.json())  
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }else{
+            return response.json().then(errorMsg=>{
+                if (errorMsg.username) {
+                    document.querySelector('.usernameError').innerText = errorMsg.username[0];
+                    document.querySelector('.usernameError').style.display = 'block';
+        
+                    const usernameInput = document.getElementById('usernameInput')
+                    usernameInput.addEventListener('input' , function(){
+                    document.querySelector('.usernameError').style.display = 'none';
+                    } )
+                }
+        
+                if (errorMsg.email) {
+                    document.querySelector('.emailError').innerText = errorMsg.email[0];
+                    document.querySelector('.emailError').style.display = 'block';
+        
+                    const emailInput = document.getElementById('emailInput')
+                    emailInput.addEventListener('input' , function(){
+                    document.querySelector('.emailError').style.display = 'none';
+                    } )
+                }
+                if (password !== confirmPassword) {
+                    document.getElementById('passwordError').style.display = 'block';
+        
+                    const passwordInput = document.getElementById('password')
+                    passwordInput.addEventListener('input' , function(){
+                    document.querySelector('#passwordError').style.display = 'none';
+                    } )
+        
+                    const confirmPasswordInput = document.getElementById('confirmPassword')
+                    confirmPasswordInput.addEventListener('input' , function(){
+                    document.querySelector('#passwordError').style.display = 'none';
+                    } )
+                }
+            })
+        }
+    })  
     .then(data => {
         if (data) {
             document.getElementById('popupContainer').style.display = 'flex';
         } else {
             
            
-        if (data.username) {
-            document.querySelector('.usernameError').innerText = data.username[0];
-            document.querySelector('.usernameError').style.display = 'block';
-
-            const usernameInput = document.getElementById('usernameInput')
-            usernameInput.addEventListener('input' , function(){
-            document.querySelector('.usernameError').style.display = 'none';
-            } )
-        }
-
-        if (data.email) {
-            document.querySelector('.emailError').innerText = data.email[0];
-            document.querySelector('.emailError').style.display = 'block';
-
-            const emailInput = document.getElementById('emailInput')
-            emailInput.addEventListener('input' , function(){
-            document.querySelector('.emailError').style.display = 'none';
-            } )
-        }
-        if (password !== confirmPassword) {
-            document.getElementById('passwordError').style.display = 'block';
-
-            const passwordInput = document.getElementById('password')
-            passwordInput.addEventListener('input' , function(){
-            document.querySelector('#passwordError').style.display = 'none';
-            } )
-
-            const confirmPasswordInput = document.getElementById('confirmPassword')
-            confirmPasswordInput.addEventListener('input' , function(){
-            document.querySelector('#passwordError').style.display = 'none';
-            } )
-        }
+        
         }
     })
     .catch((error) => {

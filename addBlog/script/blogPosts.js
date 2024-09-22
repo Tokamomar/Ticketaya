@@ -189,7 +189,7 @@ function createBlog(postId, username, eventTime, eventName, description, postIma
     blogDiv.appendChild(blogCreatorDiv);
     blogDiv.appendChild(blogBodyDiv);
 
-    document.getElementById('blogsBar').appendChild(blogDiv);
+    document.getElementById('blogsBar').prepend(blogDiv);
 
     checkUserReaction(postId, heartIcon);
 }
