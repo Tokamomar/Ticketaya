@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="../style/edit_post.css" />
+    <link rel="stylesheet" href="../style/Playwrite_CU/PlaywriteCU-VariableFont_wght.ttf">
+   </head>
+  <body>
+    <div class="full-screen">
+      <div class="container">
+        <div class="intro">
+          <div class="logoHolder">
+            <img src="../../Registration/images/green-logo.png" class="logo"></img>
+          </div>
+          <div class="title">Edit your Post</div>
+        </div>
+        <form method="post" class="right_left_holder" id="form">
+          <div class="leftSide">
+            <div class="iconHolder">
+                <img id="existingImage" class="existing-image" alt="Current post image" style="display: none; width: 100%; height: auto; margin-bottom: 10px;"/>
+    
+                <!-- Placeholder for new image -->
+                <img class="icon" id="imgPreview" src="../../addBlog/images/upload-icon.png" aria-required="true"/>
+            </div>
+            <p class="dropFile">Drop file here</p>
+            <input type="file" class="add_photo_btn" id="imgInput">
+            <p class="selectImg" id="selectImg">Please select an image before submitting</p>
+            <p class="selectImg" id="validImg">Please select a valid image</p>
+          </div>
+          <div class="rightSide">
+            <label for="eventName">Event Name</label>
+            <input
+              class="evenetName"
+              id="eventName"
+              placeholder="Enter event name"
+              required
+            />
+            <label for="description">Description</label>
+            <textarea  class="description"
+            id="description"
+            placeholder="Describe the event"
+            required></textarea>
+          </div> <!-- right side -->
+          <button type="button" class="Back" id="back">Back</button>
+          <button type="submit" id="create_btn">Update</button>
+        </form><!--left right holder  -->
+      </div><!-- container  -->
+      <div class="popup" id="popup">
+        <p class="message" id="message">
+           Post updated successfully!
+        </p>
+        <button type="button" id="closeBtn">Close</button>
+    </div>
+    </div> <!-- full screen  -->
+    <script src="../script/edit_post.js"></script>
+  </body>
+</html>
+<!--todo make the blog with time that it is added at  -->

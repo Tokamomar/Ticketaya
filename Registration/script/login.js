@@ -40,6 +40,24 @@ document.getElementById('form').addEventListener('submit', function (event) {
         
         console.log('Is Admin:', data.is_admin);
 
+        fetch('http://127.0.0.1:8000/account/profile/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+                },
+        }).then(response=>{
+            if(response.ok){
+                return response.json();
+            }else{
+                alert("can not fetch the profile data")
+            }
+        }).then(data=>{
+            
+            localStorage.setItem("userId",data.id) ;
+            
+        })
+
         if (data.is_admin) {
             window.location.href = '../../Admin_Panel/index/AdminPanel.html' ;  
         } else {

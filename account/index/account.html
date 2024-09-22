@@ -77,13 +77,20 @@
                         </div>
                         </div>
                 <!--! account part -->
-                <div class="blog">
+                <div id="showPosts">
+
+                </div>
+                <div class="blog" id="blogHidden">
                     <div class="blog_creator">
                         <img class="blog_creator_img" src="../../addBlog/images/pfp.jpg" alt="pfp">
                         <span class="blog_creator_name">
                             <span class="creator_first_name">first</span>
                         </span>
                         <span class="eventType">party</span>
+                        <div class="postOptions">
+                          <span class="editPost">edit</span>
+                          <span class="deletePost">delete</span>
+                        </div>
                     </div> <!--blog creator-->
                     <div class="blog_body">
                         <div class="post_img_holder">
@@ -112,7 +119,7 @@
         </div>
       </div>
       <div  id="confirmDeleting">
-        <p>Are you sure you want to delete your account!</p>
+        <p id="confirmDeletingMsg">Are you sure you want to delete your account!</p>
         <div style="display: flex; flex-direction: row; justify-content: center;">
           <button type="button" class="back" id="back">Back</button>
           <button type="button" class="delete" id="delete">Delete</button>
@@ -139,7 +146,15 @@
           <p class="changedMsg">Your password changed successfully!</p>
           <button type="button" class="back" id="okBtn">OK</button>
         </div>
+        <div  id="confirmDeletingPost">
+          <p id="confirmDeletingPostMsg">Are you sure you want to delete this post</p>
+          <div style="display: flex; flex-direction: row; justify-content: center;">
+            <button type="button" class="back" >Back</button>
+            <button type="button" class="delete" id="deletePostBtn">Delete</button>
+          </div>
+        </div>
     </div>
+
     <script src="../script/account.js"></script>
 </body>
 </html>
