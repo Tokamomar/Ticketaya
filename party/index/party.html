@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Details</title>
+    <link rel="stylesheet" href="../style/party.css">
+</head>
+<body>
+    <img src="../images/WhatsApp_Image_2024-08-20_at_23.27.43_9cae33a4-removebg-preview.png" alt="">
+
+    <div class="container">
+        <div class="form-box">
+            <h2>Party Details</h2>
+            <form id="updatePartyForm">
+
+                <div class="input-group">
+                    <label for="partyName">Party Name:</label>
+                    <input type="text" id="partyName" name="partyName" >
+                </div>
+
+                <div class="input-group">
+                    <label for="partyDate">Party Date:</label>
+                    <input type="date" id="partyDate" name="partyDate" >
+                </div>
+        
+                <div class="input-group">
+                    <label for="partyLocation">Party Location:</label>
+                    <input type="text" id="partyLocation" name="partyLocation" >
+                </div>
+                
+
+                <button type="submit">Update Party</button>
+            </form>
+            <button id="deletePartyButton" class="delete-btn">Delete Party</button>
+        
+        </div>    
+
+    </div>
+    <script src="../script/party.js"></script>
+</body>
+</html>

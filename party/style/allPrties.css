@@ -1,0 +1,211 @@
+:root{
+    --primary-color: #4D774E; 
+    --secondary-color: #81a17c;
+    --tertiary-color: #325434;
+    --fourth-color:#e2e2e2;
+    --hover-color: #9dc1a4;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: linear-gradient(to right, #e2e2e2, #9dc1a4);
+
+    font-family: Poppins, sans-serif;    
+}
+
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+header{
+    background-color: var(--primary-color);
+}
+
+header .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .container .logo{
+
+}
+header .container .logo img{
+    width: 60px;
+}
+header .container .nav{
+    display: flex;
+    justify-content: space-between;
+    width: 380px;
+    align-items: center;
+}
+header .container > i{
+    display: none ;
+    font-size: 25px;
+    color: var(--fourth-color);
+}
+header .container .nav a{
+    text-decoration: none;
+    color: var(--fourth-color);
+}
+header .container .nav a:hover{
+    color: var(--hover-color);
+}
+
+
+header .container .nav form input[type="search"]{
+    height: 30px;
+    width: 200px;
+    padding: 10px;
+    border: none;
+}
+header .container .nav form input[type="search"]:focus{
+    outline: var(--hover-color) solid;
+}
+header .container .nav form button{
+    border: none;
+    background-color: transparent;
+}
+
+header .container .nav form button i{
+    font-size: 25px;
+    color: var(--fourth-color);
+    margin-left: 10px;
+}
+@media screen and (max-width:550px) {
+    header .container > i{
+        display:block;
+        position: relative;
+    }
+    header .container > i:hover + .nav{
+        display: flex;
+        
+    }
+    header .container .nav{
+        flex-direction: column;
+        position: absolute;
+        right: 10px;
+        top:55px;
+        height: 150px;
+        justify-content:space-evenly ;
+        align-items: start;
+        background-color:var(--secondary-color) ;
+        display: none;
+    }
+    header .container .nav:hover{
+        display: flex;
+    }
+    header .container .nav::after{
+        content: " ";
+        width: 0px;
+        height: 10px;
+        left: 328px;
+        top: -45px;
+        border-style: solid;
+        border-width: 20px;
+        border-color: transparent transparent var(--secondary-color) transparent ;
+        position: absolute;
+    }
+    header .container .nav a{
+        border-bottom: solid 1px var(--hover-color);
+        padding: 0 0 20px 20px;
+        width: 100%;
+    }
+    header .container .nav form{
+        padding: 0 0 0px 20px;
+    }
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    position: relative;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card .title {
+    color: var(--primary-color);
+    font-size: 22px;
+}
+
+.card button a{ 
+    
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+.card button { 
+
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: var(--primary-color);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.card a {
+    text-decoration: none;
+    font-size: 22px;
+    color: var(--fourth-color);
+}
+
+.card button:hover, a:hover {
+    opacity: 0.9;
+}
+.parties{
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.parties .cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill , minmax(300px , 1fr));
+    gap: 50px;
+
+}
+.parties h2{
+    text-align: center;
+    margin: 40px 0 80px;
+    text-transform: uppercase;
+    font-size: 40px;
+    color: var(--tertiary-color);
+}
+.parties h1{
+    margin: 10px 0 10px;
+    text-transform: uppercase;
+    font-size: 30px;
+    color: var(--tertiary-color);
+}
+.parties p{
+    margin: 10px 0 10px;
+    text-transform: capitalize;
+    font-size: 25px;
+    color: var(--tertiary-color);
+}
+.parties p:last-child{
+    margin-bottom:  70px;
+
+}

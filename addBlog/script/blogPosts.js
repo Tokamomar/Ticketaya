@@ -286,7 +286,7 @@ function createBlogWithoutImg(postId, username, eventTime, author_image,eventNam
     blogDiv.appendChild(blogCreatorDiv);
     blogDiv.appendChild(blogBodyDiv);
 
-    document.getElementById('blogsBar').appendChild(blogDiv);
+    document.getElementById('blogsBar').prepend(blogDiv);
 
     checkUserReaction(postId, heartIcon);
 }

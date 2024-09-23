@@ -382,6 +382,33 @@ fetch('http://127.0.0.1:8000/Post/show/' , {
         blogCreatorDiv.appendChild(usernameSpan);
         blogCreatorDiv.appendChild(eventTypeSpan);
     
+        let postOptionsDiv = document.createElement('div');
+    postOptionsDiv.classList.add('postOptions');
+
+    let editPostSpan = document.createElement('span');
+    editPostSpan.classList.add('editPost');
+    editPostSpan.textContent = 'edit';
+
+    let deletePostSpan = document.createElement('span');
+    deletePostSpan.classList.add('deletePost');
+    deletePostSpan.textContent = 'delete';
+
+    // Add click event listeners for edit and delete
+    editPostSpan.addEventListener('click', function () {
+        editPost(postId);
+    });
+
+    deletePostSpan.addEventListener('click', function () {
+        deletePost(postId);
+    });
+
+    // Append edit and delete options to postOptionsDiv
+    postOptionsDiv.appendChild(editPostSpan);
+    postOptionsDiv.appendChild(deletePostSpan);
+
+    // Append postOptionsDiv to blogCreatorDiv
+    blogCreatorDiv.appendChild(postOptionsDiv);
+
         let blogBodyDiv = document.createElement('div');
         blogBodyDiv.classList.add('blog_body');
     

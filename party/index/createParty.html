@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Party</title>
+    <link rel="stylesheet" href="../style/createParty.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        </style>
+</head>
+<body>
+    <img src="../images/WhatsApp_Image_2024-08-20_at_23.27.43_9cae33a4-removebg-preview.png" alt="">
+    <div class="container">
+        <div class="form-box">
+            <h2>Create Party</h2>
+            <form id="createparty">
+                <div class="input-group">
+                    <label for="name">Party name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="date">Party date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="input-group">
+                    <label for="location">Party location:</label>
+                    <input type="text" id="location" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p id="message"></p>
+            <a href="../index/allParties.html"><button type="button">all parties page</button></a>
+        </div>
+    </div>
+    <script src="../script/createParty.js"></script>
+</body>
+</html>
