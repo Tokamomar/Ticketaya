@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+:root{
+        --main-color:#161616;
+        --sec-color: #346751;
+        --third-color: #C84B31;
+        --fourth-color: #ECDBBA;
+        --trans-color:#161616a5;
+        --trans-color2: #346751a5;
+        --trans-color3: #C84B31a5;
+        --trans-color4: #ECDBBAa5;
+
+}
+*{
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
+a{
+        text-decoration: none;
+}
+ul{
+        list-style-type: none;
+}
+body{
+        font-family: Poppins, sans-serif;
+}
+html{
+        scroll-behavior: smooth;
+}
+.container{
+        width: 80%;
+        margin-left:auto;
+        margin-right:auto;
+}
+header{
+        background-color: var(--main-color);
+        max-width: 100%;
+
+}
+header .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+header a {
+        color: white;
+        font-size: 16px;
+        height: 0px;
+        text-transform:capitalize;
+}
+
+header .icon img{
+        width: 75px;
+}
+
+header .nav ul{
+        display: flex;
+        justify-content: space-between;
+}
+
+header .nav ul li a{
+        transition: 0.3s;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+}
+header .nav ul li a p{
+        padding-right: 30px;
+}
+header .nav ul li a:hover{
+        color: var(--fourth-color);
+}
+header .nav ul li i{
+        margin-right: 10px;
+}
+.landing{
+        background-image: url("../images/slider1.jpg;");
+        height: calc( 100vh - 64.94px) ;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+}
+.landing::before{
+        content: " ";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: var(--trans-color);
+}
+.landing .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgb(255, 255, 255);
+        width: 80%;
+        height: 100%;       
+        max-height: 100%;
+}
+.landing .landing-content{
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+}
+
+.landing .landing-content .text{
+        font-size: 30px;
+}
+.landing .landing-content .links{
+        text-align: center;
+        padding: 10px 20px;
+        font-size: 20px;
+        width: 200px;
+}
+.landing .landing-content .links a{
+        margin: 25px;
+}
+
+.landing .landing-content div i{
+        font-size: 40px;
+        margin-top: 20px;
+}
+.landing .landing-content div h3{
+        text-transform: capitalize;
+        margin-top: 10px;
+
+}
+.landing .landing-content .matches{
+        border: solid 2px var(--sec-color);
+        background-color: var(--trans-color2);
+        color: white;
+        transition: 0.3s;
+}
+.landing .landing-content .matches:hover{
+        background-color: #4f9e7c9f;
+        box-shadow: 0 0 15px #4f9e7c9f;
+        transform: scale(1.1);
+}
+.landing .landing-content .parties{
+        border: solid 2px var(--third-color);
+        background-color: var(--trans-color3);
+        color: white;
+        transition: 0.3s;
+}       
+.landing .landing-content .parties:hover{
+        background-color: #ff54329e;
+        box-shadow: 0 0 15px #ff54329e;
+        transform: scale(1.1);
+}       
+.landing .landing-content .blogs{
+        border: solid 2px var(--fourth-color);
+        background-color: var(--trans-color4);
+        color: white;
+        transition: 0.3s;
+}
+.landing .landing-content .blogs:hover{
+        background-color: #ecdbbac7;
+        box-shadow: 0 0 15px #ecdbbac7;
+        transform: scale(1.1);
+}
+
+.slider {
+        position: relative;
+        width: 80%;
+        height: 100%;
+        overflow: hidden;
+}
+
+        .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+}
+
+        .slides img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+}
+
+.prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+}
+
+.prev {
+        left: 10px;
+}
+
+.next {
+        right: 10px;
+}
+
+@media screen and (max-width:900px){
+        .landing .landing-content{
+                flex-direction: column;
+        }
+        .landing .landing-content .links{
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                width: 100%;
+        }
+        .landing .landing-content .links a{
+                width: 200px;
+        }
+        .landing .landing-content .text{
+                text-align: center;
+        }
+
+}
+@media screen and (max-width:770px){
+        .landing .landing-content .links{
+                flex-direction: column;
+        }
+        .landing .landing-content .links a{
+                margin: 5px;
+                font-size: smaller;
+                
+        }
+        .landing .landing-content .text{
+                font-size: 20px;
+        }
+        .landing .landing-content .links a div{
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                padding: 10px;
+        }
+        .landing .landing-content .links a div i{
+                position:relative;
+                top: -15px;
+        }
+        header .nav ul li a p{
+                display: none;
+        }
+        header .nav ul li:not(:first-child) a i{
+                border-left: solid 1px;
+        }
+        header .nav ul{
+                max-width: 100% ;
+        }
+        header .nav ul li a i{
+                padding: 10px;
+        }
+
+
+
+}
+/* Floating Popup Styling */
+.popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 111111;
+}
+
+.popup-content {
+        border-radius: 15px;
+        background-color: var(--sec-color);
+        color: white;
+        padding: 20px 40px;
+        border-radius: 5px;
+        width: 80%;
+        height: 80%;
+        overflow-y: auto;
+        text-align: left;
+        position: relative;
+        line-height: 1.7;
+}
+.popup-content h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 30px;
+}
+.popup-content p {
+        margin-bottom: 40px;
+}
+.popup-content h3 {
+        font-size: 22px;
+
+}
+
+.close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+}
+
+
+
+
+
+
+
+
