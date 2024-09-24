@@ -162,6 +162,7 @@ header .container .nav form button i{
     padding-bottom: 35px;
     color: white;
     text-transform: capitalize;
+    padding: 40px 20px 30px;
 }
 .name{
     font-size: 22px;
