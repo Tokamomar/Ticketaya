@@ -1,0 +1,129 @@
+:root {
+    --primary-color: #4D774E;
+    --secondary-color: #81a17c;
+    --hover-color: #9dc1a4;
+    --accent-color: #f1b24a;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.search-section {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#searchBar {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#admin-match-list {
+    margin: 20px;
+}
+
+/* Admin Match Card */
+.admin-match {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Match Photo Section */
+/* .matchPhoto img {
+    width: 500px; 
+    height: 250px; 
+    border: none;
+    border-radius: 15px; 
+    object-fit: cover; 
+} */
+
+.admin-match-info {
+    flex: 1;
+    padding: 0 20px;
+    margin: 25px 10px 10px 10px; 
+}
+
+.admin-match-info h3 {
+    font-size: 25px;
+    margin: 0px 20px 0px 0;
+    margin-right: 40px;  
+}
+
+.match-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; 
+}
+
+.stadium-icon {
+    width: 20px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.update-btn, .delete-btn {
+    padding: 15px 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 40%;
+    margin-right: 15px;
+    border: none;
+    border-radius: 4px;
+}
+
+.update-btn {
+    background-color: #4D774E;
+    color: white;
+    border: none;
+}
+
+.update-btn:hover {
+    background-color: #4d774ea1;
+}
+
+.delete-btn {
+    background-color: #cb2c27;
+    color: white;
+    border: none;
+}
+
+.delete-btn:hover {
+    background-color: rgb(228, 13, 13);
+}
+
+.newMatch {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.newMatch button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.newMatch button:hover {
+    background-color: #f1b14ad5;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/ticketBooking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Booking Page</title>
+</head>
+<body>  
+    <header>
+        <h1>Match Booking</h1>
+    </header>
+    <main>
+        <div class="image-container">
+            <img src="../images/Seats.png" alt="Seats" class="seats-image" id="seats-image">
+            <div class="available-tickets" id="available-tickets" style="display: none;">
+                Available Tickets: <span id="available-count">100</span>
+            </div>
+        </div>        
+        <div class="match-details">
+            <h2>Match Details</h2>
+            <p><strong>Match Name:</strong> Africa Match: Ahly vs Zamalek</p>
+            <p><strong>Date:</strong> September 30, 2024</p>
+            <p><strong>Stadium:</strong> Cairo Stadium</p>
+            <p><strong>Price per Ticket:</strong> $50</p>
+
+            <div class="ticket-selection">
+                <label for="ticket-quantity">Number of Tickets:</label>
+                <input type="number" id="ticket-quantity" min="1" value="1">
+                <p class="total-price">Total Price: $<span id="total-price">50</span></p>
+                <button id="proceed-btn">Proceed to Buy</button>
+            </div>
+        </div>
+        
+    </main>
+    <script src="../script/ticketBooking.js"></script>
+</body>
+</html>

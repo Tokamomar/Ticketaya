@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Management</title>
+    <link rel="stylesheet" href="../style/matchManagement.css"> 
+</head>
+<body>
+    <header>
+        <h1>Match Management</h1>
+    </header>
+
+    <section class="search-section">
+        <input type="text" id="searchBar" placeholder="Search by Match Name">
+    </section>
+
+    <section id="admin-match-list">
+        <ul id="matchList">
+            <!-- Matches will be dynamically loaded here -->
+        </ul>
+    </section>
+
+    <div class="newMatch">
+        <button id="addMatchButton" onclick="location.href='../../Match_admin/index/addMatch.html'">Add New Match</button>
+    </div>
+
+    <script src="../script/matchManagement.js"></script>
+</body>
+</html>

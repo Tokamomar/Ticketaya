@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Match</title>
+    <link rel="stylesheet" href="../style/addMatch.css">
+</head>
+<body>
+    <div class="form-section">
+        <img src="../images/green-logo.png" alt="Ticketaya Logo" class="logo">
+        <h1>Add New Match</h1>
+        <form id="addMatchForm">
+            <div class="form-group">
+                <label for="matchName">Match Name</label>
+                <input type="text" id="matchName" name="matchName" placeholder="e.g., Africa Cup of Nations qualification" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="matchDate">Match Date</label>
+                <input type="date" id="matchDate" name="matchDate" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="matchTime">Match Time</label>
+                <input type="time" id="matchTime" name="matchTime" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="stadium">Stadium</label>
+                <input type="text" id="stadium" name="stadium" placeholder="e.g., Cairo Stadium" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="team1">Team 1</label>
+                <input type="text" id="team1" name="team1" placeholder="e.g., Egypt" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="team2">Team 2</label>
+                <input type="text" id="team2" name="team2" placeholder="e.g., Senegal" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="ticketCount">Number of Tickets</label>
+                <input type="number" id="ticketCount" name="ticketCount" placeholder="e.g., 1000" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="ticketPrice">Ticket Price</label>
+                <input type="number" id="ticketPrice" name="ticketPrice" placeholder="e.g., 50" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Enter match description here"></textarea>
+            </div>
+        
+            <button type="submit" class="submit-btn">Add Match</button>
+        </form>
+        
+    </div>
+
+    <footer>
+        <a href="../index/matchManagement.html"><button id="backToDashboardBtn">Back to Dashboard</button></a>
+    </footer>
+
+    <script src="../script/addMatch.js"></script>
+</body>
+</html>

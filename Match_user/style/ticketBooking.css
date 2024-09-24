@@ -1,0 +1,87 @@
+:root {
+    --primary-color: #4D774E;
+    --secondary-color: #81a17c;
+    --hover-color: #9dc1a4;
+    --accent-color: #f1b24a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F4F2EF;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.seats-image {
+    display: block;
+    width: 700px;
+}
+
+.available-tickets {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.match-details {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.match-details h2{
+    text-align: center;
+}
+
+.ticket-selection {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+#ticket-quantity {
+    width: 50px;
+    margin: 0 10px;
+}
+
+.total-price {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #f1b14ada;
+}
