@@ -1,4 +1,4 @@
-// createParty.js
+const accessToken = localStorage.getItem("accessToken")
 
 document.getElementById('createparty').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -6,15 +6,28 @@ document.getElementById('createparty').addEventListener('submit', async (e) => {
     const name = document.getElementById('name').value;
     const date = document.getElementById('date').value;
     const location = document.getElementById('location').value;
+    const performer = document.getElementById('performer').value;
+    const price = document.getElementById('price').value;
+    const tickets = document.getElementById('tickets').value;
+
+    partyData = {
+        name : name , 
+        datetime : date ,
+        location : location ,
+        performer : performer ,
+        price : price ,
+        number_of_tickets : tickets ,
+    }
 
     try {
-        const response = await fetch('https://your-api-endpoint/create-party', {
+        const response = await fetch('http://127.0.0.1:8000/parties/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${yourJWTToken}` // replace with actual token
+                'Authorization': `Bearer ${accessToken}` // replace with actual token
             },
-            body: JSON.stringify({ name, date, location })
+            body: JSON.stringify(partyData)
+
         });
 
         if (response.ok) {

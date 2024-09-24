@@ -31,7 +31,7 @@ img{
     background-color: var(--fourth-color);
     padding: 40px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     border-radius: 50px;
 }
@@ -54,29 +54,35 @@ h2 {
 label {
     display: block;
     color: var(--primary-color);
-    font-size: larger;
+    /* font-size: larger; */
     font-weight: bold;
     text-align: left;
 }
 
 input[type="text"],
-input[type="date"] {
+input[type="datetime-local"],
+input[type="number"]
+{
     width: 100%;
     padding: 3px;
     margin-bottom: 25px;
     color: var(--tertiary-color);
-    font-size: larger;
+    /* font-size: larger; */
     border-style: solid ;
     border-color: transparent transparent  var(--tertiary-color) transparent;
     background-color: transparent;
 }
 input[type="text"]:focus,
-input[type="date"]:focus {
+input[type="datetime-local"]:focus , 
+input[type="number"]:focus 
+{
     outline: none; 
     border-bottom: 2px solid var(--hover-color);
 }
 input[type="text"]::placeholder,
-input[type="date"] ::placeholder {
+input[type="datetime-local"] ::placeholder,
+input[type="number"] ::placeholder
+{
     color: var(--secondary-color);
 }
 
@@ -88,7 +94,7 @@ button {
     border: none;
     width: 100%;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: larger;
 }
 
@@ -109,4 +115,18 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+#createparty{
+    overflow: hidden;
+}
+.left-inputs{
+    float: left;
+    width: 43%;
+}
+.right-inputs{
+    float: right;
+    width: 45%;
+    margin-top: -3px;
+}
+.right-inputs , .left-inputs{
 }
