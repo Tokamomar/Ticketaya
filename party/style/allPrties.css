@@ -11,15 +11,8 @@
     padding: 0;
 }
 body {
-    background: linear-gradient(to right, #e2e2e2, #9dc1a4);
-
     font-family: Poppins, sans-serif;    
-}
-
-
-.container {
-    width: 90%;
-    margin: 0 auto;
+    background-color: white;
 }
 header{
     background-color: var(--primary-color);
@@ -118,94 +111,107 @@ header .container .nav form button i{
         padding: 0 0 0px 20px;
     }
 }
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-    font-family: arial;
-    position: relative;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 
-}
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.card .title {
-    color: var(--primary-color);
-    font-size: 22px;
-}
-
-.card button a{ 
-    
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-    text-transform: capitalize;
-}
-.card button { 
-
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: var(--primary-color);
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-
-.card a {
-    text-decoration: none;
-    font-size: 22px;
-    color: var(--fourth-color);
-}
-
-.card button:hover, a:hover {
-    opacity: 0.9;
-}
 .parties{
-    padding-top: 60px;
-    padding-bottom: 60px;
-}
-.parties .cards{
-    display: grid;
-    grid-template-columns: repeat(auto-fill , minmax(300px , 1fr));
-    gap: 50px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .parties h2{
     text-align: center;
     margin: 40px 0 80px;
-    text-transform: uppercase;
-    font-size: 40px;
-    color: var(--tertiary-color);
-}
-.parties h1{
-    margin: 10px 0 10px;
-    text-transform: uppercase;
     font-size: 30px;
     color: var(--tertiary-color);
 }
-.parties p{
-    margin: 10px 0 10px;
-    text-transform: capitalize;
-    font-size: 25px;
-    color: var(--tertiary-color);
-}
-.parties p:last-child{
-    margin-bottom:  70px;
+.cards {
 
+    gap: 20px; /* Space between cards */
+    padding: 20px; /* Padding around the container */
+    height: auto;
+    width: 1400px;
+    margin: auto;
+}
+
+.card {
+    border-radius: 8px;
+    width: 620px;
+    height: auto;
+    display: inline-block;
+    margin-bottom:  30px;
+    transition: transform 0.3s ease-in-out;
+}
+.card:hover{
+   transform: scale(1.09);
+}
+.card img{
+    width: 100%;
+
+}
+.image_holder{
+    position: relative;
+    width: 550px;
+    margin: auto;
+}
+.ticket_content{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 70px;
+    padding-top: 30px;
+    padding-bottom: 35px;
+    color: white;
+    text-transform: capitalize;
+}
+.name{
+    font-size: 22px;
+    margin-top: 20px;
+    text-align: center;
+}
+.count_down{
+    font-size: 14px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.header{
+    font-size: 18px;
+    color: rgb(255, 242, 0);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.performer_tag{
+    display: block;
+    overflow: hidden;
+    height: 30px;
+    margin-top: 10px;
+}
+.performer{
+    float: left;
+    font-size: 20px;
+}
+.tag{
+    float: right;
+    text-transform: lowercase;
+    font-size: 15px;
+}
+.location{
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.price{
+    margin-top : 10px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.details{
+    text-align: center;
+}
+.details >a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
 }

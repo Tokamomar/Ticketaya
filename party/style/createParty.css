@@ -61,7 +61,8 @@ label {
 
 input[type="text"],
 input[type="datetime-local"],
-input[type="number"]
+input[type="number"],
+textarea
 {
     width: 100%;
     padding: 3px;
@@ -74,7 +75,8 @@ input[type="number"]
 }
 input[type="text"]:focus,
 input[type="datetime-local"]:focus , 
-input[type="number"]:focus 
+input[type="number"]:focus ,
+textarea:focus 
 {
     outline: none; 
     border-bottom: 2px solid var(--hover-color);
@@ -82,6 +84,7 @@ input[type="number"]:focus
 input[type="text"]::placeholder,
 input[type="datetime-local"] ::placeholder,
 input[type="number"] ::placeholder
+textarea::placeholder
 {
     color: var(--secondary-color);
 }
