@@ -61,7 +61,7 @@ document.getElementById('form').addEventListener('submit', function (event) {
         if (data.is_admin) {
             window.location.href = '../../Admin_Panel/index/AdminPanel.html' ;  
         } else {
-            window.location.href = '../../account/index/account.html'; 
+            window.location.href = '../../HomePage/index.html'; 
         }
     })
 
