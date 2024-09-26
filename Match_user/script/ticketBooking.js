@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function showMessage(message, type) {
         if (messageDiv) {
             messageDiv.textContent = message;
-            messageDiv.style.color = type === "error" ? "red" : "green";
+            messageDiv.style.color = type === "error" ? "red" : "green"; //error message
             messageDiv.style.display = "block";
             messageDiv.style.margin = "10px 0";
         }
