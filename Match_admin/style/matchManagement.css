@@ -17,6 +17,7 @@ header {
     text-align: center;
 }
 
+/* Search Bar Section */
 .search-section {
     margin: 20px;
     display: flex;
@@ -30,6 +31,22 @@ header {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+/* .no-matches-message {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--tertiary-color);
+    font-size: 18px;
+} */
+
+.no-matches {
+    margin: 10px 10px 20px 0; 
+    color: black; 
+    font-size: 16px; 
+    text-align: center;
+}
+
 
 #admin-match-list {
     margin: 20px;
@@ -46,14 +63,18 @@ header {
     border-radius: 5px;
 }
 
-/* Match Photo Section */
-/* .matchPhoto img {
+.matchPhoto{
+margin-top: 30px;
+}
+
+.match-image {
     width: 500px; 
     height: 250px; 
     border: none;
     border-radius: 15px; 
     object-fit: cover; 
-} */
+    margin-top: 5px;
+}
 
 .admin-match-info {
     flex: 1;
@@ -70,6 +91,7 @@ header {
 .match-details {
     display: flex;
     align-items: center;
+    margin-top: 10px;
     margin-bottom: 5px; 
 }
 
@@ -79,6 +101,7 @@ header {
     margin-right: 5px;
 }
 
+/* Button Styles */
 .update-btn, .delete-btn {
     padding: 15px 25px;
     cursor: pointer;
@@ -109,6 +132,7 @@ header {
     background-color: rgb(228, 13, 13);
 }
 
+/* New Match Button */
 .newMatch {
     display: flex;
     justify-content: center;
