@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     function fetchMatchDetails(matchId) {
         const token = localStorage.getItem('accessToken');
-        fetch(`http://127.0.0.1:8000/match/retrive_one_match/${matchId}/`, {
+        console.log('Access Token:', token);
+        console.log('Match ID:', matchId);
+        
+        fetch(`http://127.0.0.1:8000/match/retriveonematch/${matchId}/`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         })
         .then(response => {
+            console.log('Response status:', response.status);
             if (!response.ok) {
                 throw new Error('Failed to fetch match details');
             }
@@ -18,10 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('team1').value = match.team1;
             document.getElementById('team2').value = match.team2;
             document.getElementById('stadium').value = match.stadium;
-            document.getElementById('date').value = match.date; 
-            document.getElementById('time').value = match.time; 
-            document.getElementById('noTickets').value = match.no_tickets;
+            document.getElementById('matchDate').value = match.date; 
+            document.getElementById('matchTime').value = match.time; 
+            document.getElementById('ticketCount').value = match.no_tickets; 
             document.getElementById('ticketPrice').value = match.ticket_price;
+
+            // Handle image 
+            if (match.image) {
+                document.getElementById('currentImage').src = match.image;
+                document.getElementById('currentImage').style.display = 'block'; 
+            }
         })
         .catch(error => {
             console.error('Error fetching match details:', error);
@@ -32,34 +42,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to update match details
     function updateMatchDetails(matchId) {
         const token = localStorage.getItem('accessToken');
-        const matchData = {
-            name: document.getElementById('matchName').value,
-            team1: document.getElementById('team1').value,
-            team2: document.getElementById('team2').value,
-            stadium: document.getElementById('stadium').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            no_tickets: document.getElementById('noTickets').value,
-            ticket_price: document.getElementById('ticketPrice').value
-        };
+        
+        const formData = new FormData();
+        formData.append('name', document.getElementById('matchName').value);
+        formData.append('team1', document.getElementById('team1').value);
+        formData.append('team2', document.getElementById('team2').value);
+        formData.append('stadium', document.getElementById('stadium').value);
+        formData.append('date', document.getElementById('matchDate').value);
+        formData.append('time', document.getElementById('matchTime').value);
+        formData.append('no_tickets', document.getElementById('ticketCount').value);
+        formData.append('ticket_price', document.getElementById('ticketPrice').value);
 
-        fetch(`http://127.0.0.1:8000/match/update/${matchId}/`, {
-            method: 'PUT',
+        const imageFile = document.getElementById('matchImage').files[0];
+        if (imageFile) {
+            formData.append('image', imageFile);
+        }
+
+        fetch(`http://127.0.0.1:8000/match/updatematch/${matchId}/`, {
+            method: 'PATCH',
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(matchData)
+            body: formData
         })
         .then(response => {
+            console.log('Update Response status:', response.status);
             if (!response.ok) {
                 throw new Error('Failed to update match');
             }
             return response.json();
         })
         .then(data => {
-            alert('Match updated successfully!');
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'block';
+    
+            setTimeout(() => {
+                window.location.href = 'matchManagement.html';
+            }, 2000);
         })
+
         .catch(error => {
             console.error('Error updating match:', error);
             alert('Failed to update match. Please try again.');
@@ -72,10 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchMatchDetails(matchId);
     }
 
-    document.getElementById('updateButton').addEventListener('click', () => {
-        if (matchId) {
-            updateMatchDetails(matchId);
-        }
+    document.getElementById('updateMatchButton').addEventListener('click', () => {
+        updateMatchDetails(matchId);
     });
-
 });
