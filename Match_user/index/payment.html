@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/payment.css">
     <title>Payment Page</title>
+    <link rel="stylesheet" href="../style/payment.css">
 </head>
 <body>
     <header>
         <h1>Payment Details</h1>
     </header>
-    <main>
-        <div class="payment-container">
-            <h2>Confirm Your Payment</h2>
-            <p><strong>Total Amount:</strong> $<span id="payment-amount">50</span></p>
-            <form id="payment-form">
-                <label for="card-number">Card Number:</label>
-                <input type="text" id="card-number" required placeholder="1234 5678 9012 3456">
 
-                <label for="card-expiry">Expiry Date:</label>
-                <input type="text" id="card-expiry" required placeholder="MM/YY">
+    <section id="payment-details">
+        <p>Total Amount: $<span id="total-amount"></span></p>
+        <label for="credit-card">Credit Card Number:</label>
+        <input type="text" id="credit-card" maxlength="16">
+        
+        <button id="pay-now-btn">Pay Now</button>
+        <div id="payment-message" style="display: none;"></div>
+    </section>
 
-                <label for="card-cvc">CVV:</label>
-                <input type="text" id="card-cvc" required placeholder="123">
-
-                <button type="submit">Pay Now</button>
-            </form>
-        </div>
-    </main>
+    <script src="../script/payment.js"></script>
 </body>
 </html>
