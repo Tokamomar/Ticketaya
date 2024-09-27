@@ -1,238 +1,104 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const matchList = document.getElementById('matchList');
+    const searchBar = document.getElementById('searchBar');
+    let matchesData = []; 
+    const accessToken = localStorage.getItem('accessToken');
 
-const accessToken = localStorage.getItem('accessToken');
-
-let allParties = [] ;
-
-fetch('http://127.0.0.1:8000/parties', {
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-    }
-})
-.then(response => {
-    if (response.ok) {
+    fetch('http://127.0.0.1:8000/parties', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}` // replace with actual token
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch parties');
+        }
         return response.json();
-    } else {
-        alert("Something went wrong");
+    })
+    .then(matches => {
+        matchesData = matches; 
+        displayMatches(matches);
+    })
+    .catch(error => {
+        console.error('Error fetching parties:', error);
+        alert('Unable to load parties. Please try again later.');
+    });
+
+    // Function to format date
+    function formatDate(dateString) {
+        const options = { month: 'long', day: 'numeric', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-US', options);
     }
-})
-.then(data => {
-    console.log(data);
 
-    function calculateCountdown(eventDate) {
-        const now = new Date().getTime();
-        const distance = new Date(eventDate).getTime() - now;
+    // Function to format time
+    function formatTime(timeString) {
+        let [hours, minutes] = timeString.split(':');
+        let period = 'AM';
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        hours = parseInt(hours, 10);
 
-        if (distance < 0) {
-            return "Event Over!";
+        if (hours >= 12) {
+            period = 'PM';
+            if (hours > 12) hours -= 12;
+        } else if (hours === 0) {
+            hours = 12; 
         }
 
-        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        return `${hours}:${minutes} ${period}`;
     }
 
-    // Function to dynamically create event cards and append them
-    function renderEventCards() {
-        const cardsContainer = document.getElementById('cards');
+    function displayMatches(matches) {
+        matchList.innerHTML = ''; 
+        matches.forEach(match => {
+            const matchDate = formatDate(match.datetime);
+            const matchTime = formatTime(match.datetime);
 
-        data.forEach(event => {
-            // Create a card element
-            const card = document.createElement('div');
-            card.classList.add('card');
-
-
-            const partyTime = new Date(event.datetime).toLocaleString('en-US', {
-                timeZone: 'Africa/Cairo',
-                year: 'numeric',
-                month: 'long', // Full month name like "January"
-                day: 'numeric', // Numeric day like "29"
-                hour: 'numeric', // Hour like "1" or "13"
-                minute: 'numeric', // Minute like "19"
-                second: 'numeric', // Second like "00"
-                hour12: true // This option makes it 12-hour format with AM/PM
-            });
-
-
-            // Create the inner HTML with dynamic content
-            card.innerHTML = `
-                <div class="image_holder">
-                    
-                    <div class="ticket_content">
-                        <div class="count_down" id="countDown-${event.id}">${calculateCountdown(event.datetime)}</div>
-                        <h3 class="name">${event.name}</h3>
-                        <div class="performer_tag">
-                            <p class="performer">Performer : ${event.performer}</p>
+            matchList.innerHTML += `
+                <div class="match-card">
+                    <img src="../images/match-placeholder.png" alt="${match.name}"> <!-- Placeholder image -->
+                    <div class="match-info">
+                        <h3>${match.name}</h3> <!-- Match name as heading -->
+                        <div class="match-details">
+                            <span>${match.performer}</span> <!-- Stadium -->
                         </div>
-                        <p class="location">Location: ${event.location}</p>
-                        <p class="date">On ${new Date(event.datetime).toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })} at ${new Date(event.datetime).toLocaleTimeString('en-US', { timeZone: 'Africa/Cairo' })}</p>
-                        <p class="date">On ${partyTime}</p>
-                        <p class="price">${event.price} LE</p>
-                        <p class="details"><a href="#" class="seeDetails" data-event-id="${event.id}">See details</a></p>
+                        <div class="match-details">
+                        <img class="stadium-icon" src="../images/location.jpg" alt="Stadium Icon" style="width: 20px; height: auto; margin-right: 5px;">
+                            <span>${match.location}</span> <!-- Stadium -->
+                        </div>
+                        <div class="match-details">
+                            <span>${matchDate} | ${matchTime}</span> <!-- Date and Time -->
+                        </div>
+                        <div class="match-details">
+                            <span>Tickets: ${match.number_of_tickets}</span> <!-- Number of tickets -->
+                        </div>
+                        <div class="match-details">
+                            <span>Price: $${Math.round(match.price)}</span> <!-- Ticket price without decimals -->
+                        </div>
+                        <p>${match.description}</p> <!-- Match description -->
+                    </div>
+                    <div class="admin-match-actions">
+                        <button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>
                     </div>
                 </div>
             `;
-
-            // Append the card to the container
-            cardsContainer.appendChild(card);
-        });
-
-        // Add event listeners to all "See details" links after rendering the cards
-        document.querySelectorAll('.seeDetails').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent the default anchor behavior
-                const partyId = this.getAttribute('data-event-id');
-                //const selectedEvent = data.find(e => e.id == eventId);
-
-                // Store the selected event in local storage
-                localStorage.setItem('partyId', JSON.stringify(partyId));
-
-                // Redirect to the details page
-                window.location.href = `../index/party_details.html?partyId=${partyId}`;
-            });
         });
     }
 
-    // Function to update the countdown every second
-    function updateCountdown() {
-        data.forEach(event => {
-            const countdownElement = document.getElementById(`countDown-${event.id}`);
-            if (countdownElement) {
-                countdownElement.innerHTML = calculateCountdown(event.datetime);
-            }
-        });
-    }
-
-    // Initial render of cards
-    renderEventCards();
-    setInterval(updateCountdown, 1000);
-
-})
-.catch(error => {
-    console.error('Error:', error);
+    // Search matches
+    searchBar.addEventListener('input', function() {
+        const searchTerm = searchBar.value.toLowerCase();
+        const filteredMatches = matchesData.filter(match => 
+            match.name.toLowerCase().includes(searchTerm)|| 
+            match.location.toLowerCase().includes(searchTerm) || 
+            match.performer.toLowerCase().includes(searchTerm)
+        );
+        displayMatches(filteredMatches);
+    });
 });
 
-
-//! ==============================    search ===================
-
-
-document.getElementById('search').addEventListener('input', function() {
-    let query = this.value.trim();  // Get the input value and trim whitespace
-
-    if (query.length >= 1) {  // Start searching when the query has more than 2 characters
-        fetch(`http://127.0.0.1:8000/parties/search?name=${encodeURIComponent(query)}` , {
-            method : "GET" , 
-            headers : {
-                'Authorization': `Bearer ${accessToken}`,
-                'Content-Type': 'application/json'
-            },
-        }).then(response=>{
-            if(response.ok){
-                return response.json()
-            }else{
-                alert("something wrong with the search")
-            }
-        }).then(data=>{
-            function calculateCountdown(eventDate) {
-                const now = new Date().getTime();
-                const distance = new Date(eventDate).getTime() - now;
-        
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-                if (distance < 0) {
-                    return "Event Over!";
-                }
-        
-                return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
-        
-            // Function to dynamically create event cards and append them
-            function renderEventCards() {
-                const cardsContainer = document.getElementById('cards');
-                cardsContainer.innerHTML = ''
-
-        
-                data.forEach(event => {
-                    // Create a card element
-                    const card = document.createElement('div');
-                    card.classList.add('card');
-        
-        
-                    const partyTime = new Date(event.datetime).toLocaleString('en-US', {
-                        timeZone: 'Africa/Cairo',
-                        year: 'numeric',
-                        month: 'long', // Full month name like "January"
-                        day: 'numeric', // Numeric day like "29"
-                        hour: 'numeric', // Hour like "1" or "13"
-                        minute: 'numeric', // Minute like "19"
-                        second: 'numeric', // Second like "00"
-                        hour12: true // This option makes it 12-hour format with AM/PM
-                    });
-        
-        
-                    // Create the inner HTML with dynamic content
-                    card.innerHTML = `
-                        <div class="image_holder">
-                            
-                            <div class="ticket_content">
-                                <div class="count_down" id="countDown-${event.id}">${calculateCountdown(event.datetime)}</div>
-                                <h3 class="name">${event.name}</h3>
-                                <div class="performer_tag">
-                                    <p class="performer">Performer : ${event.performer}</p>
-                                </div>
-                                <p class="location">Location: ${event.location}</p>
-                                <p class="date">On ${new Date(event.datetime).toLocaleDateString('en-US', { timeZone: 'Africa/Cairo' })} at ${new Date(event.datetime).toLocaleTimeString('en-US', { timeZone: 'Africa/Cairo' })}</p>
-                                <p class="date">On ${partyTime}</p>
-                                <p class="price">${event.price} LE</p>
-                                <p class="details"><a href="#" class="seeDetails" data-event-id="${event.id}">See details</a></p>
-                            </div>
-                        </div>
-                    `;
-        
-                    // Append the card to the container
-                    cardsContainer.appendChild(card);
-                });
-        
-                // Add event listeners to all "See details" links after rendering the cards
-                document.querySelectorAll('.seeDetails').forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        event.preventDefault(); // Prevent the default anchor behavior
-                        const partyId = this.getAttribute('data-event-id');
-                        //const selectedEvent = data.find(e => e.id == eventId);
-        
-                        // Store the selected event in local storage
-                        localStorage.setItem('partyId', JSON.stringify(partyId));
-        
-                        // Redirect to the details page
-                        window.location.href = `../index/party_details.html?partyId=${partyId}`;
-                    });
-                });
-            }
-        
-            // Function to update the countdown every second
-            function updateCountdown() {
-                data.forEach(event => {
-                    const countdownElement = document.getElementById(`countDown-${event.id}`);
-                    if (countdownElement) {
-                        countdownElement.innerHTML = calculateCountdown(event.datetime);
-                    }
-                });
-            }
-        
-            // Initial render of cards
-            renderEventCards();
-            setInterval(updateCountdown, 1000);
-        })
-
-
-    } else {
-        document.getElementById('search_results').innerHTML = '';  // Clear results if the input is too short
-    }
-});
+// Function to handle ticket booking
+function bookTicket(matchId) {
+    alert(`Booking ticket for match ID: ${matchId}`);
+}

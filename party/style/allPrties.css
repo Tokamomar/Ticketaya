@@ -1,219 +1,236 @@
-:root{
-    --primary-color: #4D774E; 
+:root {
+    --primary-color: #4D774E;
     --secondary-color: #81a17c;
-    --tertiary-color: #325434;
-    --fourth-color:#e2e2e2;
     --hover-color: #9dc1a4;
+    --accent-color: #f1b24a;
 }
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: black;
 
-}
 body {
-    font-family: Poppins, sans-serif;    
-    background-color: white;
-}
-header{
-    background-color: var(--primary-color);
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f2ef;
 }
 
-header .container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-header .container .logo{
-
-}
-header .container .logo img{
-    width: 60px;
-}
-header .container .nav{
-    display: flex;
-    justify-content: space-between;
-    width: 380px;
-    align-items: center;
-}
-header .container > i{
-    display: none ;
-    font-size: 25px;
-    color: var(--fourth-color);
-}
-header .container .nav a{
+a {
     text-decoration: none;
-    color: var(--fourth-color);
 }
-header .container .nav a:hover{
+
+ul {
+    list-style-type: none;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    max-width: 100%;
+    height: 70px;
+    padding-top: 10px; 
+    margin-top: -10px; 
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px; 
+}
+
+header a {
+    color: white;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+header img {
+    width: 100px;
+    margin-left: 30px;
+}
+
+header .nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .nav ul li a {
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header .nav ul li a p {
+    padding-right: 30px;
+}
+
+header .nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+header .nav ul li i {
+    margin-right: 10px;
+}
+
+
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.hero .exciting-heading {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.featured-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.book-now {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 40%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.book-now:hover {
+    background-color: #f1b14ac7;
+}
+
+.search-section {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#searchBar {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.match-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    margin: 20px 30px;    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.match-card:hover {
+    transform: scale(1.03);
+}
+
+.match-card img {
+    width: 500px;
+    height: 250px;
+    border: none;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.match-info {
+    flex: 1;
+    padding: 0 20px;
+    margin: 25px 10px 10px 10px; 
+}
+
+.match-info h3 {
+    font-size: 25px;
+    margin: 0px 20px 0px 0;
+    margin-right: 40px;  
+}
+
+
+.book-ticket-btn {
+    background-color: #4D774E;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.book-ticket-btn:hover {
+    background-color: #4d774ea1;
+}
+
+/* Footer */
+footer {
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-content h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    font-size: 1.2rem;
+    color: #FFFFFF99;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color:var(--secondary-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
     color: var(--hover-color);
 }
 
-
-header .container .nav form input[type="search"]{
-    height: 30px;
-    width: 200px;
-    padding: 10px;
-    border: none;
-}
-header .container .nav form input[type="search"]:focus{
-    outline: var(--hover-color) solid;
-}
-header .container .nav form button{
-    border: none;
-    background-color: transparent;
-}
-
-header .container .nav form button i{
-    font-size: 25px;
-    color: var(--fourth-color);
-    margin-left: 10px;
-}
-@media screen and (max-width:550px) {
-    header .container > i{
-        display:block;
-        position: relative;
-    }
-    header .container > i:hover + .nav{
-        display: flex;
-        
-    }
-    header .container .nav{
-        flex-direction: column;
-        position: absolute;
-        right: 10px;
-        top:55px;
-        height: 150px;
-        justify-content:space-evenly ;
-        align-items: start;
-        background-color:var(--secondary-color) ;
-        display: none;
-    }
-    header .container .nav:hover{
-        display: flex;
-    }
-    header .container .nav::after{
-        content: " ";
-        width: 0px;
-        height: 10px;
-        left: 328px;
-        top: -45px;
-        border-style: solid;
-        border-width: 20px;
-        border-color: transparent transparent var(--secondary-color) transparent ;
-        position: absolute;
-    }
-    header .container .nav a{
-        border-bottom: solid 1px var(--hover-color);
-        padding: 0 0 20px 20px;
-        width: 100%;
-    }
-    header .container .nav form{
-        padding: 0 0 0px 20px;
-    }
-}
-
-.parties{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.parties h2{
-    text-align: center;
-    margin: 40px 0 80px;
-    font-size: 30px;
-    color: var(--tertiary-color);
-}
-.cards {
-
-    gap: 20px; /* Space between cards */
-    padding: 20px; /* Padding around the container */
-    height: auto;
-    width: 1400px;
-    margin: auto;
-}
-
-.card {
-    border-radius: 8px;
-    width: 620px;
-    height: auto;
-    display: inline-block;
-    margin-bottom:  30px;
-    transition: transform 0.3s ease-in-out;
-}
-.card:hover{
-   /* transform: scale(1.09); */
-}
-.card img{
-    width: 100%;
-
-}
-.image_holder{
-    position: relative;
-    width: 550px;
-    margin: auto;
-}
-.ticket_content{
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding: 70px;
-    padding-top: 30px;
-    padding-bottom: 35px;
+.rights {
+    font-size: 1rem;
     color: white;
-    text-transform: capitalize;
-    padding: 40px 20px 30px;
-}
-.name{
-    font-size: 22px;
     margin-top: 20px;
-    text-align: center;
 }
-.count_down{
-    font-size: 14px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-}
-.header{
-    font-size: 18px;
-    color: rgb(255, 242, 0);
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-.performer_tag{
-    display: block;
-    overflow: hidden;
-    height: 30px;
-    margin-top: 10px;
-}
-.performer{
-    float: left;
-    font-size: 20px;
-}
-.tag{
-    float: right;
-    text-transform: lowercase;
-    font-size: 15px;
-}
-.location{
-    font-size: 18px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-}
-.price{
-    margin-top : 10px;
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 15px;
-}
-.details{
-    text-align: center;
-}
-.details >a {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    font-weight: bold;
+.stadium-icon{
+    width: 70px;
 }

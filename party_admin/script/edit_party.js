@@ -1,6 +1,9 @@
 const accessToken = localStorage.getItem('accessToken');
 // const editParty = Number(JSON.parse(localStorage.getItem('editParty')));
-const editParty =localStorage.getItem('editParty');
+// const editParty =localStorage.getItem('editParty');
+
+const urlParams = new URLSearchParams(window.location.search);
+const editParty = urlParams.get('editParty');
 
 console.log(",,,,,")
 console.log(editParty)

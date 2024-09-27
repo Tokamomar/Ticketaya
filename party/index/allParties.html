@@ -3,52 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Parties</title>
-    <link rel="stylesheet" href="../style/all.min.css">
+    <title>Parties - Ticketaya</title>
     <link rel="stylesheet" href="../style/allPrties.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <header>
-            <div class="container">
-                <div class="logo">
-                    <img src="../../Registration/images/white-logo.png" alt="">
-                </div>
-                <i class="fa-solid fa-bars"></i>
-                <div class="nav">
-                    <a href="../index/createParty.html">Create Party</a>
-                    <form>
-                        <input type="search" placeholder="Search" id="search">
-                        <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
-                </div>
+    <header>
+        <div class="container">
+            <div class="icon">
+                <a href="../../HomePage/index.html"><img src="../images/white-logo.png" alt=""></a>
+            </div>  
+            <div class="nav">
+                <ul>
+                    <li><a href="../../Registration/index/signup.html"><i class="fa-solid fa-user-plus"></i><p>Register</p></a></li>
+                    <li><a href="../../Registration/index/login.html"><i class="fa-solid fa-lock"></i><p>Sign In</p></a></li>
+                    <li><a href="#footer" id="contact-link"><i class="fa-solid fa-phone"></i><p>Contact Us</p></a></li>
+                </ul>
             </div>
-        </header>
-        
-        <div class="parties">
-            <h2>Upcoming Parties and Events You Don’t Want to Miss</h2>
-            <div id="search_results"></div>
-            <div class="cards" id="cards">
-                <!-- <div class="card">
-                    <div class="image_holder">
-                        <img src="../images/green_ticket.png" class="ticket">
-                        <div class="ticket_content">
-                            <div class="count_down" id="countDown">12:120:15:56</div>
-                            <div class="header" id="header">Join The Fun!</div>
-                            <h3 class="name" id="name">party name</h3>
-                            <div class="performer_tag">
-                                <p class="performer" id="performer">creator</p>
-                                <span class="tag">#music</span>
-                            </div>
-                            <p class="location" id="location">Location : </p>
-                            <p class="date" id="date">On 6/5/2025</p>
-                            <p class="price" id="price">200 LE</p>
-                            <p class="details" id="seeDetails"><a href="#">see details</a></p>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-              
         </div>
+    </header>
+
+    <section class="hero">
+        <h2 class="exciting-heading">Upcoming Parties and Events You Don’t Want to Miss</h2>
+        <img src="../images/header.jpg" alt="Featured Match" class="featured-image">
+        <button class="book-now" data-match-id="1">Book your Ticket</button>
+    </section>
+
+    <section class="search-section">
+        <input type="text" id="searchBar" placeholder="Search by Match Name or Team">
+    </section>
+    
+    <section id="match-section">
+        <div id="matchList"></div> <!-- Matches will be dynamically loaded here -->
+    </section>
+    
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <a href="../../HomePage/index.html"><h2>Ticketaya.com</h2></a>
+                <p>Contact Us</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="rights">&copy; 2024 Ticketaya. All rights reserved.</p>
+    </footer>
+
     <script src="../script/allParties.js"></script>
 </body>
 </html>

@@ -73,7 +73,10 @@
     <!--! <scrip src="../script/edit_party.js"></scrip> -->
     <script>
       const accessToken = localStorage.getItem("accessToken");
-      const editParty = Number(JSON.parse(localStorage.getItem("editParty")));
+      // const editParty = Number(JSON.parse(localStorage.getItem("editParty")));
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const editParty = urlParams.get('editParty');
 
       fetch(`http://127.0.0.1:8000/parties/${editParty}`, {
         method: "GET",

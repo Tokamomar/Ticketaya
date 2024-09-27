@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Party</title>
-    <link rel="stylesheet" href="../style/party_admin.css">
+    <title>Party Management</title>
+    <link rel="stylesheet" href="../style/party_admin.css"> 
 </head>
 <body>
-    <input type="search" placeholder="search" id="search">
-    <div class="parties" id="parties">
+    <header>
+        <h1>Party Management</h1>
+    </header>
 
+    <section class="search-section">
+        <input type="text" id="searchBar" placeholder="Search by Match Name">
+    </section>
+
+    <section id="admin-match-list">
+        <ul id="matchList">
+            <!-- Matches will be dynamically loaded here -->
+        </ul>
+    </section>
+
+    <div class="newMatch">
+        <button id="addMatchButton" onclick="location.href='../../party/index/createParty.html'">Add New Party</button>
     </div>
+
     <script src="../script/party_admin.js"></script>
 </body>
 </html>
