@@ -51,13 +51,31 @@
                 <input type="number" id="ticketPrice" name="ticketPrice" placeholder="e.g., 50" required>
             </div>
 
+            
+            <div class="form-group">
+                <label for="currentImageLabel">Current Image:</label>
+                <img id="currentImage" src="" alt="Current Match Image" style="display:none;">
+            </div>
+
+            <div class="form-group">
+                <label for="matchImage">Match Image</label>
+                <input type="file" id="matchImage" name="matchImage" accept="image/*" class="file-input">
+            </div>
+
+
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description" name="description" placeholder="Enter match description here"></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">Update Match</button>
+            <button type="button" id="updateMatchButton">Update Match</button>
         </form>
+
+        <div id="overlay"></div>
+        <div id="successMessage">
+        <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
+         <p>Match updated successfully!</p>
+        </div>
     </div>
 
     <footer>

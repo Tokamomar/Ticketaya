@@ -1,12 +1,10 @@
 let matchesData = []; 
 
-// Function to format date
 function formatDate(dateString) {
     const options = { month: 'long', day: 'numeric', year: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
-// Function to format time
 function formatTime(timeString) {
     let [hours, minutes] = timeString.split(':');
     let period = 'AM';
@@ -25,13 +23,22 @@ function formatTime(timeString) {
 
 function displayMatches(matches) {
     const matchList = document.getElementById('matchList');
-    matchList.innerHTML = '';
+    matchList.innerHTML = ''; 
+
+    if (matches.length === 0) {
+        matchList.innerHTML = '<p class="no-matches">No matches found.</p>'; 
+        return;
+    }
+
     matches.forEach(match => {
         const matchDate = formatDate(match.date);
         const matchTime = formatTime(match.time);
 
         matchList.innerHTML += `
             <div class="admin-match">
+                <div class="matchPhoto">
+                    <img src="${match.image}" alt="${match.name}" class="match-image"> <!-- Use match.image field -->
+                </div>
                 <div class="admin-match-info">
                     <h2>${match.name}</h2> <!-- Match name as heading -->
                     
@@ -40,7 +47,7 @@ function displayMatches(matches) {
                     </div>
 
                     <div class="match-details">
-                        <img class="stadium-icon" src="../images/stadium.png" alt="">
+                        <img class="stadium-icon" src="../images/stadium.png" alt="stadium">
                         <span>${match.stadium}</span> <!-- Stadium -->
                     </div>
 
@@ -49,12 +56,17 @@ function displayMatches(matches) {
                     </div>
 
                     <div class="match-details">
-                        <span>Tickets: ${match.no_tickets}</span> <!-- Number of tickets -->
+                        <span>Total no. of Tickets: ${match.no_tickets}</span> <!-- Number of tickets -->
                     </div>
 
                     <div class="match-details">
-                        <span>Price: $${Math.floor(match.ticket_price)}</span> <!-- Price without decimal -->
+                        <span>No. of available Tickets: ${match.no_tickets}</span> <!-- Available tickets -->
                     </div>
+
+                    <div class="match-details">
+                        <span>Ticket Price: $${Math.floor(match.ticket_price)}</span> <!-- Price without decimal -->
+                    </div>
+                    <p>${match.description}</p> <!-- Match description -->
                 </div>
 
                 <div class="admin-match-actions">
@@ -83,6 +95,7 @@ function fetchMatches() {
     })
     .then(matches => {
         matchesData = matches; 
+        console.log("Fetched Matches:", matches); 
         displayMatches(matches); 
     })
     .catch(error => {
@@ -94,6 +107,7 @@ function fetchMatches() {
     });
 }
 
+// Function to redirect to update match page
 window.editMatch = function(matchId) {
     window.location.href = `../../Match_admin/index/updateMatch.html?matchId=${matchId}`;
 };
@@ -113,6 +127,7 @@ window.deleteMatch = function(matchId) {
             }
         })
         .then(response => {
+            // Check for successful deletion response
             if (!response.ok) {
                 throw new Error('Failed to delete match');
             }
@@ -127,6 +142,7 @@ window.deleteMatch = function(matchId) {
     }
 };
 
+// Event listener for DOMContentLoaded
 document.addEventListener('DOMContentLoaded', function() {
     fetchMatches(); 
 

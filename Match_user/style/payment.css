@@ -15,7 +15,7 @@ header {
     background-color: var(--primary-color);
     color: whitesmoke;
     text-align: center;
-    padding: 15px 0;
+    padding: 15px 0; 
 }
 
 .payment-container {
@@ -43,7 +43,7 @@ label {
 }
 
 input {
-    padding: 8px; 
+    padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
