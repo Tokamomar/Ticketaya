@@ -36,6 +36,15 @@
         </div>
 
         <div class="form-group">
+          <label for="location">Party Location</label>
+          <input
+            type="text"
+            id="location"
+            placeholder="e.g., Cairo"
+          />
+        </div>
+
+        <div class="form-group">
           <label for="ticketCount">Number of Tickets</label>
           <input
             type="number"
@@ -62,6 +71,10 @@
             name="description"
             placeholder="Enter match description here"
           ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Party Image</label>
+          <input type="file" id="image">
         </div>
 
         <button type="submit" class="submit-btn" id="updateBtn">
@@ -96,6 +109,9 @@
           const partyName = document.getElementById("partyName");
           partyName.value = data.name;
 
+          const location = document.getElementById("location");
+          location.value = data.location;
+
           const partyDate = document.getElementById("partyDate");
         
 
@@ -109,22 +125,28 @@
           const partyTimeInput = document.getElementById("partyTime");
  
 
-        const cairoTime = new Date(data.datetime).toLocaleString('en-US', {
-                timeZone: 'Africa/Cairo',
-                year: 'numeric',
-                month: 'long', // Full month name like "January"
-                day: 'numeric', // Numeric day like "29"
-                hour: 'numeric', // Hour like "1" or "13"
-                minute: 'numeric', // Minute like "19"
-                second: 'numeric', // Second like "00"
-                hour12: true // This option makes it 12-hour format with AM/PM
-            });
+const cairoTime = new Date(data.datetime);
+
+// Subtract 3 hours from the event date
+cairoTime.setHours(cairoTime.getHours() - 3);
+
+// Format the date and time without timezone info
+const formattedCairoTime = cairoTime.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long', // Full month name like "January"
+    day: 'numeric', // Numeric day like "29"
+    hour: 'numeric', // Hour like "1" or "13"
+    minute: 'numeric', // Minute like "19"
+    second: 'numeric', // Optional, include if you want seconds
+    hour12: true // This option makes it 12-hour format with AM/PM
+});
+partyDate.value = formattedCairoTime
+
+console.log(formattedCairoTime); // Display only date and time in your desired format
 
 
-        partyDate.value = cairoTime
 
         const partyTime = data.datetime;
-        
         console.log(partyTime)
         let formattedDate = new Date(partyTime).toISOString().slice(0, 16);
 
@@ -149,24 +171,29 @@
           const description = document.getElementById("description").value;
           const ticketPrice = document.getElementById("ticketPrice").value;
           const ticketCount = document.getElementById("ticketCount").value;
+          const location = document.getElementById('location').value
+          const image = document.getElementById("image");
+          const files = image.files[0];
 
-          // Prepare data for the API
-          const partyData = {
-            name: partyName,
-            datetime: partyTime,
-            description: description,
-            price: ticketPrice,
-            number_of_tickets: ticketCount,
-          };
+
+          const partyData = new FormData();
+          partyData.append("name", partyName);
+          partyData.append("datetime", partyTime);
+          partyData.append("description", description);
+          partyData.append("price", ticketPrice);
+          partyData.append("number_of_tickets", ticketCount);
+          partyData.append("location", location);
+          partyData.append("image", files);
+
           console.log("clicked");
           // Send the data to the API (replace 'YOUR_API_ENDPOINT' with the actual API URL)
           fetch(`http://127.0.0.1:8000/parties/${editParty}/update`, {
             method: "PATCH", // or "PUT" depending on your API
             headers: {
-              "Content-Type": "application/json",
+              // "Content-Type": "application/json",
               Authorization: `Bearer ${accessToken}`,
             },
-            body: JSON.stringify(partyData), // Convert the data to a JSON string
+            body: partyData
           })
             .then((response) => {
               if (response.ok) {

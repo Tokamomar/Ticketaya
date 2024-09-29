@@ -159,7 +159,11 @@ header .nav ul li i {
     margin: 0px 20px 0px 0;
     margin-right: 40px;  
 }
-
+.admin-match-actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .book-ticket-btn {
     background-color: #4D774E;

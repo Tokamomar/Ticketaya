@@ -28,6 +28,7 @@
                     <label for="location">Location:</label>
                     <input type="text" id="location" required>
                 </div>
+                <label for="description" id="descriptionLabel">Description:</label>
                 </div><!--left inputs-->
                 <div class="right-inputs">
                 <div class="input-group">
@@ -44,13 +45,16 @@
                 </div>
                 </div><!--right inputs-->
                 <div class="input-group">
-                    <label for="description">Description:</label>
                     <textarea id="description" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="image">Party Image:</label>
+                    <input id="image" required type="file">
                 </div>
                 <button type="submit">Submit</button>
             </form>
             <p id="message"></p>
-            <a href="../index/allParties.html"><button type="button">all parties page</button></a>
+            <a href="../../party_admin/index/party_admin.html"><button type="button">all parties page</button></a>
         </div>
     </div>
     <script src="../script/createParty.js"></script>

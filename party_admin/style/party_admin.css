@@ -127,3 +127,10 @@ header {
 .newMatch button:hover {
     background-color: #f1b14ad5;
 }
+.party_img{
+    width: 500px;
+    height: 250px;
+    border: none;
+    border-radius: 15px;
+    object-fit: cover;
+}

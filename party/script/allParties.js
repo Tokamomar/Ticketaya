@@ -4,6 +4,34 @@ document.addEventListener('DOMContentLoaded', function() {
     let matchesData = []; 
     const accessToken = localStorage.getItem('accessToken');
 
+
+    // Function to calculate and start the countdown for each match
+function startCountdown(eventDate, countdownElement) {
+    // Adjust the event date by subtracting 3 hours (in milliseconds)
+    const adjustedEventDate = new Date(new Date(eventDate).getTime() - 3 * 60 * 60 * 1000);
+  
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = adjustedEventDate.getTime() - now;
+  
+      if (distance < 0) {
+        countdownElement.textContent = "Event Over!";
+        return; // Stop updating if the event is over
+      }
+  
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+  
+    // Update countdown immediately and every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+
     fetch('http://127.0.0.1:8000/parties', {
         method: 'GET',
         headers: {
@@ -26,38 +54,34 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Unable to load parties. Please try again later.');
     });
 
-    // Function to format date
-    function formatDate(dateString) {
-        const options = { month: 'long', day: 'numeric', year: 'numeric' };
-        return new Date(dateString).toLocaleDateString('en-US', options);
-    }
-
-    // Function to format time
-    function formatTime(timeString) {
-        let [hours, minutes] = timeString.split(':');
-        let period = 'AM';
-
-        hours = parseInt(hours, 10);
-
-        if (hours >= 12) {
-            period = 'PM';
-            if (hours > 12) hours -= 12;
-        } else if (hours === 0) {
-            hours = 12; 
-        }
-
-        return `${hours}:${minutes} ${period}`;
-    }
 
     function displayMatches(matches) {
         matchList.innerHTML = ''; 
-        matches.forEach(match => {
-            const matchDate = formatDate(match.datetime);
-            const matchTime = formatTime(match.datetime);
+        matches.forEach((match,index) => {
+
+
+
+            const cairoTime = new Date(match.datetime);
+
+    // Subtract 3 hours from the event date
+    cairoTime.setHours(cairoTime.getHours() - 3);
+
+    // Format the date and time without timezone info
+    const formattedCairoTime = cairoTime.toLocaleString("en-US", {
+      year: "numeric",
+      month: "long", // Full month name like "January"
+      day: "numeric", // Numeric day like "29"
+      hour: "numeric", // Hour like "1" or "13"
+      minute: "numeric", // Minute like "19"
+      second: "numeric", // Optional, include if you want seconds
+      hour12: true, // This option makes it 12-hour format with AM/PM
+    });
+
+
 
             matchList.innerHTML += `
                 <div class="match-card">
-                    <img src="../images/match-placeholder.png" alt="${match.name}"> <!-- Placeholder image -->
+                    <img src=${match.image} alt="${match.name}"> <!-- Placeholder image -->
                     <div class="match-info">
                         <h3>${match.name}</h3> <!-- Match name as heading -->
                         <div class="match-details">
@@ -68,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span>${match.location}</span> <!-- Stadium -->
                         </div>
                         <div class="match-details">
-                            <span>${matchDate} | ${matchTime}</span> <!-- Date and Time -->
+                            <span>${formattedCairoTime}</span> <!-- Date and Time -->
                         </div>
                         <div class="match-details">
                             <span>Tickets: ${match.number_of_tickets}</span> <!-- Number of tickets -->
@@ -76,14 +100,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="match-details">
                             <span>Price: $${Math.round(match.price)}</span> <!-- Ticket price without decimals -->
                         </div>
-                        <p>${match.description}</p> <!-- Match description -->
+                        <div class="match-details">
+                            <span>Description : ${match.description}</span> <!-- Match description -->
+                        </div>
                     </div>
                     <div class="admin-match-actions">
                         <button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>
                     </div>
+                    <div class="count_down" id="countdown-${index}"></div>
                 </div>
             `;
         });
+          // Start countdown for each match
+  matches.forEach((match, index) => {
+    const countdownElement = document.getElementById(`countdown-${index}`);
+    startCountdown(match.datetime, countdownElement);
+  });
     }
 
     // Search matches

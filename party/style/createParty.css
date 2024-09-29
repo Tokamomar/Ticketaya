@@ -54,7 +54,6 @@ h2 {
 label {
     display: block;
     color: var(--primary-color);
-    /* font-size: larger; */
     font-weight: bold;
     text-align: left;
 }
@@ -62,6 +61,7 @@ label {
 input[type="text"],
 input[type="datetime-local"],
 input[type="number"],
+input[type="file"],
 textarea
 {
     width: 100%;
@@ -76,6 +76,7 @@ textarea
 input[type="text"]:focus,
 input[type="datetime-local"]:focus , 
 input[type="number"]:focus ,
+input[type="file"]:focus ,
 textarea:focus 
 {
     outline: none; 
@@ -83,7 +84,8 @@ textarea:focus
 }
 input[type="text"]::placeholder,
 input[type="datetime-local"] ::placeholder,
-input[type="number"] ::placeholder
+input[type="number"] ::placeholder,
+input[type="file"] ::placeholder,
 textarea::placeholder
 {
     color: var(--secondary-color);
@@ -132,4 +134,7 @@ a:hover {
     margin-top: -3px;
 }
 .right-inputs , .left-inputs{
+}
+#descriptionLabel{
+    text-align: start;
 }
