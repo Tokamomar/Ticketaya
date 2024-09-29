@@ -176,6 +176,8 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
           const files = image.files[0];
 
 
+
+          if(files){
           const partyData = new FormData();
           partyData.append("name", partyName);
           partyData.append("datetime", partyTime);
@@ -185,8 +187,7 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
           partyData.append("location", location);
           partyData.append("image", files);
 
-          console.log("clicked");
-          // Send the data to the API (replace 'YOUR_API_ENDPOINT' with the actual API URL)
+
           fetch(`http://127.0.0.1:8000/parties/${editParty}/update`, {
             method: "PATCH", // or "PUT" depending on your API
             headers: {
@@ -205,6 +206,40 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
               console.error("Error:", error);
               alert("Failed to update the party.");
             });
+          
+          }else{
+
+            const partyData = new FormData();
+          partyData.append("name", partyName);
+          partyData.append("datetime", partyTime);
+          partyData.append("description", description);
+          partyData.append("price", ticketPrice);
+          partyData.append("number_of_tickets", ticketCount);
+          partyData.append("location", location);
+          // partyData.append("image", files);
+
+
+          fetch(`http://127.0.0.1:8000/parties/${editParty}/update`, {
+            method: "PATCH", // or "PUT" depending on your API
+            headers: {
+              // "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: partyData
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("updated successfully");
+              }
+            })
+            .catch((error) => {
+              // Handle any errors
+              console.error("Error:", error);
+              alert("Failed to update the party.");
+            });
+          }
+
+          
         });
     </script>
   </body>
