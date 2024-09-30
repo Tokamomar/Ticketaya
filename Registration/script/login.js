@@ -55,6 +55,7 @@ document.getElementById('form').addEventListener('submit', function (event) {
         }).then(data=>{
             
             localStorage.setItem("userId",data.id) ;
+            localStorage.setItem('is_admin' , data.is_admin)
             
         })
 

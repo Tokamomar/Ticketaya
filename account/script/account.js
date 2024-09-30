@@ -18,6 +18,40 @@ const updateBtn = document.getElementById('updateBtn');
 const accountImage = document.getElementById('accountImage');
 const showPosts = document.getElementById('showPosts');
 const confirmDeletingPost = document.getElementById('confirmDeletingPost');
+const home = document.getElementById('home');
+const panel = document.getElementById('panel');
+const party = document.getElementById('party');
+const match = document.getElementById('match');
+
+
+const is_admin = localStorage.getItem('is_admin');
+
+if(is_admin == "true"){
+    home.innerHTML = `
+            <i class="fas fa-home"></i>
+            <span class="home" id="panel">Admin Panel</span>
+    `;
+    home.addEventListener('click',()=>{
+        window.location.href = "../../Admin_Panel/index/AdminPanel.html";
+    })
+    party.addEventListener('click',()=>{
+        window.location.href = "../../party_admin/index/party_admin.html";
+    })
+    match.addEventListener('click',()=>{
+        window.location.href = "../../Match_admin/index/matchManagement.html";
+    })
+}else{
+    
+    home.addEventListener('click',()=>{
+        window.location.href="../../HomePage/index.html";
+    })
+    party.addEventListener('click',()=>{
+        window.location.href = "../../party/index/allParties.html";
+    })
+    match.addEventListener('click',()=>{
+        window.location.href = "../../Match_user/index/main_page.html";
+    })
+}
 
 
 updateBtn.addEventListener('click' , ()=>{

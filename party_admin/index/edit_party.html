@@ -81,6 +81,7 @@
           Update Party
         </button>
       </form>
+      <div id="back">Back to all Parties</div>
     </div>
 
     <!--! <scrip src="../script/edit_party.js"></scrip> -->
@@ -241,6 +242,10 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
 
           
         });
+        const back = document.getElementById('back');
+        back.addEventListener('click', () => {
+          window.location.href = './party_admin.html';
+        })
     </script>
   </body>
 </html>

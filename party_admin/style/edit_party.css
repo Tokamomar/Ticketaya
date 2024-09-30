@@ -118,3 +118,8 @@ footer button:hover {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     font-size: 14px;
 }
+#back{
+    font-size: 17px;
+    cursor: pointer;
+    color: #325434;
+}
