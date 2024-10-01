@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Page</title>
+    <link rel="stylesheet" href="../style/ticketBooking.css">
+</head>
+<body>
+
+    <header><h2>Party Booking</h2></header>
+
+    <main>
+        <div class="image-container">
+            <img src="../images/Seats2.png" alt="Seats" class="seats-image" id="seats-image">
+        </div>
+        <div class="match-details" id="match-details-container">
+            <h2>Party Details</h2> 
+            <!-- Match details will be inserted here -->
+            <div id="match-details-content"></div>
+        
+            <!-- Payment Method Modal -->
+        </div>
+        <!-- todo --========================================================= -->
+        
+        <div id="payment-popup" class="modal" >
+            <div class="modal-content">
+                <h2 id="methods">Which method of payment do you prefer?</h2>
+                <button id="cash-btn">Cash</button>
+                <button id="credit-card-btn">Credit Card</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>  
+        <!-- <div id="message">message</div> -->
+    </main>
+    
+
+    <script src="../script/ticketBooking.js"></script>
+    
+</body>
+</html>

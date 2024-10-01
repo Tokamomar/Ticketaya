@@ -131,6 +131,7 @@ function startCountdown(eventDate, countdownElement) {
 });
 
 // Function to handle ticket booking
-function bookTicket(matchId) {
-    alert(`Booking ticket for match ID: ${matchId}`);
+function bookTicket(partyId) {
+    alert(`party id is : `  + partyId);
+    window.location.href = `ticketBooking.html?partyId=${partyId}`; 
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="../style/payment.css">
+</head>
+<body>
+    <header>
+        <h1>Payment Details</h1>
+    </header>
+
+    <section id="payment-details">
+        <p>Total Amount: $<span id="total-amount"></span></p>
+        <label for="credit-card">Credit Card Number:</label>
+        <input type="text" id="credit-card" maxlength="16">
+        
+        <button id="pay-now-btn">Pay Now</button>
+        <div id="payment-message" style="display: none;"></div>
+    </section>
+
+    <script src="../script/payment.js"></script>
+</body>
+</html>
