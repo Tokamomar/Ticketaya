@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <input type="number" id="ticket-quantity" min="1" value="1">
                     <p class="total-price">Total Price: $<span id="total-price">${validTicketPrice}</span></p>
                     <button id="proceed-btn">Proceed to Buy</button>
+                    <button id="back-btn">Back to parties</button>
                 </div>
             `;
 
@@ -78,15 +79,22 @@ document.addEventListener("DOMContentLoaded", () => {
       proceedButton.addEventListener("click", () => {
         const quantity = parseInt(ticketQuantityInput.value);
         const available = parseInt(data.number_of_tickets);
+        console.log(quantity);
 
         if (quantity > available) {
           showMessage(
             `Sorry, only ${available} tickets are available.`,
             "error"
           );
+          alert(`only ${available} tickets are available`)
         } else {
           showPaymentMethodDialog(quantity, ticketPrice);
         }
+      });
+
+      const backBtn = document.getElementById("back-btn");
+      backBtn.addEventListener("click", () => {
+        window.location.href = "../index/allParties.html";
       });
     })
     .catch((error) => {
@@ -109,31 +117,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showPaymentMethodDialog(quantity, ticketPrice) {
     const totalPrice = (quantity * ticketPrice).toFixed(2);
-   
+
     paymentPopup.style.display = "block";
     const methods = document.getElementById("methods");
     methods.textContent = "Which method of payment do you prefer?";
-    creditCardBtn.style.display = "inline-block"
-    cancelBtn.style.display = "inline-block"
-    cashBtn.style.display = "inline-block"
+    creditCardBtn.style.display = "inline-block";
+    cancelBtn.style.display = "inline-block";
+    cashBtn.style.display = "inline-block";
 
     cashBtn.addEventListener("click", () => {
-      methods.textContent =
-        "Cash payment selected, We will send you an email, Please proceed to the venue.";
-      cashBtn.style.display = "none";
-      creditCardBtn.style.display = "none";
+      fetch(`http://127.0.0.1:8000/parties/bookticket/${partyId}/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          tickets_reserved: quantity,
+          pay_method: "offline",
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            alert("can not complete the reservation due to some issues!");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          cashBtn.style.display = "none";
+          creditCardBtn.style.display = "none";
+          methods.textContent = data.message;
+        });
     });
-    creditCardBtn.addEventListener('click' , ()=>{
-        window.location.href = `payment.html?total=${totalPrice}`
-    }) 
-  }
+    //todo ==========================    credite   =====================================================
+    creditCardBtn.addEventListener("click", () => {
+      fetch(`http://127.0.0.1:8000/parties/bookticket/${partyId}/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          tickets_reserved: quantity,
+          pay_method: "online",
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            alert("can not complete the reservation due to some issues!");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          window.location.href = `payment.html?total=${totalPrice}&pk=${data.reservation.pk}&partyId=${partyId}`
+        });
+    });
+    //todo ==========================    credite   =====================================================
 
+
+  }
 
   const paymentPopup = document.getElementById("payment-popup");
 
-cancelBtn.addEventListener("click", () => {
-  paymentPopup.style.display = "none";
+  cancelBtn.addEventListener("click", () => {
+    paymentPopup.style.display = "none";
+    window.location.reload();
+  });
 });
-});
-
-

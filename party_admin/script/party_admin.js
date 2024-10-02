@@ -49,7 +49,7 @@ function displayMatches(matches) {
       second: "numeric", // Optional, include if you want seconds
       hour12: true, // This option makes it 12-hour format with AM/PM
     });
-
+    const isAvailable = match.avilable;
     matchList.innerHTML += `
       <div class="admin-match">
         <img src=${match.image} alt="${match.name}" class="party_img">
@@ -79,6 +79,15 @@ function displayMatches(matches) {
           <button class="update-btn" onclick="editMatch(${match.id})">Update</button>
           <button class="delete-btn" onclick="deleteMatch(${match.id})">Delete</button>
         </div>
+        <div class="admin-match-actions" id="available-${index}" style="margin-right:20px">
+                    ${isAvailable ? 
+                        `` :
+                        `<span class="admin-match-actions availability">
+                            <span style="color: red;">&#9679;</span> <!-- Red circle -->
+                            <span">Not Available</span>
+                        </span>`
+                    }
+                </div>
         <div class="count_down" id="countdown-${index}"></div>
       </div>
     `;

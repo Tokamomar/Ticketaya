@@ -77,7 +77,7 @@ function startCountdown(eventDate, countdownElement) {
       hour12: true, // This option makes it 12-hour format with AM/PM
     });
 
-
+    const isAvailable = match.avilable;
 
             matchList.innerHTML += `
                 <div class="match-card">
@@ -104,9 +104,15 @@ function startCountdown(eventDate, countdownElement) {
                             <span>Description : ${match.description}</span> <!-- Match description -->
                         </div>
                     </div>
-                    <div class="admin-match-actions">
-                        <button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>
-                    </div>
+                    <div class="admin-match-actions" id="available-${index}">
+                    ${isAvailable ? 
+                        `<button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>` :
+                        `<span class="admin-match-actions">
+                            <span style="color: red;">&#9679;</span> <!-- Red circle -->
+                            <span">Not Available</span>
+                        </span>`
+                    }
+                </div>
                     <div class="count_down" id="countdown-${index}"></div>
                 </div>
             `;
@@ -132,6 +138,6 @@ function startCountdown(eventDate, countdownElement) {
 
 // Function to handle ticket booking
 function bookTicket(partyId) {
-    alert(`party id is : `  + partyId);
+    // alert(`party id is : `  + partyId);
     window.location.href = `ticketBooking.html?partyId=${partyId}`; 
 }

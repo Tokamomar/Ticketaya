@@ -73,6 +73,14 @@
           ></textarea>
         </div>
         <div class="form-group">
+          <label for="availability">availability</label>
+          <input
+          type="checkbox"
+            id="availability"
+            name="availability"
+          >
+        </div>
+        <div class="form-group">
           <label for="image">Party Image</label>
           <input type="file" id="image">
         </div>
@@ -154,6 +162,12 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
         partyTimeInput.value = formattedDate;
         console.log(partyTimeInput)
 
+        const availability = document.getElementById('availability');
+        const is_available = data.avilable ;
+        if(is_available){
+          availability.checked = true;
+        }
+
         });
 
  /*
@@ -175,7 +189,9 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
           const location = document.getElementById('location').value
           const image = document.getElementById("image");
           const files = image.files[0];
-
+          let is_available = false ;
+          const availability = document.getElementById('availability');
+          is_available= availability.checked;
 
 
           if(files){
@@ -187,6 +203,7 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
           partyData.append("number_of_tickets", ticketCount);
           partyData.append("location", location);
           partyData.append("image", files);
+          partyData.append("avilable", is_available);
 
 
           fetch(`http://127.0.0.1:8000/parties/${editParty}/update`, {
@@ -217,6 +234,7 @@ console.log(formattedCairoTime); // Display only date and time in your desired f
           partyData.append("price", ticketPrice);
           partyData.append("number_of_tickets", ticketCount);
           partyData.append("location", location);
+          partyData.append("avilable", is_available);
           // partyData.append("image", files);
 
 
