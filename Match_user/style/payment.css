@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #4D774E;
-    --secondary-color: #81a17c;
+    --primary-color: rgb(77, 119, 78);
+    --secondary-color: rgb(129, 161, 124);
     --hover-color: #9dc1a4;
     --accent-color: #f1b24a;
 }
@@ -62,4 +62,36 @@ button {
 
 button:hover {
     background-color: var(--hover-color);
+}
+
+#successMessage {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; 
+    padding: 20px 40px;
+    border: 2px solid var(--primary-color); 
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: var(--primary-color); 
+    z-index: 1000; 
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#payment-message {
+    margin-top: 20px;
 }
