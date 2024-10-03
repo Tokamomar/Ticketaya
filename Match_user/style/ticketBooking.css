@@ -44,6 +44,7 @@ header {
 }
 
 .match-details {
+    display: block;
     background-color: white;
     padding: 20px;
     margin: 20px 10px;
@@ -51,7 +52,7 @@ header {
     border-radius: 5px;
 }
 
-.match-details h2{
+.match-details h2 {
     text-align: center;
 }
 
@@ -86,8 +87,8 @@ button:hover {
     background-color: #f1b14ada;
 }
 
- /* Modal */
- .modal {
+/* Modal */
+.modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -95,7 +96,7 @@ button:hover {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); 
     justify-content: center;
     align-items: center;
 }
@@ -103,16 +104,42 @@ button:hover {
 .modal-content {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header h2 {
+    color: black;
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 5px;
 }
 
 .modal h2 {
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin: 0;
+}
+
+#total-price {
+    margin: 20px 0; 
+    font-size: 1.1em; 
+}
+
+.transactions {
+    color: #7F7F7F;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 53px;
+    margin-top: 0; 
+}
+
+#payment-icon{
+    margin-top: 20px;
+}
+
+#message, #confirmation-message {
+    margin-top: 10px;
+    text-align: center;
 }
 
 .modal button {
@@ -124,26 +151,39 @@ button:hover {
     font-size: 16px;
 }
 
-.modal .cash-btn {
-    background-color: var(--secondary-color);
+#cancel-btn {
+    background-color: #cb2c27; 
     color: white;
 }
 
-.modal .credit-btn {
-    background-color: var(--primary-color);
-    color: white;
+#cancel-btn:hover {
+    background-color: rgb(228, 13, 13); 
 }
 
-.modal .cancel-btn {
-    background-color: red;
-    color: white;
+#successMessage {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; 
+    padding: 20px 40px;
+    border: 2px solid var(--primary-color); 
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    color: var(--primary-color); 
+    z-index: 1000; 
 }
 
-.modal button:hover {
-    opacity: 0.8;
-}
-
-#message {
+#overlay {
     display: none;
-    margin-top: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
