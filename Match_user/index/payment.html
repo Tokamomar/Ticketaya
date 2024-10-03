@@ -5,20 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
     <link rel="stylesheet" href="../style/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <h1>Payment Details</h1>
     </header>
 
-    <section id="payment-details">
+    <section class="payment-container">
+        <p>No. of Tickets Booked: <span id="ticket-quantity"></span></p>
         <p>Total Amount: $<span id="total-amount"></span></p>
         <label for="credit-card">Credit Card Number:</label>
-        <input type="text" id="credit-card" maxlength="16">
+        <input type="text" id="credit-card" maxlength="16" placeholder="1234 5678 9012 3456">
         
         <button id="pay-now-btn">Pay Now</button>
-        <div id="payment-message" style="display: none;"></div>
+        <div id="payment-message"></div>
     </section>
+
+    <div id="overlay" style="display: none;"></div>
+    <div id="successMessage" style="display: none;">
+        <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
+        <p>Successful Payment! Thank you for your purchase.</p> 
+    </div>
 
     <script src="../script/payment.js"></script>
 </body>
