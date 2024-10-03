@@ -5,35 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Page</title>
     <link rel="stylesheet" href="../style/ticketBooking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header><h2>Match Booking</h2></header>
+<header><h2>Match Booking</h2></header>
 
-    <main>
-        <div class="image-container">
-            <img src="../images/Seats.png" alt="Seats" class="seats-image" id="seats-image">
-        </div>
-        <div class="match-details" id="match-details-container">
-            <h2>Match Details</h2> 
-            <!-- Match details will be inserted here -->
-            <div id="match-details-content"></div>
-            <div id="message"></div>
-        
-            <!-- Payment Method Modal -->
-            <div id="payment-popup" class="modal" style="display: none;">
-                <div class="modal-content">
-                    <h2>Which method of payment do you prefer?</h2>
-                    <button id="cash-btn">Cash</button>
-                    <button id="credit-card-btn">Credit Card</button>
-                    <button id="cancel-btn">Cancel</button>
-                </div>
-            </div>
-            
-        </div>        
-    </main>
+<main>
+    <div class="image-container">
+        <img src="../images/Seats.png" alt="Seats" class="seats-image" id="seats-image">
+    </div>
+    <div class="match-details" id="match-details-container">
+        <h2>Match Details</h2>
+        <div id="match-details-content"></div>
+        <div id="message"></div>
+    </div>
 
-    <script src="../script/ticketBooking.js"></script>
+    <div id="confirmation-message" style="display: none;"></div>
     
+    <div id="payment-popup" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-credit-card" id="payment-icon" style="font-size: 2em; color: #4D774E;"></i>
+                <h2 style="color: black; display: inline-block; margin-left: 10px; margin-bottom: 5px;">Choose Payment Method</h2>
+            </div>
+            <p class="transactions" style="color: #7F7F7F; font-size: 15px; margin-top: 0;">All transactions are secure and encrypted</p>
+            <p id="popup-total-price"></p> 
+            <div id="button-container">
+                <button id="cashButton">Cash</button>
+                <button id="creditCardButton">Credit Card</button>
+            </div>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+    </div>
+</main>
+
+<div id="overlay"></div>
+<div id="successMessage">
+    <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
+    <p>Successful Reservation! Please check your email for confirmation.</p>
+</div>
+
+<script src="../script/ticketBooking.js"></script>
 </body>
 </html>
