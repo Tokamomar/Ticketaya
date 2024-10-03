@@ -166,3 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
         paymentPopup.style.display = "none";
     });
 });
+
+// Back Button
+backButton.addEventListener("click", () => {
+    window.location.href = "../index/main_page.html"; 
+});
