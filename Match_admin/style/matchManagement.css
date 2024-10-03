@@ -17,6 +17,12 @@ header {
     text-align: center;
 }
 
+#back{
+    text-align: start;
+    cursor: pointer;
+    
+}
+
 /* Search Bar Section */
 .search-section {
     margin: 20px;
