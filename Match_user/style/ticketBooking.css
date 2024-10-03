@@ -12,11 +12,37 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
+    position: relative; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 10px;
+    background-color: var(--primary-color); 
     color: white;
-    text-align: center;
-    padding: 20px 0;
 }
+
+h2 {
+    font-size: 24px; 
+    margin: 0;
+}
+
+#backButton {
+    position: absolute;
+    left: 30px; 
+}
+
+#backButton a {
+    text-decoration: none;
+    color: white; 
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#backButton a:hover {
+    color: var(--accent-color);
+}
+
+
 
 .image-container {
     position: relative;
