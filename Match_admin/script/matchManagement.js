@@ -154,3 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
         displayMatches(filteredMatches); 
     });
 });
+
+const back = document.getElementById('back')
+back.addEventListener('click', () => {
+  window.location.href = '../../Admin_Panel/index/AdminPanel.html'
+})
