@@ -36,6 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
         ? ticketPrice.toFixed(2)
         : "0.00";
 
+
+        const cairoTime = new Date(data.datetime);
+
+    // Subtract 3 hours from the event date
+    cairoTime.setHours(cairoTime.getHours() - 3);
+
+    // Format the date and time without timezone info
+    const formattedCairoTime = cairoTime.toLocaleString("en-US", {
+      year: "numeric",
+      month: "long", // Full month name like "January"
+      day: "numeric", // Numeric day like "29"
+      hour: "numeric", // Hour like "1" or "13"
+      minute: "numeric", // Minute like "19"
+      second: "numeric", // Optional, include if you want seconds
+      hour12: true, // This option makes it 12-hour format with AM/PM
+    });
+
       const matchHTML = `
                 <p><strong>Party Name:</strong> <span id="match-name">${
                   data.name
@@ -44,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   data.performer
                 }</span></p>
                 <p><strong>Date:</strong> <span id="match-date">${
-                  data.datetime
+                  formattedCairoTime
                 }</span></p>
                 <p><strong>Location:</strong> <span id="match-stadium">${
                   data.location

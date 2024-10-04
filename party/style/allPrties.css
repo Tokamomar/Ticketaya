@@ -19,47 +19,47 @@ ul {
     list-style-type: none;
 }
 
-/* Header */
 header {
     background-color: var(--primary-color);
     max-width: 100%;
     height: 70px;
     padding-top: 10px; 
-    margin-top: -10px; 
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -10px; 
-}
-
-header a {
-    color: white;
-    font-size: 16px;
-    text-transform: capitalize;
+    height: 100%;
 }
 
 header img {
-    width: 100px;
+    width: 100px; 
     margin-left: 30px;
+}
+
+header .nav {
+    display: flex; 
+    align-items: center;
 }
 
 header .nav ul {
     display: flex;
-    justify-content: space-between;
+    margin-right: 30px; 
+}
+
+header .nav ul li {
+    margin-left: 20px; 
 }
 
 header .nav ul li a {
+    color: white; 
+    font-size: 16px;
+    text-transform: capitalize;
     transition: 0.3s;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-}
-
-header .nav ul li a p {
-    padding-right: 30px;
 }
 
 header .nav ul li a:hover {
@@ -67,8 +67,41 @@ header .nav ul li a:hover {
 }
 
 header .nav ul li i {
-    margin-right: 10px;
+    margin-right: 5px; 
 }
+
+/* logged in */
+.pfp {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+    display: inline-block;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: bold; 
+    color: white; 
+    margin-right: 10px; 
+    display: inline-block; 
+}
+
+.logout_btn {
+    cursor: pointer; 
+    color: white; 
+    background: none;
+    border: none; 
+    font-size: 16px; 
+    display: inline-block; 
+    margin-left: 20px;
+}
+
+.logout_btn:hover {
+    color: #DB504A; 
+}
+
+
 
 
 .hero {

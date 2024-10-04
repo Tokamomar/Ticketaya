@@ -58,3 +58,28 @@ window.addEventListener('click', function(event) {
         popup.style.display = 'none';
     }
 });
+// Logout button functionality
+const logoutBtn = document.getElementById('logout_btn');
+logoutBtn.addEventListener('click', () => {
+    const refresh = localStorage.getItem("refreshToken");
+    const logoutData = { refresh_token: refresh };
+    fetch('http://127.0.0.1:8000/account/logout/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(logoutData),
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to logout");
+        }
+        return response.json();
+    }).then(data => {
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("accessToken");
+        alert(data.msg);
+        window.location.href="../Registration/index/login.html"; 
+    }).catch(error => {
+        console.error('Error during logout:', error);
+    });
+});

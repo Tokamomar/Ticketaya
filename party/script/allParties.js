@@ -1,12 +1,73 @@
 document.addEventListener('DOMContentLoaded', function() {
     const matchList = document.getElementById('matchList');
     const searchBar = document.getElementById('searchBar');
+    const guestNav = document.getElementById('guest-nav');
+    const userNav = document.getElementById('user-nav'); 
     let matchesData = []; 
     const accessToken = localStorage.getItem('accessToken');
 
 
+
+    fetch('http://127.0.0.1:8000/account/profile/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+        },
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to fetch profile data');
+        }
+    }).then(data => {
+        // Show the user navigation and hide the guest navigation
+        guestNav.style.display = 'none'; // Hide guest navigation
+        userNav.style.display = 'block'; // Show user navigation
+
+        userNav.querySelector('ul').innerHTML = `
+        <li style="display: flex; align-items: center;">
+           <a href="../../account/index/account.html">
+            <img class="pfp" alt="Profile Picture" src="${data.image}" id="pfp"/>
+            </a>
+           <span class="username">${data.username}</span>
+           <button class="logout_btn" id="logout_btn"><i class="fa-solid fa-sign-out"></i>Logout</button>
+        </li>
+`;
+
+        // Logout button functionality
+        const logoutBtn = document.getElementById('logout_btn');
+        logoutBtn.addEventListener('click', () => {
+            const refresh = localStorage.getItem("refreshToken");
+            const logoutData = { refresh_token: refresh };
+            fetch('http://127.0.0.1:8000/account/logout/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(logoutData),
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to logout");
+                }
+                return response.json();
+            }).then(data => {
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("accessToken");
+                alert(data.msg);
+                window.location.reload(); 
+            }).catch(error => {
+                console.error('Error during logout:', error);
+            });
+        });
+
+    }).catch(error => {
+        console.error('Error fetching user data:', error);
+    });
+
+
     // Function to calculate and start the countdown for each match
-function startCountdown(eventDate, countdownElement) {
+function startCountdown(eventDate, countdownElement , bookBtn) {
     // Adjust the event date by subtracting 3 hours (in milliseconds)
     const adjustedEventDate = new Date(new Date(eventDate).getTime() - 3 * 60 * 60 * 1000);
   
@@ -16,6 +77,9 @@ function startCountdown(eventDate, countdownElement) {
   
       if (distance < 0) {
         countdownElement.textContent = "Event Over!";
+        if(bookBtn){
+            bookBtn.style.display = "none";
+        }
         return; // Stop updating if the event is over
       }
   
@@ -61,7 +125,7 @@ function startCountdown(eventDate, countdownElement) {
 
 
 
-            const cairoTime = new Date(match.datetime);
+        const cairoTime = new Date(match.datetime);
 
     // Subtract 3 hours from the event date
     cairoTime.setHours(cairoTime.getHours() - 3);
@@ -106,7 +170,7 @@ function startCountdown(eventDate, countdownElement) {
                     </div>
                     <div class="admin-match-actions" id="available-${index}">
                     ${isAvailable ? 
-                        `<button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>` :
+                        `<button class="book-ticket-btn" onclick="bookTicket(${match.id})" id="bookNow-${index}">Book Now</button>` :
                         `<span class="admin-match-actions">
                             <span style="color: red;">&#9679;</span> <!-- Red circle -->
                             <span">Not Available</span>
@@ -121,6 +185,8 @@ function startCountdown(eventDate, countdownElement) {
   matches.forEach((match, index) => {
     const countdownElement = document.getElementById(`countdown-${index}`);
     startCountdown(match.datetime, countdownElement);
+    const bookButton = document.getElementById(`bookNow-${index}`);
+        startCountdown(match.datetime, countdownElement, bookButton);
   });
     }
 

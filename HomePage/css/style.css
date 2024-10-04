@@ -73,6 +73,19 @@ header .nav ul li a:hover{
 header .nav ul li i{
         margin-right: 10px;
 }
+.logout_btn {
+        cursor: pointer; 
+        color: white; 
+        background: none;
+        border: none; 
+        font-size: 16px; 
+        display: inline-block; 
+        margin-left: 20px;
+    }
+    
+    .logout_btn:hover {
+        color: #DB504A; 
+    }
 .landing{
         background-image: url("../images/slider1.jpg;");
         height: calc( 100vh - 64.94px) ;
