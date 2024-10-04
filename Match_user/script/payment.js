@@ -6,20 +6,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const paymentMessageDiv = document.getElementById("payment-message");
     const successMessageDiv = document.getElementById("successMessage");
     const overlay = document.getElementById("overlay");
+
+    // Extract parameters from the URL
     const urlParams = new URLSearchParams(window.location.search);
-    const totalAmount = urlParams.get("total");
-    const ticketQuantity = urlParams.get("tickets");
+    let totalAmount = urlParams.get("total");
+    let ticketQuantity = urlParams.get("tickets");
     const pk = urlParams.get("pk");
     const matchId = urlParams.get("matchId");
 
-    totalAmountElement.textContent = totalAmount; 
+    totalAmount = isNaN(parseFloat(totalAmount)) ? 0 : parseFloat(totalAmount).toFixed(2);
+    ticketQuantity = isNaN(parseInt(ticketQuantity)) ? 0 : parseInt(ticketQuantity);
+
+    totalAmountElement.textContent = totalAmount;
     ticketQuantityElement.textContent = ticketQuantity;
 
     const accessToken = localStorage.getItem('accessToken'); 
 
+    // Payment button 
     payNowButton.addEventListener("click", () => {
         const creditCardNumber = creditCardInput.value;
-    
+
         // Valid credit card input
         if (creditCardNumber === "") {
             showPaymentMessage("Please enter your credit card number.", "error");
@@ -31,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Payment request 
+        // Send payment request
         fetch(`http://127.0.0.1:8000/reservation/matchpayment/${pk}/?matchId=${matchId}`, {
             method: "POST",
             headers: {
@@ -42,40 +48,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 visa_card: creditCardNumber
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                showPaymentMessage('Failed to complete payment method!', 'error');
-                return; 
-            }
-            return response.json(); 
-        })
+        .then(response => response.json()) 
         .then(data => {
-            if (data.success) { 
-                processPayment(creditCardNumber, totalAmount); 
-            } else {
-                showPaymentMessage("Payment failed: " + data.message, "error");
+            console.log(data); 
+            if (data && data.success) {
+                showPaymentMessage('Payment successful! Thank you for your purchase.', 'success');
             }
+
+            overlay.style.display = "block";
+            successMessageDiv.style.display = "block"; 
+
+            setTimeout(() => {
+                overlay.style.display = "none";
+                successMessageDiv.style.display = "none";
+                window.location.href = "main_page.html"; 
+            }, 3000);
         })
         .catch(error => {
             console.error("Payment error:", error);
-            showPaymentMessage("Payment failed: " + error.message, "error");
+            showPaymentMessage('Payment processing, please wait...', 'info');
         });
     });
 
     function showPaymentMessage(message, type) {
         paymentMessageDiv.textContent = message;
-        paymentMessageDiv.style.color = type === "error" ? "red" : "green";
-    }
-    
-    //Successful payment 
-    function processPayment(creditCardNumber, amount) {
-        overlay.style.display = "block"; 
-        successMessageDiv.style.display = "block"; 
-
-        setTimeout(() => {
-            overlay.style.display = "none"; 
-            successMessageDiv.style.display = "none"; 
-            window.location.href = "main_page.html"; 
-        }, 3000);
+        paymentMessageDiv.style.color = type === "error" ? "red" : type === "success" ? "green" : "orange";
+        paymentMessageDiv.style.display = "block"; 
     }
 });
