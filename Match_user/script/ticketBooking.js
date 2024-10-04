@@ -4,13 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchDetailsContainer = document.getElementById("match-details-container");
     const messageDiv = document.getElementById("message");
     const paymentPopup = document.getElementById("payment-popup");
-    const totalPriceElement = document.getElementById("total-price"); 
-    const popupTotalPriceElement = document.getElementById("popup-total-price"); 
+    const popupTotalPriceElement = document.getElementById("popup-total-price");
     const cashButton = document.getElementById("cashButton");
     const creditCardButton = document.getElementById("creditCardButton");
     const cancelButton = document.getElementById("cancel-btn");
-    
-    let quantity = 1; 
+    const overlay = document.getElementById("overlay");
+    const successMessage = document.getElementById("successMessage");
+
+    let quantity = 1;
+    let ticketPrice = 0;
 
     if (!matchId) {
         showMessage("Match ID not found in the URL.", "error");
@@ -26,15 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
-            const ticketPrice = parseFloat(data.ticket_price).toFixed(2);
+            ticketPrice = parseFloat(data.ticket_price).toFixed(2);
 
             const matchHTML = `
                 <h2>Match Details</h2>
                 <p><strong>Match Name:</strong> <span id="match-name">${data.name}</span></p>
+                <p><strong>Teams:</strong> <span id="teams">${data.team1} vs. ${data.team2}</span></p>
                 <p><strong>Date:</strong> <span id="match-date">${data.date}</span></p>
                 <p><strong>Stadium:</strong> <span id="match-stadium">${data.stadium}</span></p>
                 <p><strong>Price per Ticket:</strong> $<span id="ticket-price">${ticketPrice}</span></p>
                 <p><strong>Available Tickets:</strong> <span id="match-tickets">${data.no_tickets}</span></p>
+                <p><strong>Details:</strong> <span id="match-details">${data.description}</span></p>
                 <div class="ticket-selection">
                     <label for="ticket-quantity">Number of Tickets:</label>
                     <input type="number" id="ticket-quantity" min="1" value="1">
@@ -49,8 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const totalPriceElement = document.getElementById("total-price");
 
             ticketQuantityInput.addEventListener("input", () => {
-                quantity = parseInt(ticketQuantityInput.value); // Update quantity based on user input
-                // Total price updated according to the number of tickets
+                quantity = parseInt(ticketQuantityInput.value);
                 totalPriceElement.textContent = (quantity * ticketPrice).toFixed(2);
             });
 
@@ -74,17 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.style.display = "block";
     }
 
-    // Show payment method modal function
     function showPaymentMethodModal(quantity, ticketPrice) {
-        const totalPrice = (quantity * parseFloat(ticketPrice)).toFixed(2); 
-        popupTotalPriceElement.textContent = `Total Price: $${totalPrice}`; 
-        paymentPopup.style.display = "flex"; 
+        const totalPrice = (quantity * parseFloat(ticketPrice)).toFixed(2);
+        popupTotalPriceElement.textContent = `Total Price: $${totalPrice}`;
+        paymentPopup.style.display = "flex";
     }
 
     // Cash Button
     cashButton.addEventListener("click", () => {
         const accessToken = localStorage.getItem('accessToken');
 
+        paymentPopup.style.display = "none";
+        overlay.style.display = "block";
+        successMessage.style.display = "block";
+
+        setTimeout(() => {
+            overlay.style.display = "none";
+            successMessage.style.display = "none";
+        }, 5000);
+
+        // Proceed with the fetch request to the backend
         fetch(`http://127.0.0.1:8000/reservation/bookticket/${matchId}/`, {
             method: "POST",
             headers: {
@@ -96,31 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 pay_method: "offline",
             }),
         })
-        .then((response) => {
-            if (!response.ok) {
-                console.error("Response Error:", response);
-                alert("Cannot complete the reservation due to some issues!");
-                return;
-            }
-            return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
-            console.log("Response Data:", data);
-            if (data.success) {
-                messageDiv.innerHTML = `
-                    <div id="successMessage">
-                        <i class="fa-solid fa-circle-check" style="color: #5a875b; font-size: 24px;"></i>
-                        <p>Successful Reservation! Please check your email for confirmation.</p>
-                    </div>
-                `;
-                paymentPopup.style.display = "none"; 
-            } else {
-                alert("Reservation failed. Please try again.");
+            if (!data.success) {
+                console.error("Reservation issue:", data);
             }
         })
         .catch(error => {
-            console.error("Payment error:", error);
-            alert("Payment failed: " + error.message);
+            console.error("Reservation error:", error);
         });
     });
 
@@ -128,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     creditCardButton.addEventListener("click", () => {
         const accessToken = localStorage.getItem('accessToken');
 
+        const totalPrice = (quantity * ticketPrice).toFixed(2); 
         fetch(`http://127.0.0.1:8000/reservation/bookticket/${matchId}/`, {
             method: "POST",
             headers: {
@@ -139,17 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 pay_method: "online",
             }),
         })
-        .then((response) => {
-            if (!response.ok) {
-                alert("Cannot complete the reservation due to some issues!");
-                return;
-            }
-            return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
             if (data.reservation) {
-                // Redirect to payment page
-                const totalPrice = (quantity * parseFloat(data.ticket_price)).toFixed(2);
                 window.location.href = `payment.html?total=${totalPrice}&tickets=${quantity}&pk=${data.reservation.pk}&matchId=${matchId}`;
             } else {
                 alert("Reservation not found. Please try again.");
@@ -161,13 +149,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Cancel Button
+    // Cancel button
     cancelButton.addEventListener("click", () => {
         paymentPopup.style.display = "none";
     });
 });
 
-// Back Button
+// Back button
 backButton.addEventListener("click", () => {
     window.location.href = "../index/main_page.html"; 
 });
