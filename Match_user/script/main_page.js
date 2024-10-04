@@ -1,14 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const matchList = document.getElementById('matchList');
     const searchBar = document.getElementById('searchBar');
     const guestNav = document.getElementById('guest-nav');
-    const userNav = document.getElementById('user-nav'); 
+    const userNav = document.getElementById('user-nav');
     const accessToken = localStorage.getItem('accessToken');
     let matchesData = [];
 
     // Check if the user is logged in
     if (accessToken) {
-        // If logged in, display user information
         fetch('http://127.0.0.1:8000/account/profile/', {
             method: 'GET',
             headers: {
@@ -22,9 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Failed to fetch profile data');
             }
         }).then(data => {
-            // Show the user navigation and hide the guest navigation
-            guestNav.style.display = 'none'; // Hide guest navigation
-            userNav.style.display = 'block'; // Show user navigation
+            guestNav.style.display = 'none'; 
+            userNav.style.display = 'block'; 
 
             userNav.querySelector('ul').innerHTML = `
             <li style="display: flex; align-items: center;">
@@ -32,11 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <img class="pfp" alt="Profile Picture" src="${data.image}" id="pfp"/>
                 </a>
                <span class="username">${data.username}</span>
-               <button class="logout_btn" id="logout_btn"><i class="fa-solid fa-sign-out"></i>Logout</button>
+               <li><a href="#footer" id="contact-link"><i class="fa-solid fa-phone"></i><p>Contact Us</p></a></li>
+               <button class="logout_btn" id="logout_btn"><i class="fa-solid fa-sign-out"></i> Logout</button>
             </li>
-`;
+            `;
 
-            // Logout button functionality
+            // Logout button 
             const logoutBtn = document.getElementById('logout_btn');
             logoutBtn.addEventListener('click', () => {
                 const refresh = localStorage.getItem("refreshToken");
@@ -56,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     localStorage.removeItem("refreshToken");
                     localStorage.removeItem("accessToken");
                     alert(data.msg);
-                    window.location.reload(); 
+                    window.location.reload();
                 }).catch(error => {
                     console.error('Error during logout:', error);
                 });
@@ -67,28 +66,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         // If not logged in, show the guest navigation and hide the user navigation
-        guestNav.style.display = 'block'; // Show guest navigation
-        userNav.style.display = 'none'; // Hide user navigation
+        guestNav.style.display = 'block'; 
+        userNav.style.display = 'none'; 
     }
 
     // Fetch all matches
     fetch('http://127.0.0.1:8000/match/retrive_all_match/', {
         method: 'GET'
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch matches');
-        }
-        return response.json();
-    })
-    .then(matches => {
-        matchesData = matches; 
-        displayMatches(matches); 
-    })
-    .catch(error => {
-        console.error('Error fetching matches:', error);
-        alert('Unable to load matches. Please try again later.');
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch matches');
+            }
+            return response.json();
+        })
+        .then(matches => {
+            matchesData = matches;
+            displayMatches(matches);
+        })
+        .catch(error => {
+            console.error('Error fetching matches:', error);
+            alert('Unable to load matches. Please try again later.');
+        });
 
     // Function to format date
     function formatDate(dateString) {
@@ -96,8 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return new Date(dateString).toLocaleDateString('en-US', options);
     }
 
-    // Function to format time
+    // Function to format time with null check
     function formatTime(timeString) {
+        if (!timeString) return 'Time not available';  
+
         let [hours, minutes] = timeString.split(':');
         let period = 'AM';
 
@@ -113,27 +114,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${hours}:${minutes} ${period}`;
     }
 
-    // Function to display matches in the desired format
     function displayMatches(matches) {
-        matchList.innerHTML = ''; 
+        matchList.innerHTML = '';
 
         if (matches.length === 0) {
-            matchList.innerHTML = '<p class="no-matches">No matches found.</p>'; // Display message if no matches are found
+            matchList.innerHTML = '<p class="no-matches">No matches found.</p>'; 
             return;
         }
 
-        const currentDate = new Date(); // Get the current date
+        const currentDate = new Date();
 
         matches.forEach(match => {
-            const matchDate = new Date(match.date); // Convert match date string to Date object
+            const matchDate = new Date(match.date); 
             const matchTime = formatTime(match.time);
-            const isMatchEnded = matchDate < currentDate; // Check if match date has passed
+            const isMatchEnded = matchDate < currentDate;
 
             matchList.innerHTML += `
                 <div class="match-card">
                     <div class="matchPhoto">
                         <img src="${match.image}" alt="${match.name}" class="match-image"> <!-- Use match.image field -->
-                    </div>                    
+                    </div>
                     <div class="match-info">
                         <h3>${match.name}</h3> <!-- Match name as heading -->
                         <div class="match-details">
@@ -154,24 +154,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                     <div class="admin-match-actions">
-                    ${isMatchEnded 
-                        ? `<span style="color: black; margin-top: 15px; margin-right: 15px;">
+                    ${isMatchEnded
+                    ? `<span style="color: black; margin-top: 15px; margin-right: 15px;">
                                <i class="fa fa-circle" style="color: #DB504A; font-size: 0.8em;" aria-hidden="true"></i> Match Ended
-                           </span>` 
-                        : `<button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>`
-                    }
+                           </span>`
+                    : `<button class="book-ticket-btn" onclick="bookTicket(${match.id})">Book Now</button>`
+                }
                     </div>
                 </div>
             `;
         });
     }
 
-    // Search matches by name or teams
-    searchBar.addEventListener('input', function() {
+    // Search matches by name
+    searchBar.addEventListener('input', function () {
         const searchTerm = searchBar.value.toLowerCase();
-        const filteredMatches = matchesData.filter(match => 
-            match.name.toLowerCase().includes(searchTerm) || 
-            match.team1.toLowerCase().includes(searchTerm) || 
+        const filteredMatches = matchesData.filter(match =>
+            match.name.toLowerCase().includes(searchTerm) ||
+            match.team1.toLowerCase().includes(searchTerm) ||
             match.team2.toLowerCase().includes(searchTerm)
         );
         displayMatches(filteredMatches);
@@ -180,5 +180,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to handle ticket booking
 function bookTicket(matchId) {
-    window.location.href = `ticketBooking.html?matchId=${matchId}`; 
+    window.location.href = `ticketBooking.html?matchId=${matchId}`;
 }
