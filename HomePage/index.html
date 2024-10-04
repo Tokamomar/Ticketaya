@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/green-logo.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/all.min.css">
@@ -11,24 +12,41 @@
 
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="icon">
-                <a href="#"><img src="images/white-logo.png" alt=""></a>
-            </div>
-            <div class="nav">
-                <ul>
-                    
-                    <li style="margin-right: 20px;">
-                        <a>
-           <button class="logout_btn" id="logout_btn"><i class="fa-solid fa-sign-out"></i>Logout</button>
-        </a>
-                    </li>
-                    <li><a href="#" id="openAbout"><i class="fa-solid fa-user-group"></i><p>about us</p></a></li>
-                </ul>
-            </div>
+  <header>
+    <div class="container">
+        <div class="icon">
+            <a href="#"><img src="images/white-logo.png" alt=""></a>
         </div>
-    </header>
+        <div class="nav">
+            <!-- guest nav -->
+            <ul id="guest-nav">
+                <li><a href="../Registration/index/signup.html"><i class="fa-solid fa-user-plus"></i><p>Register</p></a></li>
+                <li><a href="../Registration/index/login.html"><i class="fa-solid fa-lock"></i><p>Sign In</p></a></li>
+                <li><a href="#" id="openAbout"><i class="fa-solid fa-user-group"></i><p>About Us</p></a></li>
+            </ul>
+
+            <!-- user nav -->
+
+            <ul id="user-nav" style="display: none;">
+                <li id="userProfile">
+                    <a href="../account/index/account.html">
+                        <img class="pfp" alt="Profile Picture" src="" id="pfp">
+                        <p class="username">Username</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="openAbout"><i class="fa-solid fa-user-group"></i><p>About Us</p></a>
+                </li>
+                <li id="logoutBtn" style="display: none;">
+                    <button class="logout_btn">
+                        <i class="fa-solid fa-sign-out"></i>Logout
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
     <div class="landing">
         <div class="container">
             <div class="landing-content">
