@@ -1,4 +1,4 @@
-let matchesData = []; 
+let matchesData = [];
 
 function formatDate(dateString) {
     const options = { month: 'long', day: 'numeric', year: 'numeric' };
@@ -6,6 +6,10 @@ function formatDate(dateString) {
 }
 
 function formatTime(timeString) {
+    if (!timeString) {
+        return "Time not available"; 
+    }
+
     let [hours, minutes] = timeString.split(':');
     let period = 'AM';
 
@@ -54,11 +58,7 @@ function displayMatches(matches) {
                     <div class="match-details">
                         <span>${matchDate} | ${matchTime}</span> <!-- Date and Time -->
                     </div>
-
-                    <div class="match-details">
-                        <span>Total no. of Tickets: ${match.no_tickets}</span> <!-- Number of tickets -->
-                    </div>
-
+                    
                     <div class="match-details">
                         <span>No. of available Tickets: ${match.no_tickets}</span> <!-- Available tickets -->
                     </div>
@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
         displayMatches(filteredMatches); 
     });
 });
+
 
 const back = document.getElementById('back')
 back.addEventListener('click', () => {
